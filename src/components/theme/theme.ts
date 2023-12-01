@@ -16,11 +16,16 @@ const theme = createTheme({
     fontFamily: "Source Sans Pro, Roboto, Arial, sans-serif"
   },
   components: {
+    MuiButtonBase: {
+      defaultProps: {
+        disableRipple: true
+      }
+    },
     MuiAlert: {
       styleOverrides: {
         root: ({ ownerState }) => ({
           ...(ownerState.severity === "info" && {
-            backgroundColor: colors.light_blue
+            backgroundColor: colors.light
           })
         })
       }
