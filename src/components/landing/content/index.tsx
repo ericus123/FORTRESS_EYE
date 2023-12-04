@@ -18,7 +18,8 @@ const LandingContent = () => {
     <Box>
       <Box
         sx={{
-          display: "flex"
+          display: "grid",
+          gridTemplateColumns: "50% 50%"
         }}>
         <LandingLeft active={active} />
         <LandingRight active={active} />

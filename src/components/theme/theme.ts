@@ -29,6 +29,21 @@ const theme = createTheme({
           })
         })
       }
+    },
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          "& .MuiOutlinedInput-notchedOutline": {
+            borderColor: "transparent"
+          },
+          "&:hover .MuiOutlinedInput-notchedOutline": {
+            borderColor: "transparent"
+          },
+          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+            borderColor: "transparent"
+          }
+        }
+      }
     }
   }
 });

@@ -3,6 +3,7 @@ import camera from "../../public/images/icons/camera.svg";
 import eye from "../../public/images/icons/eye.svg";
 import play from "../../public/images/icons/play.svg";
 import siren from "../../public/images/icons/siren.svg";
+import login from "../../public/images/login.svg";
 import logo from "../../public/images/logo.svg";
 
 export const images = {
@@ -11,5 +12,6 @@ export const images = {
   eye,
   siren,
   logo,
-  play
+  play,
+  login
 };

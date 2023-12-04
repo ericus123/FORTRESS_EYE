@@ -3,15 +3,18 @@ import { Button, SxProps } from "@mui/material";
 const AppButton = ({
   text,
   onClick,
-  sx
+  sx,
+  type
 }: {
   text: string;
   onClick?: () => void;
   sx?: SxProps;
+  type?: "button" | "submit";
 }) => {
   return (
     <Button
       onClick={onClick}
+      type={type || "button"}
       sx={{
         "&:hover": {
           background: "none"
