@@ -22,14 +22,16 @@ const LandingLeft = ({ active }: { active: LandingActive }) => {
         sx={{
           display: "flex",
           flexDirection: "column",
+          margin: "0 auto",
           gap: "50px",
+          maxWidth: "450px",
+          width: "max-content",
           "@media(max-width: 980px)": {
             gap: "30px"
           }
         }}>
         <Box
           sx={{
-            maxWidth: "50%",
             display: "flex",
             flexDirection: "column",
             gap: "20px",
@@ -41,7 +43,7 @@ const LandingLeft = ({ active }: { active: LandingActive }) => {
             component={"h1"}
             sx={{
               color: colors.charcoal,
-              fontSize: "clamp(24px, 3vw, 32px)",
+              fontSize: "clamp(24px, 3vw, 36px)",
               fontStyle: "normal",
               fontWeight: "700",
               lineHeight: "normal"
@@ -51,7 +53,7 @@ const LandingLeft = ({ active }: { active: LandingActive }) => {
               component={"span"}
               sx={{
                 color: colors.rose_red,
-                fontSize: "clamp(24px, 3vw, 32px)",
+                fontSize: "clamp(24px, 3vw, 36px)",
                 fontStyle: "normal",
                 fontWeight: "700",
                 lineHeight: "normal"
