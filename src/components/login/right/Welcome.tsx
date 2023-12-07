@@ -7,7 +7,7 @@ const LoginWelcome = () => {
       <Typography
         component={"h1"}
         sx={{
-          color: colors.light_blue,
+          color: colors.cambridge_blue,
           fontSize: "clamp(24px, 3vw, 32px)",
           fontStyle: "normal",
           fontWeight: "900",
@@ -18,7 +18,7 @@ const LoginWelcome = () => {
       <Typography
         component={"p"}
         sx={{
-          color: colors.black_5,
+          color: colors.light,
           fontFamily: "Poppins",
           fontSize: "clamp(14px, 1.5vw, 18px)",
           fontStyle: "normal",

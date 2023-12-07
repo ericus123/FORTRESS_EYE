@@ -42,7 +42,7 @@ const LandingLeft = ({ active }: { active: LandingActive }) => {
           <Typography
             component={"h1"}
             sx={{
-              color: colors.charcoal,
+              color: colors.light,
               fontSize: "clamp(24px, 3vw, 36px)",
               fontStyle: "normal",
               fontWeight: "700",
@@ -52,7 +52,7 @@ const LandingLeft = ({ active }: { active: LandingActive }) => {
             <Typography
               component={"span"}
               sx={{
-                color: colors.rose_red,
+                color: colors.cambridge_blue,
                 fontSize: "clamp(24px, 3vw, 36px)",
                 fontStyle: "normal",
                 fontWeight: "700",
@@ -65,7 +65,7 @@ const LandingLeft = ({ active }: { active: LandingActive }) => {
           <Typography
             component={"p"}
             sx={{
-              color: colors.black_5,
+              color: colors.light,
               fontFamily: "Poppins",
               fontSize: "clamp(14px, 1.5vw, 18px)",
               fontStyle: "normal",
@@ -88,9 +88,9 @@ const LandingLeft = ({ active }: { active: LandingActive }) => {
               text="Learn More"
               sx={{
                 "&:hover": {
-                  background: colors.light_blue
+                  background: colors.cambridge_blue
                 },
-                background: colors.light_blue,
+                background: colors.cambridge_blue,
                 color: colors.light,
                 fontFamily: "Poppins",
                 fontSize: "clamp(16px, 1.5vw, 18px)",
@@ -138,7 +138,7 @@ const LandingLeft = ({ active }: { active: LandingActive }) => {
               <Typography
                 component={"h2"}
                 sx={{
-                  color: colors.charcoal,
+                  color: colors.cambridge_blue,
                   fontFamily: "Poppins",
                   fontSize: "clamp(16px, 1.5vw, 18px)",
                   fontStyle: "normal",

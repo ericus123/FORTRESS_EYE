@@ -17,7 +17,7 @@ const Logo = () => {
         }
       }}>
       <Link href={"/"} shallow>
-        <Image src={images.logo} alt="" fill />
+        <Image src={images.logoLight} alt="" fill />
       </Link>
     </Box>
   );

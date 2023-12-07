@@ -10,6 +10,8 @@ const HomeBulb = () => {
         height: "50px",
         position: "absolute",
         right: "calc(30% + 4rem)",
+        opacity: 0.3,
+        animation: "opacityAnimation 5s ease-in-out infinite",
         "@media(max-width: 1200px)": {
           width: "125px",
           height: "125px"

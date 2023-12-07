@@ -18,7 +18,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body
+        className={inter.className}
+        style={{
+          background: "#69A297"
+        }}>
         <ThemeRegistry options={{ key: "mui" }}>
           <Providers>{children}</Providers>
         </ThemeRegistry>

@@ -11,8 +11,7 @@ const Login = () => {
       <Box
         sx={{
           display: "flex",
-          flexDirection: "column",
-          background: colors?.light
+          flexDirection: "column"
         }}>
         <LandingTop />
         <Box
@@ -26,7 +25,7 @@ const Login = () => {
             sx={{
               height: "calc(100vh - 40px - 2rem) - 4rem",
               width: "2px",
-              background: colors.charcoal,
+              background: colors.cambridge_blue,
               marginTop: "2rem",
               marginBottom: "2rem",
               opacity: 0.1,
