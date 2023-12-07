@@ -10,10 +10,9 @@ const HomeBulb = () => {
         height: "50px",
         position: "absolute",
         right: "calc(30% + 4rem)",
-        "@media(max-width: 1200px)": {
-          width: "125px",
-          height: "125px"
-        },
+        opacity: 0.3,
+        animation: "opacityAnimation 5s ease-in-out infinite",
+
         "@keyframes opacityAnimation": {
           "0%, 100%": {
             opacity: 1
@@ -26,6 +25,10 @@ const HomeBulb = () => {
         "&:hover": {
           opacity: 0.3,
           animation: "opacityAnimation .5s ease-in-out infinite"
+        },
+        "@media(max-width: 1200px)": {
+          width: "125px",
+          height: "125px"
         }
       }}>
       <Box sx={{ position: "absolute", width: "100%", height: "100%" }}>
@@ -37,7 +40,8 @@ const HomeBulb = () => {
             height: "50px",
             "@media(max-width: 1200px)": {
               width: "35px",
-              height: "35px"
+              height: "35px",
+              left: "60%"
             }
           }}>
           <Image src={images.bulb_yellow} alt="" fill />

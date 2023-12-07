@@ -54,6 +54,10 @@ const LoginForm = () => {
       }}>
       <FormProvider {...methods}>
         <form
+          autoCorrect="false"
+          autoSave="false"
+          autoComplete="off"
+          autoFocus={false}
           onSubmit={methods.handleSubmit(onSubmit, onError)}
           style={{
             display: "flex",
@@ -63,7 +67,7 @@ const LoginForm = () => {
           <Box>
             <Typography
               sx={{
-                color: colors.charcoal
+                color: colors.light
               }}
               component={"h3"}>
               Email
@@ -72,15 +76,16 @@ const LoginForm = () => {
               variant="standard"
               id="email"
               type="email"
+              autoComplete="off"
               {...methods.register("email")}
               error={Boolean(methods.formState.errors.email)}
               fullWidth
               autoFocus={false}
               sx={{
-                border: `2px solid ${colors.light_blue_5}`,
+                border: `2px solid ${colors.cambridge_blue}`,
                 borderRadius: "5px",
                 height: "45px",
-                color: colors.black_5,
+                color: colors.light,
                 marginBottom: 0,
                 paddingLeft: "10px",
                 fill: "none"
@@ -90,7 +95,7 @@ const LoginForm = () => {
                 style: {
                   padding: 0,
                   height: "45px",
-                  color: colors.black_5,
+                  color: colors.light,
                   fill: "none"
                 }
               }}
@@ -103,7 +108,7 @@ const LoginForm = () => {
             }}>
             <Typography
               sx={{
-                color: colors.charcoal
+                color: colors.light
               }}
               component={"h3"}>
               Password
@@ -115,13 +120,14 @@ const LoginForm = () => {
               {...methods.register("password")}
               error={Boolean(methods.formState.errors.password)}
               fullWidth
+              autoComplete="off"
               autoFocus={false}
               InputProps={{
                 disableUnderline: true,
                 style: {
                   padding: 0,
                   height: "45px",
-                  color: colors.black_5,
+                  color: colors.light,
                   marginBottom: 0,
                   border: "none",
                   paddingLeft: "10px",
@@ -129,7 +135,7 @@ const LoginForm = () => {
                 }
               }}
               sx={{
-                border: `2px solid ${colors.light_blue_5}`,
+                border: `2px solid ${colors.cambridge_blue}`,
                 borderRadius: "5px",
                 outline: "none",
                 height: "45px",
@@ -152,7 +158,7 @@ const LoginForm = () => {
                 <Icon
                   path={mdiEyeOff}
                   style={{
-                    color: "black",
+                    color: colors.orange,
                     width: "30px",
                     height: "30px"
                   }}
@@ -161,7 +167,7 @@ const LoginForm = () => {
                 <Icon
                   path={mdiEye}
                   style={{
-                    color: "black",
+                    color: colors.orange,
                     width: "30px",
                     height: "30px"
                   }}
@@ -183,7 +189,7 @@ const LoginForm = () => {
               shallow>
               <Typography
                 sx={{
-                  color: colors.charcoal,
+                  color: colors.orange,
                   fontWeight: "600",
                   fontSize: "14px",
                   letterSpacing: "1px"
@@ -197,14 +203,14 @@ const LoginForm = () => {
             text="Continue"
             type="submit"
             sx={{
-              background: colors.light_blue,
+              background: colors.cambridge_blue,
               height: "50px",
               color: colors.light,
               fontWeight: "700",
               marginTop: "2rem",
               borderRadius: "6px",
               "&:hover": {
-                background: colors.light_blue
+                background: colors.cambridge_blue
               }
             }}
           />

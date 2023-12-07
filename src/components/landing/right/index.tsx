@@ -4,7 +4,6 @@ import { Box } from "@mui/material";
 import { useState } from "react";
 import { LandingActive } from "../content";
 import BlinkingEye from "./BlinkingEye";
-import HomeAlarm from "./HomeAlarm";
 import HomeBulb from "./HomeBulb";
 import HomeCamera from "./HomeCamera";
 
@@ -27,7 +26,7 @@ const LandingRight = ({ active }: { active: LandingActive }) => {
         sx={{
           width: "350px",
           height: "350px",
-          margin: "0 auto",
+          margin: "125px auto 0 auto",
           position: "relative",
           "@media(max-width: 1200px)": {
             width: "300px",
@@ -37,7 +36,7 @@ const LandingRight = ({ active }: { active: LandingActive }) => {
         <BlinkingEye />
         <HomeBulb />
         <HomeCamera />
-        <HomeAlarm />
+        {/* <HomeAlarm /> */}
       </Box>
     </Box>
   );

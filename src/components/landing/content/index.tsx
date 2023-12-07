@@ -4,7 +4,6 @@ import { Box } from "@mui/material";
 import { useState } from "react";
 import LandingLeft from "../left";
 import LandingRight from "../right";
-import MobileTabsSwitch from "../switch";
 
 export type LandingActive = "text" | "illustrations";
 const LandingContent = () => {
@@ -19,12 +18,16 @@ const LandingContent = () => {
       <Box
         sx={{
           display: "grid",
-          gridTemplateColumns: "50% 50%"
+          gridTemplateColumns: "50% 50%",
+          "@media(max-width: 980px)": {
+            display: "flex",
+            flexDirection: "column"
+          }
         }}>
         <LandingLeft active={active} />
         <LandingRight active={active} />
       </Box>
-      <MobileTabsSwitch handleChange={handleChange} active={active} />
+      {/* <MobileTabsSwitch handleChange={handleChange} active={active} /> */}
     </Box>
   );
 };

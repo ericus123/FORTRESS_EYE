@@ -22,10 +22,7 @@ const LoginRight = () => {
   };
 
   return (
-    <AnimatedDiv
-      initial="initial"
-      animate="animate"
-      variants={animationVariants}
+    <Box
       sx={{
         width: "calc(50vw - 1px)",
         height: "100%",
@@ -34,29 +31,36 @@ const LoginRight = () => {
         justifyContent: "center",
         marginLeft: "auto",
         marginRight: "auto",
+        overflow: "hidden",
         "@media(max-width: 860px)": {
-          width: "100vw"
+          width: "auto"
         }
       }}>
-      <Box
-        sx={{
-          maxWidth: "450px",
-          margin: "0 auto",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: "2rem",
-          "@media(max-width: 980px)": {
-            maxWidth: "300px"
-          },
-          "@media(max-width: 860px)": {
-            maxWidth: "100%"
-          }
-        }}>
-        <LoginWelcome />
-        <LoginForm />
-      </Box>
-    </AnimatedDiv>
+      <AnimatedDiv
+        initial="initial"
+        animate="animate"
+        variants={animationVariants}>
+        <Box
+          sx={{
+            maxWidth: "450px",
+            margin: "0 auto",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "2rem",
+            overflow: "hidden",
+            "@media(max-width: 980px)": {
+              maxWidth: "300px"
+            },
+            "@media(max-width: 860px)": {
+              maxWidth: "100%"
+            }
+          }}>
+          <LoginWelcome />
+          <LoginForm />
+        </Box>
+      </AnimatedDiv>
+    </Box>
   );
 };
 

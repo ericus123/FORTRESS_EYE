@@ -30,18 +30,18 @@ const LandingTop = () => {
               text="Signin"
               sx={{
                 transition: ".3s ease-in-out",
-                color: colors.light_blue,
+                color: colors.cambridge_blue,
                 fontSize: "18px",
                 fontStyle: "normal",
                 fontWeight: "600",
                 lineHeight: "normal",
-                border: `3px solid ${colors.light_blue}`,
+                border: `3px solid ${colors.cambridge_blue}`,
                 borderRadius: "30px",
                 paddingLeft: "30px",
                 paddingRight: "30px",
                 "&:hover": {
                   transition: ".3s ease-in-out",
-                  background: colors.light_blue,
+                  background: colors.cambridge_blue,
                   color: colors.light
                 },
                 "@media(max-width: 980px)": {
