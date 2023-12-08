@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 import { colors } from "../../constants/colors";
 import Greetings from "./greetings";
+import MembersView from "./members";
 import DashboardSidebar from "./sidebar";
 import Weather from "./weather";
 
@@ -18,20 +19,23 @@ const Dashboard = () => {
         sx={{
           width: "calc(100% - 100px)",
           display: "flex",
-          overflow: "scroll",
           gap: "2rem"
         }}>
         <Box
           sx={{
             width: "350px",
             background: colors.black_5,
+            padding: "2rem",
             minWidth: "350px",
-            minHeight: "900px"
-          }}></Box>
+            height: "100vvh",
+            position: "relative"
+          }}>
+          <MembersView />
+        </Box>
         <Box
           sx={{
             minWidth: "1000px",
-            minHeight: "900px",
+            height: "100vh",
             width: "100%",
             overflow: "scroll",
             display: "flex",
@@ -39,7 +43,9 @@ const Dashboard = () => {
             gap: "2.5rem",
             paddingRight: "2rem",
             paddingTop: "1rem",
-            paddingBottom: "1rem"
+            paddingBottom: "1rem",
+            marginTop: "auto",
+            marginBottom: "auto"
           }}>
           <Box
             sx={{
@@ -60,13 +66,15 @@ const Dashboard = () => {
               <Box
                 sx={{
                   background: colors.black_5,
-                  height: "100%"
+                  height: "100%",
+                  borderRadius: "15px"
                 }}></Box>
             </Box>
             <Box
               sx={{
                 width: "calc(100% - 350px)",
-                background: "black"
+                background: colors.black_5,
+                borderRadius: "15px"
               }}></Box>
           </Box>
           <Box

@@ -32,14 +32,14 @@ const useWeather = (initialCity: string): UseWeatherData => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
       );
 
       if (response.ok) {
         const data: WeatherData = await response.json();
         setTemperature(data.main.temp);
         setDescription(data.weather[0].description);
-        setIcon(`http://openweathermap.org/img/w/${data.weather[0].icon}.png`);
+        setIcon(`https://openweathermap.org/img/w/${data.weather[0].icon}.png`);
       } else {
         throw new Error(`Failed to fetch weather data for ${city}`);
       }

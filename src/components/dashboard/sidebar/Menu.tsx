@@ -9,12 +9,11 @@ const DashboardMenu = () => {
         width: "100%",
         display: "flex",
         flexDirection: "column",
-        // justifyContent: "center",
-        // alignItems: "center",
         gap: "25px",
         position: "absolute",
         left: 0,
-        top: "150px"
+        top: "150px",
+        overflow: "scroll"
       }}>
       {MenuItems?.map((item: MenuItemType, i) => (
         <MenuItem key={i} {...item} />

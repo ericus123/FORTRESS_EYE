@@ -46,9 +46,8 @@ const Greetings = () => {
           fontWeight: "600",
           lineHeight: "normal",
           color: colors.cambridge_blue
-          //   opacity: 0.5
         }}>
-        <ReactMoment date={new Date()} format="HH:m A" />
+        <ReactMoment date={new Date()} format="HH:mm A" />
       </Typography>
     </Box>
   );

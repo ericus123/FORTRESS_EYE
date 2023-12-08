@@ -8,5 +8,6 @@ export const colors = {
   light_blue_5: "rgba(108, 99, 255, .5)",
   black_5: "rgba(0, 0, 0, 0.50)",
   orange: "#FFA500",
-  dark: "#191716"
+  dark: "#191716",
+  active: "#00CC99"
 };
