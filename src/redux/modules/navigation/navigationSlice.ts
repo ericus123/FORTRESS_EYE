@@ -1,23 +1,26 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { MenuItemName } from "../../../components/dashboard/sidebar/items";
 
 export interface NavigationSliceState {
-  route: string;
   isDrawerOpen: boolean;
-  activeLink: string;
+  activeLink: MenuItemName;
 }
 
 const initialState: NavigationSliceState = {
-  route: "/",
   isDrawerOpen: false,
-  activeLink: ""
+  activeLink: "Home"
 };
 
 const navigationSlice = createSlice({
   name: "navigation",
   initialState,
-  reducers: {}
+  reducers: {
+    handleActiveLink: (state, { payload }: { payload: MenuItemName }) => {
+      state.activeLink = payload;
+    }
+  }
 });
 
-export const {} = navigationSlice.actions;
+export const { handleActiveLink } = navigationSlice.actions;
 
 export default navigationSlice.reducer;
