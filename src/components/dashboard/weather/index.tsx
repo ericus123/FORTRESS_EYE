@@ -1,7 +1,9 @@
+"use client";
+
 import { Box } from "@mui/material";
-import { colors } from "../../../constants/colors";
 import { images } from "../../../constants/images";
 import Temperature from "./Temperature";
+import WeatherCard from "./WeatherCard";
 
 const Weather = () => {
   return (
@@ -36,12 +38,7 @@ const Weather = () => {
           }}
         />
       </Box>
-      <Box
-        sx={{
-          height: "calc(100% - 50px -  2rem)",
-          background: colors.black_5,
-          borderRadius: "15px"
-        }}></Box>
+      <WeatherCard />
     </Box>
   );
 };
