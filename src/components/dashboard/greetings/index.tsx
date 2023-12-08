@@ -1,11 +1,23 @@
 "use client";
 
 import { Box, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
 import ReactMoment from "react-moment";
 import { colors } from "../../../constants/colors";
 const greetingTime = require("greeting-time");
 
 const Greetings = () => {
+  const [currentTime, setCurrentTime] = useState(new Date());
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+    return () => clearInterval(intervalId);
+  }, []);
+
+  useEffect(() => {}, [currentTime]);
+
   return (
     <Box
       sx={{
@@ -24,7 +36,7 @@ const Greetings = () => {
           opacity: 0.9,
           lineHeight: "normal"
         }}>
-        {greetingTime(new Date())}&nbsp; 👋🏾
+        {greetingTime(currentTime)}&nbsp; 👋🏾
       </Typography>
       <Typography
         sx={{
