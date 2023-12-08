@@ -16,7 +16,8 @@ const MembersHeader = () => {
           component={"h1"}
           sx={{
             color: colors.light,
-            fontSize: "clamp(14px, 1.5vw, 18px)",
+            fontSize: "clamp(14px, 1.5vw, 16px)",
+            fontFamily: "Poppins",
             fontStyle: "normal",
             fontWeight: "600",
             opacity: 0.9,
@@ -30,7 +31,7 @@ const MembersHeader = () => {
           marginLeft: "auto",
           display: "flex",
           gap: "1rem",
-          border: `1.5px solid #8A8D91`,
+          border: `1.5px solid ${colors.gray}`,
           padding: "4px",
           paddingLeft: "10px",
           paddingRight: "10px",
@@ -40,7 +41,8 @@ const MembersHeader = () => {
         <Typography
           sx={{
             color: colors.light,
-            fontSize: "clamp(12px, 1.5vw, 14px)",
+            fontSize: "clamp(10px, 1.5vw, 12px)",
+            fontFamily: "Poppins",
             fontStyle: "normal",
             fontWeight: "600",
             opacity: 0.8,

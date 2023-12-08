@@ -50,8 +50,8 @@ const MemberCard = ({ name, status, avatar }: MemberItem) => {
           component={"h2"}
           sx={{
             color: colors.light,
-            // fontFamily: "Poppins",
-            fontSize: "clamp(12px, 1.5vw, 16px)",
+            fontFamily: "Poppins",
+            fontSize: "clamp(10px, 1.5vw, 14px)",
             fontStyle: "normal",
             fontWeight: "600",
             opacity: 0.9,

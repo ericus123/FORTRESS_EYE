@@ -1,5 +1,6 @@
 import { Box } from "@mui/material";
 import { colors } from "../../constants/colors";
+import Areas from "./areas";
 import Greetings from "./greetings";
 import MembersView from "./members";
 import DashboardSidebar from "./sidebar";
@@ -45,30 +46,31 @@ const Dashboard = () => {
             paddingTop: "1rem",
             paddingBottom: "1rem",
             marginTop: "auto",
-            marginBottom: "auto"
+            marginBottom: "auto",
+            msOverflowStyle: "none",
+            scrollbarWidth: "none",
+            "&::-webkit-scrollbar": {
+              display: "none"
+            }
           }}>
           <Box
             sx={{
               width: "100%",
-              height: "600px",
+              // height: "600px",
+              height: "calc(100vh - 300px - 5rem)",
               display: "flex",
               gap: "2.5rem"
             }}>
             <Box
               sx={{
                 width: "350px",
+                height: "100%",
                 display: "flex",
                 flexDirection: "column",
                 gap: "25px"
               }}>
               <Greetings />
-
-              <Box
-                sx={{
-                  background: colors.black_5,
-                  height: "100%",
-                  borderRadius: "15px"
-                }}></Box>
+              <Areas />
             </Box>
             <Box
               sx={{
