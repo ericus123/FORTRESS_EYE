@@ -9,5 +9,6 @@ export const colors = {
   black_5: "rgba(0, 0, 0, 0.50)",
   orange: "#FFA500",
   dark: "#191716",
-  active: "#00CC99"
+  active: "#00CC99",
+  gray: "#8A8D91"
 };

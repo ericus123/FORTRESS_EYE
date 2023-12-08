@@ -30,7 +30,7 @@ const MembersHeader = () => {
           marginLeft: "auto",
           display: "flex",
           gap: "1rem",
-          border: `1.5px solid #8A8D91`,
+          border: `1.5px solid ${colors.gray}`,
           padding: "4px",
           paddingLeft: "10px",
           paddingRight: "10px",

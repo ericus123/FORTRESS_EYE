@@ -1,5 +1,6 @@
 import { Box } from "@mui/material";
 import { colors } from "../../constants/colors";
+import Areas from "./areas";
 import Greetings from "./greetings";
 import MembersView from "./members";
 import DashboardSidebar from "./sidebar";
@@ -63,12 +64,7 @@ const Dashboard = () => {
               }}>
               <Greetings />
 
-              <Box
-                sx={{
-                  background: colors.black_5,
-                  height: "100%",
-                  borderRadius: "15px"
-                }}></Box>
+              <Areas />
             </Box>
             <Box
               sx={{
