@@ -1,4 +1,5 @@
 import avatar from "../../public/images/avatar.svg";
+import add from "../../public/images/icons/add.svg";
 import area from "../../public/images/icons/area.svg";
 import bulb_yellow from "../../public/images/icons/bulb-yellow.svg";
 import camera from "../../public/images/icons/camera.svg";
@@ -17,6 +18,7 @@ import temperature from "../../public/images/icons/temperature.svg";
 import login from "../../public/images/login.svg";
 import logoLight from "../../public/images/logo-light.svg";
 import logo from "../../public/images/logo.svg";
+import profile from "../../public/images/profile.png";
 
 export const images = {
   bulb_yellow,
@@ -30,6 +32,7 @@ export const images = {
   settings,
   home,
   area,
+  add,
   cctv,
   notification,
   avatar,
@@ -37,5 +40,6 @@ export const images = {
   temperature,
   humidity,
   percent,
-  celcius
+  celcius,
+  profile
 };
