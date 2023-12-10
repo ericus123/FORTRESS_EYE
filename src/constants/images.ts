@@ -1,6 +1,7 @@
 import avatar from "../../public/images/avatar.svg";
 import add from "../../public/images/icons/add.svg";
 import area from "../../public/images/icons/area.svg";
+import arrowNext from "../../public/images/icons/arrow-next.svg";
 import bulb_yellow from "../../public/images/icons/bulb-yellow.svg";
 import camera from "../../public/images/icons/camera.svg";
 import cctv from "../../public/images/icons/cctv.svg";
@@ -12,6 +13,7 @@ import humidity from "../../public/images/icons/humidity.svg";
 import notification from "../../public/images/icons/notification.svg";
 import percent from "../../public/images/icons/percent.svg";
 import play from "../../public/images/icons/play.svg";
+import reload from "../../public/images/icons/reload.svg";
 import settings from "../../public/images/icons/settings.svg";
 import siren from "../../public/images/icons/siren.svg";
 import temperature from "../../public/images/icons/temperature.svg";
@@ -29,6 +31,7 @@ export const images = {
   play,
   login,
   logoLight,
+  arrowNext,
   settings,
   home,
   area,
@@ -37,6 +40,7 @@ export const images = {
   notification,
   avatar,
   event,
+  reload,
   temperature,
   humidity,
   percent,
