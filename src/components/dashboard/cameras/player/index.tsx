@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useRef, useState } from "react";
 import { colors } from "../../../../constants/colors";
 import { images } from "../../../../constants/images";
+import MotionStats from "../../detections/motion/stats";
 import CameraPlayerHeader from "./Header";
 import LiveIndicator from "./LiveIndicator";
 import PlayerWithWorker from "./sockets";
@@ -26,15 +27,16 @@ const CameraPlayer = () => {
         width: "60%",
         height: "100%",
         display: "flex",
+        flexDirection: "column",
         bottom: 0
       }}>
-      {" "}
       <Box
         sx={{
           width: "100%",
           height: "94%",
           position: "relative"
         }}>
+        <MotionStats />
         <CameraPlayerHeader />
         <Box
           sx={{
