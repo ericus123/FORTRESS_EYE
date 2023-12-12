@@ -1,6 +1,8 @@
 import { Box } from "@mui/material";
 import { colors } from "../../constants/colors";
 import Areas from "./areas";
+import CameraPlayer from "./cameras/player";
+import Detections, { detections } from "./detections";
 import Greetings from "./greetings";
 import MembersView from "./members";
 import DashboardSidebar from "./sidebar";
@@ -20,7 +22,13 @@ const Dashboard = () => {
         sx={{
           width: "calc(100% - 100px)",
           display: "flex",
-          gap: "2rem"
+          gap: "2rem",
+          overflow: "scroll",
+          msOverflowStyle: "none",
+          scrollbarWidth: "none",
+          "&::-webkit-scrollbar": {
+            display: "none"
+          }
         }}>
         <Box
           sx={{
@@ -55,11 +63,18 @@ const Dashboard = () => {
           }}>
           <Box
             sx={{
+              position: "relative",
               width: "100%",
-              // height: "600px",
               height: "calc(100vh - 300px - 5rem)",
               display: "flex",
-              gap: "2.5rem"
+              gap: "2.5rem",
+              minHeight: "400px",
+              overflow: "scroll",
+              msOverflowStyle: "none",
+              scrollbarWidth: "none",
+              "&::-webkit-scrollbar": {
+                display: "none"
+              }
             }}>
             <Box
               sx={{
@@ -76,8 +91,14 @@ const Dashboard = () => {
               sx={{
                 width: "calc(100% - 350px)",
                 background: colors.black_5,
-                borderRadius: "15px"
-              }}></Box>
+                borderRadius: "15px",
+                position: "relative",
+                padding: "2rem",
+                minWidth: "800px"
+              }}>
+              <CameraPlayer />
+              <Detections detections={detections} />
+            </Box>
           </Box>
           <Box
             sx={{
