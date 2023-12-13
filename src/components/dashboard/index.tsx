@@ -1,5 +1,6 @@
 import { Box } from "@mui/material";
 import { colors } from "../../constants/colors";
+import SignoutPopup from "../signout";
 import Areas from "./areas";
 import CameraPlayer from "./cameras/player";
 import Detections, { detections } from "./detections";
@@ -17,6 +18,7 @@ const Dashboard = () => {
         display: "flex",
         gap: "2rem"
       }}>
+      <SignoutPopup />
       <DashboardSidebar />
       <Box
         sx={{

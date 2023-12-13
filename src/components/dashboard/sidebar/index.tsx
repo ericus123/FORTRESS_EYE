@@ -4,6 +4,7 @@ import { images } from "../../../constants/images";
 import Avatar from "./Avatar";
 import DashboardMenu from "./Menu";
 import SideBarSettings from "./Settings";
+import SideBarSignout from "./Signout";
 
 const DashboardSidebar = () => {
   return (
@@ -20,6 +21,7 @@ const DashboardSidebar = () => {
       }}>
       <Avatar image={images.avatar} />
       <DashboardMenu />
+      <SideBarSignout />
       <SideBarSettings />
     </Box>
   );
