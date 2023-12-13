@@ -32,7 +32,7 @@ const useWeather = (initialCity: string): UseWeatherData => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
+        `https://api.openweathermap.org/data/2.5/weather?lat=${process.env.NEXT_PUBLIC_LAT}&lon=${process.env.NEXT_PUBLIC_LON}&appid=${apiKey}&units=metric`
       );
 
       if (response.ok) {

@@ -53,7 +53,7 @@ const WeatherCard = () => {
             sx={{
               position: "absolute",
               right: 0,
-              top: "25px",
+              top: "15px",
               display: "flex"
             }}>
             <Box
@@ -79,11 +79,12 @@ const WeatherCard = () => {
             sx={{
               color: colors.cambridge_blue,
               fontFamily: "Poppins",
-              fontSize: "clamp(100px, 1.5vw, 200px)",
+              fontSize: "80px",
               fontStyle: "normal",
               fontWeight: "600",
               opacity: 0.9,
-              lineHeight: "normal"
+              lineHeight: "normal",
+              marginRight: "5px"
             }}>
             {temperature ? Math.round(temperature) : 28}
           </Typography>

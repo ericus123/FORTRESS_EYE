@@ -15,6 +15,7 @@ import percent from "../../public/images/icons/percent.svg";
 import play from "../../public/images/icons/play.svg";
 import reload from "../../public/images/icons/reload.svg";
 import settings from "../../public/images/icons/settings.svg";
+import signout from "../../public/images/icons/signout.svg";
 import siren from "../../public/images/icons/siren.svg";
 import temperature from "../../public/images/icons/temperature.svg";
 import login from "../../public/images/login.svg";
@@ -45,5 +46,6 @@ export const images = {
   humidity,
   percent,
   celcius,
+  signout,
   profile
 };
