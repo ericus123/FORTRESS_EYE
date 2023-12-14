@@ -4,6 +4,7 @@ import SignoutPopup from "../signout";
 import Areas from "./areas";
 import CameraPlayer from "./cameras/player";
 import Detections, { detections } from "./detections";
+import DoorsControl from "./doors";
 import Greetings from "./greetings";
 import MembersView from "./members";
 import DashboardSidebar from "./sidebar";
@@ -113,8 +114,11 @@ const Dashboard = () => {
             <Box
               sx={{
                 background: colors.black_5,
-                borderRadius: "15px"
-              }}></Box>
+                borderRadius: "15px",
+                padding: "2rem"
+              }}>
+              <DoorsControl />
+            </Box>
             <Weather />
           </Box>
         </Box>

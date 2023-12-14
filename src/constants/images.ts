@@ -10,6 +10,7 @@ import event from "../../public/images/icons/event.svg";
 import eye from "../../public/images/icons/eye.svg";
 import home from "../../public/images/icons/home.svg";
 import humidity from "../../public/images/icons/humidity.svg";
+import locked from "../../public/images/icons/locked.svg";
 import notification from "../../public/images/icons/notification.svg";
 import percent from "../../public/images/icons/percent.svg";
 import play from "../../public/images/icons/play.svg";
@@ -18,6 +19,7 @@ import settings from "../../public/images/icons/settings.svg";
 import signout from "../../public/images/icons/signout.svg";
 import siren from "../../public/images/icons/siren.svg";
 import temperature from "../../public/images/icons/temperature.svg";
+import unlocked from "../../public/images/icons/unlocked.svg";
 import login from "../../public/images/login.svg";
 import logoLight from "../../public/images/logo-light.svg";
 import logo from "../../public/images/logo.svg";
@@ -47,5 +49,7 @@ export const images = {
   percent,
   celcius,
   signout,
-  profile
+  profile,
+  locked,
+  unlocked
 };
