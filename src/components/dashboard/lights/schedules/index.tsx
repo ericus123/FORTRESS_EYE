@@ -43,6 +43,7 @@ const LightSchedule = () => {
             width: "50px",
             height: "30px",
             color: colors.light,
+            borderRadius: "20px",
             "&:hover": {
               background: colors.charcoal
             }
