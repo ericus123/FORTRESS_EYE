@@ -37,7 +37,7 @@ const CameraPlayer = () => {
           position: "relative"
         }}>
         <MotionStats />
-        <CameraPlayerHeader />
+        <CameraPlayerHeader camera="Kitchen" />
         <Box
           sx={{
             width: "100%",

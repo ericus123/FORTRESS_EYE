@@ -3,14 +3,15 @@ import Image from "next/image";
 import { colors } from "../../../../constants/colors";
 import { images } from "../../../../constants/images";
 
-const CameraPlayerHeader = () => {
+const CameraPlayerHeader = ({ camera }: { camera: string }) => {
   return (
     <Box
       sx={{
         display: "flex",
         position: "absolute",
         bottom: "calc(66.6% +  10px)",
-        width: "100%"
+        width: "100%",
+        alignItems: "center"
       }}>
       <Box>
         <Typography
@@ -24,31 +25,42 @@ const CameraPlayerHeader = () => {
             opacity: 0.8,
             lineHeight: "normal"
           }}>
-          <Typography
-            component={"span"}
-            sx={{
-              color: colors.active,
-              fontSize: "clamp(12px, 1.5vw, 14px)",
-              fontStyle: "normal",
-              fontWeight: "700",
-              lineHeight: "normal"
-            }}>
-            10
-          </Typography>{" "}
-          Cameras Active
+          Live Camera
         </Typography>
       </Box>
       <Box
         sx={{
           marginLeft: "auto",
-          cursor: "pointer"
+          cursor: "pointer",
+          width: "fit-content",
+          height: "30px",
+          background: colors.dark,
+          borderRadius: "15px",
+          display: "flex",
+          alignItems: "center"
         }}>
+        <Typography
+          component={"h3"}
+          sx={{
+            color: colors.light,
+            fontSize: "clamp(10px, 1.5vw, 12px)",
+            fontFamily: "Poppins",
+            fontStyle: "normal",
+            fontWeight: "500",
+            opacity: 0.8,
+            lineHeight: "normal",
+            paddingLeft: "15px",
+            paddingRight: "15px"
+          }}>
+          {camera}
+        </Typography>
         <Image
-          title="Next"
-          src={images.arrowNext}
+          src={images.caretDown}
           alt=""
+          width={25}
+          height={25}
           style={{
-            opacity: 0.8
+            opacity: 0.6
           }}
         />
       </Box>

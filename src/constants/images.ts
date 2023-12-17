@@ -4,6 +4,7 @@ import area from "../../public/images/icons/area.svg";
 import arrowNext from "../../public/images/icons/arrow-next.svg";
 import bulb_yellow from "../../public/images/icons/bulb-yellow.svg";
 import camera from "../../public/images/icons/camera.svg";
+import caretDown from "../../public/images/icons/caret-down.svg";
 import cctv from "../../public/images/icons/cctv.svg";
 import celcius from "../../public/images/icons/celcius.svg";
 import electricity from "../../public/images/icons/electricity.svg";
@@ -52,6 +53,7 @@ export const images = {
   percent,
   electricity,
   celcius,
+  caretDown,
   signout,
   profile,
   locked,
