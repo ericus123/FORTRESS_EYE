@@ -14,7 +14,7 @@ const MembersView = () => {
         width: "calc(350px - 4rem)",
         borderRadius: "15px",
         height: "350px",
-        marginTop: "calc(100vh - 400px)",
+        marginTop: "calc(100vh - 470px)",
         overflow: "scroll",
         msOverflowStyle: "none",
         scrollbarWidth: "none",

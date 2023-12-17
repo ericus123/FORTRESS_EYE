@@ -6,6 +6,7 @@ import bulb_yellow from "../../public/images/icons/bulb-yellow.svg";
 import camera from "../../public/images/icons/camera.svg";
 import cctv from "../../public/images/icons/cctv.svg";
 import celcius from "../../public/images/icons/celcius.svg";
+import electricity from "../../public/images/icons/electricity.svg";
 import event from "../../public/images/icons/event.svg";
 import eye from "../../public/images/icons/eye.svg";
 import home from "../../public/images/icons/home.svg";
@@ -49,6 +50,7 @@ export const images = {
   temperature,
   humidity,
   percent,
+  electricity,
   celcius,
   signout,
   profile,

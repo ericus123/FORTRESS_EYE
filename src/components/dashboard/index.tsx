@@ -8,6 +8,7 @@ import DoorsControl from "./doors";
 import Greetings from "./greetings";
 import LightsControl from "./lights";
 import MembersView from "./members";
+import PowerMetricsCard from "./power/metrics/Card";
 import DashboardSidebar from "./sidebar";
 import Weather from "./weather";
 
@@ -43,6 +44,7 @@ const Dashboard = () => {
             height: "100vvh",
             position: "relative"
           }}>
+          <PowerMetricsCard />
           <MembersView />
         </Box>
         <Box
