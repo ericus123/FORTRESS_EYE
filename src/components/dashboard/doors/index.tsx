@@ -9,7 +9,7 @@ const DoorsControl = () => {
         width: "300px",
         display: "flex",
         flexDirection: "column",
-        gap: "2rem"
+        gap: ".8rem"
       }}>
       <DoorControlsHeading />
       <Doors />

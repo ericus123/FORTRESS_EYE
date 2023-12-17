@@ -6,6 +6,7 @@ import CameraPlayer from "./cameras/player";
 import Detections, { detections } from "./detections";
 import DoorsControl from "./doors";
 import Greetings from "./greetings";
+import LightsControl from "./lights";
 import MembersView from "./members";
 import DashboardSidebar from "./sidebar";
 import Weather from "./weather";
@@ -115,9 +116,18 @@ const Dashboard = () => {
               sx={{
                 background: colors.black_5,
                 borderRadius: "15px",
-                padding: "2rem"
+                padding: "2rem",
+                display: "flex",
+                gap: "2rem",
+                overflow: "scroll",
+                msOverflowStyle: "none",
+                scrollbarWidth: "none",
+                "&::-webkit-scrollbar": {
+                  display: "none"
+                }
               }}>
               <DoorsControl />
+              <LightsControl />
             </Box>
             <Weather />
           </Box>
