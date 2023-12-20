@@ -1,3 +1,5 @@
+"use client";
+
 import { Box } from "@mui/material";
 import { colors } from "../../constants/colors";
 import LandingTop from "../landing/top";
