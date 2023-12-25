@@ -1,10 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import logger from "redux-logger";
-import rootReducer from "./modules/rootReducer";
+import { persistStore } from "redux-persist";
+import persistedReducer from "./persistConfig";
 
 export const store = configureStore({
-  reducer: rootReducer,
+  reducer: persistedReducer,
   devTools: process.env.NODE_ENV === "development",
   middleware: (getDefaultMiddleware) =>
     (process.env.NODE_ENV === "development" &&
@@ -34,6 +35,7 @@ export const store = configureStore({
     })
 });
 
+export const persistor = persistStore(store);
 setupListeners(store.dispatch);
 
 export type AppDispatch = typeof store.dispatch;

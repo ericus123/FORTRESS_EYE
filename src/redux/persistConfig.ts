@@ -6,7 +6,7 @@ import encryptTransform from "./transform";
 export const persistConfig = {
   key: "persist-root",
   storage,
-  blacklist: ["whatToBlacklist"],
+  whitelist: ["auth"],
   transforms: [encryptTransform]
 };
 

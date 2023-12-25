@@ -1,9 +1,10 @@
 "use client";
 
 import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
 import { Provider as URQLProvider } from "urql";
 import { createUrqlClient } from "../graphql/useClient";
-import { store } from "./storeConfig";
+import { persistor, store } from "./storeConfig";
 
 export function Providers({
   children
@@ -13,7 +14,9 @@ export function Providers({
   const client = createUrqlClient();
   return (
     <URQLProvider value={client}>
-      <Provider store={store}>{children}</Provider>
+      <Provider store={store}>
+        <PersistGate persistor={persistor}>{children} </PersistGate>
+      </Provider>
     </URQLProvider>
   );
 }
