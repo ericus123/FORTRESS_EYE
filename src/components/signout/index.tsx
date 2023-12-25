@@ -3,6 +3,7 @@
 import { Box, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { colors } from "../../constants/colors";
+import { useSignout } from "../../hooks/useAuth";
 import { handleActiveLink } from "../../redux/modules/navigation/navigationSlice";
 import { RootState } from "../../redux/modules/rootReducer";
 import AppButton from "../common/AppButton";
@@ -10,10 +11,16 @@ import AppButton from "../common/AppButton";
 const SignoutPopup = () => {
   const { activeLink } = useSelector(({ navigation }: RootState) => navigation);
 
+  const { handleSignout } = useSignout();
+
   const dispatch = useDispatch();
 
   const handleCancel = () => {
     dispatch(handleActiveLink("Home"));
+  };
+
+  const handleClick = () => {
+    handleSignout();
   };
 
   return (
@@ -57,7 +64,7 @@ const SignoutPopup = () => {
           gap: "1rem"
         }}>
         <AppButton
-          text="Signout"
+          title="Signout"
           sx={{
             background: colors.rose_pompadour,
             color: colors.light,
@@ -70,9 +77,10 @@ const SignoutPopup = () => {
               fontWeight: 600
             }
           }}
+          onClick={handleClick}
         />
         <AppButton
-          text="Stay"
+          title="Stay"
           sx={{
             background: colors.active,
             color: colors.light,

@@ -12,8 +12,11 @@ import {
   SubmitHandler,
   useForm
 } from "react-hook-form";
+import { CombinedError } from "urql";
 import * as Yup from "yup";
 import { colors } from "../../../../constants/colors";
+import { getGraphQLErrorMessage } from "../../../../helpers";
+import { SigninInput } from "../../../../hooks/useAuth";
 import AppButton from "../../../common/AppButton";
 import InputError from "../../../common/inputs/InputError";
 
@@ -27,7 +30,15 @@ interface FormData {
   password: string;
 }
 
-const LoginForm = () => {
+const LoginForm = ({
+  handleSignin,
+  isLoading,
+  error
+}: {
+  handleSignin: (input: SigninInput) => void;
+  isLoading: boolean;
+  error?: CombinedError;
+}) => {
   const methods = useForm<FormData>({
     resolver: yupResolver(validationSchema)
   });
@@ -35,6 +46,8 @@ const LoginForm = () => {
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     // Handle sign-in logic here
     console.log("Form submitted with values:", data);
+
+    handleSignin(data);
   };
 
   const onError: SubmitErrorHandler<FormData> = (errors, e) => {
@@ -199,15 +212,29 @@ const LoginForm = () => {
               </Typography>
             </Link>
           </Box>
+          {error ? (
+            <Typography
+              component={"h3"}
+              sx={{
+                color: colors.rose_red,
+                fontSize: "clamp(12px, 1vw, 14px)",
+                fontStyle: "normal",
+                fontWeight: "600",
+                lineHeight: "normal",
+                textAlign: "center"
+              }}>
+              {getGraphQLErrorMessage(error)}
+            </Typography>
+          ) : null}
           <AppButton
-            text="Continue"
+            title="Continue"
             type="submit"
+            isLoading={isLoading}
             sx={{
               background: colors.cambridge_blue,
               height: "50px",
               color: colors.light,
               fontWeight: "700",
-              marginTop: "2rem",
               borderRadius: "6px",
               "&:hover": {
                 background: colors.cambridge_blue

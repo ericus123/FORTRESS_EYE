@@ -2,12 +2,14 @@
 
 import { Box } from "@mui/material";
 import { motion } from "framer-motion";
+import { useSignin } from "../../../hooks/useAuth";
 import LoginWelcome from "./Welcome";
 import LoginForm from "./form";
 
 const AnimatedDiv = motion(Box);
 
 const LoginRight = () => {
+  const { handleSignin, fetching, error } = useSignin();
   const animationVariants = {
     initial: {
       x: "100%"
@@ -57,7 +59,11 @@ const LoginRight = () => {
             }
           }}>
           <LoginWelcome />
-          <LoginForm />
+          <LoginForm
+            handleSignin={handleSignin}
+            isLoading={fetching}
+            error={error}
+          />
         </Box>
       </AnimatedDiv>
     </Box>

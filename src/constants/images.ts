@@ -24,6 +24,7 @@ import signout from "../../public/images/icons/signout.svg";
 import siren from "../../public/images/icons/siren.svg";
 import temperature from "../../public/images/icons/temperature.svg";
 import unlocked from "../../public/images/icons/unlocked.svg";
+import dotsLoader from "../../public/images/loaders/dots-loader.svg";
 import login from "../../public/images/login.svg";
 import logoLight from "../../public/images/logo-light.svg";
 import logo from "../../public/images/logo.svg";
@@ -49,6 +50,7 @@ export const images = {
   event,
   reload,
   temperature,
+  dotsLoader,
   humidity,
   percent,
   electricity,

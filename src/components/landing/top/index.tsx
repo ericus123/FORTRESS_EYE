@@ -27,7 +27,7 @@ const LandingTop = () => {
           }}>
           <Link href={"/login"} shallow>
             <AppButton
-              text="Signin"
+              title="Signin"
               sx={{
                 transition: ".3s ease-in-out",
                 color: colors.cambridge_blue,
@@ -39,6 +39,7 @@ const LandingTop = () => {
                 borderRadius: "30px",
                 paddingLeft: "30px",
                 paddingRight: "30px",
+                background: "transparent",
                 "&:hover": {
                   transition: ".3s ease-in-out",
                   background: colors.cambridge_blue,

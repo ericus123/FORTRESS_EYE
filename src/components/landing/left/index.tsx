@@ -85,7 +85,7 @@ const LandingLeft = ({ active }: { active: LandingActive }) => {
             href={"https://github.com/ericus123/FORTRESS_EYE_API#readme"}
             target="_blank">
             <AppButton
-              text="Learn More"
+              title="Learn More"
               sx={{
                 "&:hover": {
                   background: colors.cambridge_blue

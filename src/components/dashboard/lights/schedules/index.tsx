@@ -36,7 +36,7 @@ const LightSchedule = () => {
           Schedule
         </Typography>
         <AppButton
-          text="Save"
+          title="Save"
           sx={{
             marginLeft: "auto",
             background: colors.charcoal,
