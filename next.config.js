@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    transpilePackages: ['crypto-js'],
     images: {
         remotePatterns: [
             {
@@ -9,5 +10,4 @@ const nextConfig = {
         ]
     }
 }
-
 module.exports = nextConfig
