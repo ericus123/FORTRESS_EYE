@@ -37,7 +37,7 @@ export type Areas = Area[];
 
 export const useAreas = () => {
   const dispatch = useDispatch();
-  const [{ data, fetching, error }] = useQuery({
+  const [{ data, fetching, error }, fetchData] = useQuery({
     variables: {},
     query: GET_AREAS_QUERY
   });
@@ -74,6 +74,7 @@ export const useAreas = () => {
       .then((res) => {
         if (res != undefined) {
           callback();
+          fetchData();
         }
       });
   };
