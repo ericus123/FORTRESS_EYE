@@ -23,7 +23,7 @@ const MotionStatsCard = ({ amount, percentage, type }: MotionStats) => {
       }}>
       <Box
         sx={{
-          background: colors.charcoal,
+          background: colors.dark_blue,
           padding: ".5rem",
           borderRadius: ".5rem"
         }}>

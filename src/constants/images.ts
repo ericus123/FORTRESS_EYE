@@ -7,9 +7,12 @@ import camera from "../../public/images/icons/camera.svg";
 import caretDown from "../../public/images/icons/caret-down.svg";
 import cctv from "../../public/images/icons/cctv.svg";
 import celcius from "../../public/images/icons/celcius.svg";
+import check from "../../public/images/icons/check.svg";
+import close from "../../public/images/icons/close.svg";
 import electricity from "../../public/images/icons/electricity.svg";
 import event from "../../public/images/icons/event.svg";
 import eye from "../../public/images/icons/eye.svg";
+import fail from "../../public/images/icons/fail.svg";
 import home from "../../public/images/icons/home.svg";
 import humidity from "../../public/images/icons/humidity.svg";
 import lightOff from "../../public/images/icons/light-off.svg";
@@ -51,10 +54,13 @@ export const images = {
   reload,
   temperature,
   dotsLoader,
+  close,
   humidity,
   percent,
   electricity,
   celcius,
+  fail,
+  check,
   caretDown,
   signout,
   profile,

@@ -2,9 +2,17 @@ import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import { colors } from "../../../../constants/colors";
 import { images } from "../../../../constants/images";
-import { AreaCard } from "./areas";
+import { Area } from "../../../../hooks/useAreas";
 
-const AreaCard = ({ name, devices }: AreaCard) => {
+const AreaCard = ({
+  area,
+  handleActive,
+  isActive
+}: {
+  area: Area;
+  handleActive: () => void;
+  isActive: boolean;
+}) => {
   return (
     <Box
       sx={{
@@ -12,7 +20,7 @@ const AreaCard = ({ name, devices }: AreaCard) => {
         width: "120px",
         height: "120px",
         borderRadius: "15px",
-        background: colors.dark,
+        background: isActive ? colors.dark_blue : colors.dark,
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
@@ -22,9 +30,11 @@ const AreaCard = ({ name, devices }: AreaCard) => {
         transition: ".3s ease-in-out",
         "&:hover": {
           transition: ".3s ease-in-out",
-          background: colors.charcoal
+          background: colors.dark_blue
         }
-      }}>
+      }}
+      component={"div"}
+      onClick={handleActive}>
       <Image src={images.cctv} alt="" />
       <Typography
         component={"h3"}
@@ -37,7 +47,7 @@ const AreaCard = ({ name, devices }: AreaCard) => {
           opacity: 0.9,
           lineHeight: "normal"
         }}>
-        {name}
+        {area?.name}
       </Typography>
       <Typography
         component={"p"}
@@ -49,8 +59,8 @@ const AreaCard = ({ name, devices }: AreaCard) => {
           opacity: 0.9,
           lineHeight: "normal"
         }}>
-        {devices > 0 ? devices : null}&nbsp;
-        {devices < 1 ? "no device" : devices > 1 ? "devices" : "device"}
+        1{/* {devices > 0 ? devices : null}&nbsp; */}
+        {/* {devices < 1 ? "no device" : devices > 1 ? "devices" : "device"} */}
       </Typography>
     </Box>
   );

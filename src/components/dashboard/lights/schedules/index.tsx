@@ -39,13 +39,13 @@ const LightSchedule = () => {
           title="Save"
           sx={{
             marginLeft: "auto",
-            background: colors.charcoal,
+            background: colors.dark_blue,
             width: "50px",
             height: "30px",
             color: colors.light,
             borderRadius: "20px",
             "&:hover": {
-              background: colors.charcoal
+              background: colors.dark_blue
             }
           }}
         />

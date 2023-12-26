@@ -1,7 +1,14 @@
 import { Box } from "@mui/material";
+import { useSelector } from "react-redux";
 import { colors } from "../../constants/colors";
+import { useAppDispatch } from "../../redux/hooks";
+import { handleAreaAddShow } from "../../redux/modules/area/areaSlice";
+import { hideStatus } from "../../redux/modules/navigation/navigationSlice";
+import { RootState } from "../../redux/modules/rootReducer";
+import StatusPopup from "../common/popups/Status";
 import SignoutPopup from "../signout";
 import Areas from "./areas";
+import AddArea from "./areas/popup/AddPopup";
 import CameraPlayer from "./cameras/player";
 import Detections, { detections } from "./detections";
 import DoorsControl from "./doors";
@@ -13,6 +20,18 @@ import DashboardSidebar from "./sidebar";
 import Weather from "./weather";
 
 const Dashboard = () => {
+  const dispatch = useAppDispatch();
+  const handleShow = () => {
+    dispatch(handleAreaAddShow());
+  };
+
+  const { isAddOpen } = useSelector(({ area }: RootState) => area);
+  const { status } = useSelector(({ navigation }: RootState) => navigation);
+
+  const handleStatusShow = () => {
+    dispatch(hideStatus());
+  };
+
   return (
     <Box
       sx={{
@@ -21,7 +40,9 @@ const Dashboard = () => {
         display: "flex",
         gap: "2rem"
       }}>
+      <AddArea show={isAddOpen} handleShow={handleShow} />
       <SignoutPopup />
+      <StatusPopup status={status} handleStatus={handleStatusShow} />
       <DashboardSidebar />
       <Box
         sx={{
