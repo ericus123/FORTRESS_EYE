@@ -6,12 +6,7 @@ import Icon from "@mdi/react";
 import { Box, TextField, Typography } from "@mui/material";
 import Link from "next/link";
 import { useState } from "react";
-import {
-  FormProvider,
-  SubmitErrorHandler,
-  SubmitHandler,
-  useForm
-} from "react-hook-form";
+import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { CombinedError } from "urql";
 import * as Yup from "yup";
 import { colors } from "../../../../constants/colors";
@@ -21,8 +16,15 @@ import AppButton from "../../../common/AppButton";
 import InputError from "../../../common/inputs/InputError";
 
 const validationSchema = Yup.object({
-  email: Yup.string().email("Invalid email address").required("Required"),
-  password: Yup.string().required("Required")
+  email: Yup.string()
+    .email("Invalid email address")
+    .required("Email is required"),
+  password: Yup.string()
+    .required("Password is required")
+    .matches(
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+      "Password must contain at least 8 characters, one letter, one number, and one special character"
+    )
 });
 
 interface FormData {
@@ -44,14 +46,7 @@ const LoginForm = ({
   });
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
-    // Handle sign-in logic here
-    console.log("Form submitted with values:", data);
-
     handleSignin(data);
-  };
-
-  const onError: SubmitErrorHandler<FormData> = (errors, e) => {
-    console.error("Form submission error:", errors, e);
   };
 
   const [showPassword, setShowPassword] = useState(false);
@@ -71,7 +66,7 @@ const LoginForm = ({
           autoSave="false"
           autoComplete="off"
           autoFocus={false}
-          onSubmit={methods.handleSubmit(onSubmit, onError)}
+          onSubmit={methods.handleSubmit(onSubmit)}
           style={{
             display: "flex",
             flexDirection: "column",
@@ -113,7 +108,7 @@ const LoginForm = ({
                 }
               }}
             />
-            <InputError error={methods.formState.errors.password?.message} />
+            <InputError error={methods.formState.errors.email?.message} />
           </Box>
           <Box
             sx={{

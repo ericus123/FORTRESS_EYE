@@ -1,5 +1,9 @@
-import Landing from "../components/landing";
+"use client";
 
-export default function Home() {
+import Landing from "../components/landing";
+import withAuthProtection from "../hoc/withAuthProtection";
+const Home = () => {
   return <Landing />;
-}
+};
+
+export default withAuthProtection(Home);

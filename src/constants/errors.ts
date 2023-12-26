@@ -12,7 +12,8 @@ export const userFriendlyErrorMessages: UserFriendlyErrorMessages = {
     "Invalid login credentials. Please check your email and password.",
   ALREADY_REGISTERED:
     "Account already exists. Please use a different email to register.",
-  PASS_DOESNT_MATCH: "Invalid credentials",
+  PASS_DOESNT_MATCH:
+    "Invalid login credentials. Please check your email and password.",
   SERVER_ERROR:
     "Oops! Something went wrong on our end. Please try again later.",
   INSUFFICIENT_ROLE:
