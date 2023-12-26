@@ -1,14 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { MenuItemName } from "../../../components/dashboard/sidebar/items";
 
+export type StatusPopup = {
+  isSuccess: boolean;
+  show: boolean;
+};
+
 export interface NavigationSliceState {
   isDrawerOpen: boolean;
   activeLink: MenuItemName;
+  status: StatusPopup;
 }
 
 const initialState: NavigationSliceState = {
   isDrawerOpen: false,
-  activeLink: "Home"
+  activeLink: "Home",
+  status: {
+    isSuccess: false,
+    show: false
+  }
 };
 
 const navigationSlice = createSlice({
@@ -17,10 +27,24 @@ const navigationSlice = createSlice({
   reducers: {
     handleActiveLink: (state, { payload }: { payload: MenuItemName }) => {
       state.activeLink = payload;
+    },
+    handleStatus(
+      state,
+      {
+        payload
+      }: {
+        payload: StatusPopup;
+      }
+    ) {
+      state.status = payload;
+    },
+    hideStatus(state) {
+      state.status.show = false;
     }
   }
 });
 
-export const { handleActiveLink } = navigationSlice.actions;
+export const { handleActiveLink, handleStatus, hideStatus } =
+  navigationSlice.actions;
 
 export default navigationSlice.reducer;

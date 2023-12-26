@@ -16,7 +16,7 @@ const Avatar = ({ image }: { image: string | StaticImageData }) => {
         height={50}
         style={{
           borderRadius: "50%",
-          border: `1px solid ${colors.charcoal}`
+          border: `1px solid ${colors.dark_blue}`
         }}
       />
     </Box>

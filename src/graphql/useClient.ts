@@ -7,39 +7,46 @@ import {
   fetchExchange,
   subscriptionExchange
 } from "urql";
-// import store from "../redux/store";
+import { store } from "../redux/storeConfig";
 
-const wsClient = createWSClient({
-  url: `${process.env.NEXT_PUBLIC_GRAPHQL_WSS_ENDPOINT}`,
-  webSocketImpl: WebSocket
-});
-
-// const { auth } = store.getState();
-// const { accessToken, refreshToken, tenantId } = auth;
-
-export const clientOptions = {
-  url: `${process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT}`,
-  exchanges: [
-    cacheExchange,
-    devtoolsExchange,
-    fetchExchange,
-    subscriptionExchange({
-      forwardSubscription: (operation: any) => ({
-        subscribe: (sink) => ({
-          unsubscribe: wsClient.subscribe(operation, sink)
-        })
-      })
-    })
-  ],
-  fetchOptions: () => {
-    return {
-      headers: {},
-      timeout: 300000
-    };
-  }
+const createWebSocketClient = () => {
+  const wsClient = createWSClient({
+    url: `${process.env.NEXT_PUBLIC_GRAPHQL_WSS_ENDPOINT}`,
+    webSocketImpl: WebSocket
+  });
+  return wsClient;
 };
 
 export const createUrqlClient = () => {
+  const wsClient = createWebSocketClient();
+
+  const clientOptions = {
+    url: `${process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT}`,
+    exchanges: [
+      cacheExchange,
+      devtoolsExchange,
+      fetchExchange,
+      subscriptionExchange({
+        forwardSubscription: (operation: any) => ({
+          subscribe: (sink) => ({
+            unsubscribe: wsClient.subscribe(operation, sink)
+          })
+        })
+      })
+    ],
+    fetchOptions: () => {
+      const { auth } = store.getState();
+      const { tokens } = auth;
+      return {
+        headers: {
+          Authorization: `Bearer ${tokens?.accessToken}`,
+          "x-refresh-token": tokens?.refreshToken
+        },
+        timeout: 5000
+      };
+    }
+  };
+
   const client = createClient(clientOptions);
   return client;
 };

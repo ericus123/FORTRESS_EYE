@@ -52,7 +52,6 @@ export const getGraphQLErrorMessage = (
         ? error.graphQLErrors[0]?.message?.split(":")[1]?.trim()
         : error.graphQLErrors[0]?.message?.split(":")[0]?.trim();
 
-    console.log(error.graphQLErrors);
     if (errorCode != undefined) {
       return userFriendlyErrorMessages[errorCode] || "Something went wrong";
     }

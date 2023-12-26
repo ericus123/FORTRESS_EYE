@@ -29,7 +29,7 @@ const MobileTabsSwitch = ({
             width: "50px",
             height: "10px",
             borderRadius: "5px",
-            background: colors.charcoal,
+            background: colors.dark_blue,
             opacity: active === "text" ? 1 : 0.3,
             cursor: "pointer"
           }}
@@ -41,7 +41,7 @@ const MobileTabsSwitch = ({
             width: "50px",
             height: "10px",
             borderRadius: "5px",
-            background: colors.charcoal,
+            background: colors.dark_blue,
             opacity: active === "illustrations" ? 1 : 0.3,
             cursor: "pointer"
           }}

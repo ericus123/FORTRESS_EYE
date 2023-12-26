@@ -2,10 +2,18 @@ import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import { colors } from "../../../constants/colors";
 import { images } from "../../../constants/images";
+import { useAreas } from "../../../hooks/useAreas";
 import AreaCard from "./card/AreaCard";
-import { areaItems } from "./card/areas";
 
 const Areas = () => {
+  const {
+    fetching,
+    data,
+    handleActiveArea,
+    area: _active,
+    handleShow
+  } = useAreas();
+
   return (
     <Box
       sx={{
@@ -49,6 +57,7 @@ const Areas = () => {
             marginLeft: "auto",
             cursor: "pointer"
           }}
+          onClick={handleShow}
         />
       </Box>
       <Box
@@ -64,8 +73,15 @@ const Areas = () => {
             display: "none"
           }
         }}>
-        {areaItems?.map((area, i) => (
-          <AreaCard {...area} key={i} />
+        {data?.map((area, i) => (
+          <AreaCard
+            {...{
+              area,
+              handleActive: () => handleActiveArea(area),
+              isActive: area?.id === _active?.id
+            }}
+            key={i}
+          />
         ))}
       </Box>
     </Box>

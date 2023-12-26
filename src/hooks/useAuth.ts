@@ -47,7 +47,6 @@ export const useSignin = (): SigninReponse => {
         dispatch(handleAuthTokens(_result?.Signin));
         router.push("/dashboard");
       }
-      console.log("reached here");
     });
   };
 

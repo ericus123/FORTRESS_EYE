@@ -34,7 +34,7 @@ const SignoutPopup = () => {
         top: "50%",
         left: "50%",
         transform: "translate(-50%, -50%)",
-        background: colors.charcoal,
+        background: colors.dark_blue,
         borderRadius: "10px",
         flexDirection: "column",
         justifyContent: "space-between",
