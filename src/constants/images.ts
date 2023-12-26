@@ -17,6 +17,7 @@ import home from "../../public/images/icons/home.svg";
 import humidity from "../../public/images/icons/humidity.svg";
 import lightOff from "../../public/images/icons/light-off.svg";
 import lightOn from "../../public/images/icons/light-on.svg";
+import locationBlocked from "../../public/images/icons/location-blocked.svg";
 import locked from "../../public/images/icons/locked.svg";
 import notification from "../../public/images/icons/notification.svg";
 import percent from "../../public/images/icons/percent.svg";
@@ -66,6 +67,7 @@ export const images = {
   profile,
   locked,
   unlocked,
+  locationBlocked,
   lightOn,
   lightOff
 };
