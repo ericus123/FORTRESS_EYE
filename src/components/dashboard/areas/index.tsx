@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Skeleton, Typography } from "@mui/material";
 import Image from "next/image";
 import { colors } from "../../../constants/colors";
 import { images } from "../../../constants/images";
@@ -62,6 +62,7 @@ const Areas = () => {
       </Box>
       <Box
         sx={{
+          position: "relative",
           maxHeight: "400px",
           display: "grid",
           gridTemplateColumns: "120px 120px",
@@ -69,6 +70,8 @@ const Areas = () => {
           overflowY: "scroll",
           msOverflowStyle: "none",
           scrollbarWidth: "none",
+          justifyContent: "start",
+          alignItems: "start",
           "&::-webkit-scrollbar": {
             display: "none"
           }
@@ -83,7 +86,52 @@ const Areas = () => {
             key={i}
           />
         ))}
+
+        {fetching
+          ? [...new Array(5)]?.map((i) => (
+              <Box
+                key={i}
+                sx={{
+                  width: "120px",
+                  height: "120px"
+                }}>
+                <Skeleton
+                  width={120}
+                  height={200}
+                  sx={{
+                    borderRadius: "15px",
+                    margin: "none",
+                    background: colors.dark,
+                    marginTop: "-40px"
+                  }}
+                />
+              </Box>
+            ))
+          : null}
       </Box>
+      {!fetching && !data?.length ? (
+        <Box
+          sx={{
+            position: "relative",
+            display: "flex",
+            justifyContent: "center",
+            width: "100%",
+            height: "100%"
+          }}>
+          <Typography
+            component={"p"}
+            sx={{
+              color: colors.light,
+              fontSize: "clamp(12px, 1.5vw, 14px)",
+              fontStyle: "normal",
+              fontWeight: "400",
+              opacity: 0.5,
+              lineHeight: "normal"
+            }}>
+            No data
+          </Typography>
+        </Box>
+      ) : null}
     </Box>
   );
 };

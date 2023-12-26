@@ -84,7 +84,7 @@ const AddArea = ({
                 error={Boolean(methods.formState.errors.name)}
                 fullWidth
                 autoFocus={false}
-                placeholder="Enter area name"
+                placeholder="Area name"
                 sx={{
                   borderBottom: `2px solid ${colors.light_5}`,
                   height: "45px",
