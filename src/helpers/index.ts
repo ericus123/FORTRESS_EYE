@@ -60,3 +60,20 @@ export const getGraphQLErrorMessage = (
   }
   return null;
 };
+
+export const extractInitials = (fullName: string) => {
+  if (!fullName || typeof fullName !== "string") {
+    return "";
+  }
+
+  const names = fullName.trim().split(/\s+/);
+
+  if (names.length === 1) {
+    const [name] = names;
+    return name.slice(0, 2).toUpperCase();
+  }
+
+  const initials = names.map((name) => name.charAt(0).toUpperCase()).join("");
+
+  return initials;
+};

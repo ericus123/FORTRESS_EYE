@@ -1,9 +1,11 @@
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import { colors } from "../../../../constants/colors";
-import { MemberItem } from "./members";
+import { images } from "../../../../constants/images";
+import { Member } from "../../../../hooks/useMembers";
+import MemberInitial from "../Initial";
 
-const MemberCard = ({ name, status, avatar }: MemberItem) => {
+const MemberCard = ({ member }: { member: Member }) => {
   return (
     <Box
       sx={{
@@ -37,7 +39,15 @@ const MemberCard = ({ name, status, avatar }: MemberItem) => {
             borderRadius: "10px",
             overflow: "hidden"
           }}>
-          <Image src={avatar} alt="" fill />
+          {member?.avatar != undefined ? (
+            <Image src={member?.avatar || ""} alt="" fill />
+          ) : (
+            <>
+              <MemberInitial
+                fullName={`${member?.firstName} ${member?.lastName}`}
+              />
+            </>
+          )}
         </Box>
       </Box>
 
@@ -57,7 +67,21 @@ const MemberCard = ({ name, status, avatar }: MemberItem) => {
             opacity: 0.9,
             lineHeight: "normal"
           }}>
-          {name}
+          {`${member?.firstName} ${member?.lastName}`}
+
+          {member?.role?.roleName === "SUPER_ADMIN" ? (
+            <Image
+              src={images.king}
+              alt=""
+              width={12.5}
+              height={12.5}
+              style={{
+                marginLeft: "5px",
+                opacity: 0.8
+              }}
+              title="SuperAdmin"
+            />
+          ) : null}
         </Typography>
         <Typography
           component={"h4"}
@@ -70,7 +94,7 @@ const MemberCard = ({ name, status, avatar }: MemberItem) => {
             opacity: 0.5,
             lineHeight: "normal"
           }}>
-          {status}
+          active
         </Typography>
       </Box>
 

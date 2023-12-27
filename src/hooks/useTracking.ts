@@ -39,7 +39,7 @@ const useTrackLocation = (): trackResponse => {
 
   const [response, setResponse] = useState<trackResponse>({
     tracked: false,
-    denied: true,
+    denied: false,
     isOnline
   });
 

@@ -1,9 +1,12 @@
 import { Box } from "@mui/material";
+import { useMembers } from "../../../hooks/useMembers";
 import MembersHeader from "./Header";
 import MemberCard from "./card";
-import { members } from "./card/members";
+import MemberSkeleton from "./skeleton";
 
 const MembersView = () => {
+  const { data, fetching } = useMembers();
+
   return (
     <Box
       sx={{
@@ -14,6 +17,7 @@ const MembersView = () => {
         width: "calc(350px - 4rem)",
         borderRadius: "15px",
         height: "350px",
+        minHeight: "350px",
         marginTop: "calc(100vh - 400px)",
         overflow: "scroll",
         msOverflowStyle: "none",
@@ -29,6 +33,7 @@ const MembersView = () => {
           flexDirection: "column",
           gap: "1.5rem",
           maxHeight: "300px",
+          minHeight: "200px",
           overflow: "scroll",
           msOverflowStyle: "none",
           scrollbarWidth: "none",
@@ -36,9 +41,11 @@ const MembersView = () => {
             display: "none"
           }
         }}>
-        {members?.map((member, i) => (
-          <MemberCard {...member} key={i} />
-        ))}
+        {data != undefined &&
+          data?.map((member, i) => <MemberCard member={member} key={i} />)}
+        {fetching
+          ? [...new Array(3)]?.map((i) => <MemberSkeleton key={i} />)
+          : null}
       </Box>
     </Box>
   );

@@ -15,6 +15,7 @@ import eye from "../../public/images/icons/eye.svg";
 import fail from "../../public/images/icons/fail.svg";
 import home from "../../public/images/icons/home.svg";
 import humidity from "../../public/images/icons/humidity.svg";
+import king from "../../public/images/icons/king.svg";
 import lightOff from "../../public/images/icons/light-off.svg";
 import lightOn from "../../public/images/icons/light-on.svg";
 import locationBlocked from "../../public/images/icons/location-blocked.svg";
@@ -62,6 +63,7 @@ export const images = {
   celcius,
   fail,
   check,
+  king,
   caretDown,
   signout,
   profile,
