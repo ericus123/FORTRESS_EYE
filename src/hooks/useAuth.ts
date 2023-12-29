@@ -1,7 +1,7 @@
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { CombinedError, useMutation } from "urql";
-import { SIGNIN_MUTATION } from "../graphql/mutations/auth";
+import { SIGNIN_MUTATION, SIGNOUT_MUTATION } from "../graphql/mutations/auth";
 import {
   handleAuthTokens,
   handleSignoutData
@@ -63,9 +63,12 @@ export const useSignout = (): SignoutReponse => {
 
   const router = useRouter();
 
-  const handleSignout = () => {
-    dispatch(handleSignoutData());
-    router.push("/login");
+  const [{ fetching, error }, signout] = useMutation(SIGNOUT_MUTATION);
+  const handleSignout = async () => {
+    await signout()?.then(async () => {
+      dispatch(handleSignoutData());
+      router.push("/login");
+    });
   };
 
   return {
