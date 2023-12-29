@@ -20,6 +20,7 @@ const SignoutPopup = () => {
   };
 
   const handleClick = () => {
+    dispatch(handleActiveLink("Home"));
     handleSignout();
   };
 
