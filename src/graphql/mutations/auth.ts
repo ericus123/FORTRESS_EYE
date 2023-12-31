@@ -14,3 +14,18 @@ export const SIGNOUT_MUTATION = gql`
     SignoutUser
   }
 `;
+
+export const VERIFICATION_MUTATION = gql`
+  mutation VerifyUser($token: String!) {
+    VerifyUser(token: $token) {
+      accessToken
+      refreshToken
+    }
+  }
+`;
+
+export const SEND_VERIFICATION_MUTATION = gql`
+  mutation SendVerification($email: String!) {
+    SendVerification(email: $email)
+  }
+`;

@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { SigninResponse } from "../../../hooks/useAuth";
 
+export type AuthTokens = {
+  accessToken?: string;
+  refreshToken?: string;
+};
 export interface AuthSliceState {
-  tokens: {
-    accessToken?: string;
-    refreshToken?: string;
-  };
+  tokens: AuthTokens;
 }
 
 const initialState: AuthSliceState = {

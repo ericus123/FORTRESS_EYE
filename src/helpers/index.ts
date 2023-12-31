@@ -1,3 +1,4 @@
+import { jwtDecode } from "jwt-decode";
 import { CombinedError } from "urql";
 import { userFriendlyErrorMessages } from "../constants/errors";
 
@@ -76,4 +77,13 @@ export const extractInitials = (fullName: string) => {
   const initials = names.map((name) => name.charAt(0).toUpperCase()).join("");
 
   return initials;
+};
+
+export const verifyToken = (token?: string) => {
+  if (token != undefined) {
+    const isValid: any = jwtDecode(token);
+    return isValid?.data;
+  }
+
+  return false;
 };
