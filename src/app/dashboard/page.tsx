@@ -5,8 +5,8 @@ import withAuthProtection from "../../hoc/withAuthProtection";
 import withLoader from "../../hoc/withLoader";
 import withLocationProtected from "../../hoc/withLocationTracking";
 
-const DashboardPage = () => {
-  return <Dashboard />;
+const DashboardPage = (props: any) => {
+  return <Dashboard {...props} />;
 };
 
 export default withLoader(

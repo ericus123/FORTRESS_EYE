@@ -7,10 +7,17 @@ import CenteredPopup from "./Centered";
 
 const StatusPopup = ({
   status,
-  handleStatus
+  handleStatus,
+  isClosable,
+  message
 }: {
   status: StatusPopup;
-  handleStatus: () => void;
+  handleStatus?: () => void;
+  isClosable?: boolean;
+  message?: {
+    success: string;
+    fail: string;
+  };
 }) => {
   return status?.show ? (
     <CenteredPopup
@@ -19,19 +26,21 @@ const StatusPopup = ({
         background: colors.dark_blue,
         borderRadius: "10px"
       }}>
-      <Box sx={{ position: "relative", zIndex: 1 }}>
-        <Image
-          src={images.close}
-          alt=""
-          style={{
-            position: "absolute",
-            right: ".5rem",
-            top: ".5rem",
-            cursor: "pointer"
-          }}
-          onClick={handleStatus}
-        />
-      </Box>
+      {isClosable ? (
+        <Box sx={{ position: "relative", zIndex: 1 }}>
+          <Image
+            src={images.close}
+            alt=""
+            style={{
+              position: "absolute",
+              right: ".5rem",
+              top: ".5rem",
+              cursor: "pointer"
+            }}
+            onClick={handleStatus}
+          />
+        </Box>
+      ) : null}
       <Box
         sx={{
           position: "relative",
@@ -50,9 +59,22 @@ const StatusPopup = ({
         <Typography
           component={"h2"}
           sx={{
-            color: status?.isSuccess ? colors.light : colors.rose_red
+            color: status?.isSuccess ? colors.light : colors.rose_red,
+            fontFamily: "Poppins",
+            fontSize: "clamp(12px, 1.5vw, 14px)",
+            fontStyle: "normal",
+            fontWeight: "600",
+            opacity: 0.9,
+            lineHeight: "normal",
+            textAlign: "center"
           }}>
-          {status?.isSuccess ? "Great! 👍🏾" : "Oops!  try again!"}
+          {message != undefined
+            ? status.isSuccess
+              ? message?.success
+              : message?.fail
+            : status?.isSuccess
+            ? "Great! 👍🏾"
+            : "Oops!  try again!"}
         </Typography>
       </Box>
     </CenteredPopup>

@@ -1,8 +1,15 @@
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { CombinedError, useMutation } from "urql";
-import { SIGNIN_MUTATION, SIGNOUT_MUTATION } from "../graphql/mutations/auth";
 import {
+  SEND_VERIFICATION_MUTATION,
+  SIGNIN_MUTATION,
+  SIGNOUT_MUTATION,
+  VERIFICATION_MUTATION
+} from "../graphql/mutations/auth";
+
+import {
+  AuthTokens,
   handleAuthTokens,
   handleSignoutData
 } from "../redux/modules/auth/authSlice";
@@ -18,10 +25,20 @@ type SigninReponse = {
   error?: CombinedError;
   fetching: boolean;
   isSignedIn: boolean;
+  tokens: AuthTokens;
 };
 
 type SignoutReponse = {
   handleSignout: () => void;
+};
+
+type VerificationReponse = {
+  handleVerification: (token: string) => void;
+  handleResend: (email: string) => void;
+  resendFetching: boolean;
+  fetching: boolean;
+  error?: CombinedError;
+  data: any;
 };
 
 export type SigninResponse = {
@@ -54,7 +71,8 @@ export const useSignin = (): SigninReponse => {
     handleSignin,
     error,
     fetching,
-    isSignedIn
+    isSignedIn,
+    tokens
   };
 };
 
@@ -73,5 +91,43 @@ export const useSignout = (): SignoutReponse => {
 
   return {
     handleSignout
+  };
+};
+
+export const useVerification = (): VerificationReponse => {
+  const dispatch = useDispatch();
+
+  const router = useRouter();
+
+  const [{ fetching, error, data }, verify] = useMutation(
+    VERIFICATION_MUTATION
+  );
+  const handleVerification = async (token: string) => {
+    await verify({
+      token
+    }).then((res: any) => {
+      if (res?.data?.VerifyUser) {
+        dispatch(handleAuthTokens(res?.data?.VerifyUser));
+        setTimeout(() => {
+          router.push("/dashboard");
+        }, 3000);
+      }
+    });
+  };
+
+  const [{ fetching: resendFetching }, resend] = useMutation(
+    SEND_VERIFICATION_MUTATION
+  );
+  const resendVerification = async (email: string) => {
+    await resend({ email });
+  };
+
+  return {
+    handleResend: resendVerification,
+    handleVerification,
+    resendFetching: resendFetching,
+    fetching,
+    error,
+    data
   };
 };

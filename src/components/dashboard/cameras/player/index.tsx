@@ -46,7 +46,7 @@ const CameraPlayer = () => {
             bottom: 0,
             background: colors.black_5,
             borderRadius: "1rem",
-            overflow: "hidden"
+            overflow: "scroll"
           }}>
           <PlayerWithWorker
             style={{
