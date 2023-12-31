@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { colors } from "../../constants/colors";
 import { useAppDispatch } from "../../redux/hooks";
 import { handleAreaAddShow } from "../../redux/modules/area/areaSlice";
+import { handleInviteShow } from "../../redux/modules/member/memberSlice";
 import { hideStatus } from "../../redux/modules/navigation/navigationSlice";
 import { RootState } from "../../redux/modules/rootReducer";
 import StatusPopup from "../common/popups/Status";
@@ -16,6 +17,7 @@ import DoorsControl from "./doors";
 import Greetings from "./greetings";
 import LightsControl from "./lights";
 import MembersView from "./members";
+import InviteMember from "./members/invitation";
 import PowerMetricsCard from "./power/metrics/Card";
 import DashboardSidebar from "./sidebar";
 import Verification, { TokenData } from "./verification";
@@ -28,7 +30,12 @@ const Dashboard = ({ isVerified, email }: TokenData) => {
     dispatch(handleAreaAddShow());
   };
 
+  const handleInvite = () => {
+    dispatch(handleInviteShow());
+  };
+
   const { isAddOpen } = useSelector(({ area }: RootState) => area);
+  const { isInviteOpen } = useSelector(({ member }: RootState) => member);
   const { status } = useSelector(({ navigation }: RootState) => navigation);
 
   const handleStatusShow = () => {
@@ -49,7 +56,8 @@ const Dashboard = ({ isVerified, email }: TokenData) => {
       }}>
       <AddArea show={isAddOpen} handleShow={handleShow} />
       <SignoutPopup />
-      <StatusPopup status={status} handleStatus={handleStatusShow} isClosable />
+      <InviteMember show={isInviteOpen} handleShow={handleInvite} />
+      <StatusPopup status={status} handleStatus={handleStatusShow} />
       <DashboardSidebar />
       {token != undefined ? (
         <Verified />

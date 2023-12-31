@@ -1,7 +1,10 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { CombinedError, useQuery } from "urql";
-import { GET_MEMBERS_QUERY } from "../graphql/queries/members";
+import { CombinedError, useMutation, useQuery } from "urql";
+import {
+  GET_MEMBERS_QUERY,
+  INVITE_MEMBER_MUTATION
+} from "../graphql/queries/members";
 import { useAppDispatch } from "../redux/hooks";
 import { saveMembers } from "../redux/modules/member/memberSlice";
 import { RootState } from "../redux/modules/rootReducer";
@@ -39,6 +42,14 @@ export type MemberResponse = {
   fetching: boolean;
   error?: CombinedError;
 };
+
+export type MemberInviteResponse = {
+  data: any;
+  fetching: boolean;
+  error?: CombinedError;
+  inviteMember: (email: string, callback: () => void) => void;
+};
+
 export const useMembers = () => {
   const [{ data, fetching, error }] = useQuery({
     query: GET_MEMBERS_QUERY
@@ -58,5 +69,28 @@ export const useMembers = () => {
     data: members,
     fetching,
     error
+  };
+};
+
+export const useInviteMember = (): MemberInviteResponse => {
+  const [{ fetching, data, error }, invite] = useMutation(
+    INVITE_MEMBER_MUTATION
+  );
+
+  const inviteMember = async (email: string, callback: () => void) => {
+    await invite({
+      email
+    }).then((res) => {
+      if (res?.data?.InviteUser === true) {
+        callback();
+      }
+    });
+  };
+
+  return {
+    data,
+    fetching,
+    error,
+    inviteMember
   };
 };

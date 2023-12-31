@@ -26,3 +26,9 @@ export const GET_MEMBERS_QUERY = gql`
     }
   }
 `;
+
+export const INVITE_MEMBER_MUTATION = gql`
+  mutation InviteUser($email: String!) {
+    InviteUser(email: $email)
+  }
+`;

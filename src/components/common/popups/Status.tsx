@@ -8,16 +8,11 @@ import CenteredPopup from "./Centered";
 const StatusPopup = ({
   status,
   handleStatus,
-  isClosable,
-  message
+  isClosable = true
 }: {
   status: StatusPopup;
   handleStatus?: () => void;
   isClosable?: boolean;
-  message?: {
-    success: string;
-    fail: string;
-  };
 }) => {
   return status?.show ? (
     <CenteredPopup
@@ -68,10 +63,10 @@ const StatusPopup = ({
             lineHeight: "normal",
             textAlign: "center"
           }}>
-          {message != undefined
+          {status?.message != undefined
             ? status.isSuccess
-              ? message?.success
-              : message?.fail
+              ? status?.message?.success
+              : status?.message?.fail
             : status?.isSuccess
             ? "Great! 👍🏾"
             : "Oops!  try again!"}
