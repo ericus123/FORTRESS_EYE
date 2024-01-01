@@ -90,8 +90,9 @@ const LoginForm = ({
               fullWidth
               autoFocus={false}
               sx={{
-                border: `2px solid ${colors.cambridge_blue}`,
-                borderRadius: "5px",
+                border: "none",
+                borderBottom: `2px solid ${colors.cambridge_blue}`,
+                borderRadius: 0,
                 height: "45px",
                 color: colors.light,
                 marginBottom: 0,
@@ -143,8 +144,9 @@ const LoginForm = ({
                 }
               }}
               sx={{
-                border: `2px solid ${colors.cambridge_blue}`,
-                borderRadius: "5px",
+                border: "none",
+                borderBottom: `2px solid ${colors.cambridge_blue}`,
+                borderRadius: 0,
                 outline: "none",
                 height: "45px",
                 "&:focus": {
@@ -162,11 +164,11 @@ const LoginForm = ({
               }}
               component={"div"}
               onClick={handleTogglePassword}>
-              {showPassword ? (
+              {!showPassword ? (
                 <Icon
                   path={mdiEyeOff}
                   style={{
-                    color: colors.orange,
+                    color: colors.teal,
                     width: "30px",
                     height: "30px"
                   }}
@@ -175,7 +177,7 @@ const LoginForm = ({
                 <Icon
                   path={mdiEye}
                   style={{
-                    color: colors.orange,
+                    color: colors.teal,
                     width: "30px",
                     height: "30px"
                   }}
@@ -197,7 +199,7 @@ const LoginForm = ({
               shallow>
               <Typography
                 sx={{
-                  color: colors.orange,
+                  color: colors.teal,
                   fontWeight: "600",
                   fontSize: "14px",
                   letterSpacing: "1px"

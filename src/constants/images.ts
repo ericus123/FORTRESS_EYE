@@ -20,6 +20,7 @@ import lightOff from "../../public/images/icons/light-off.svg";
 import lightOn from "../../public/images/icons/light-on.svg";
 import locationBlocked from "../../public/images/icons/location-blocked.svg";
 import locked from "../../public/images/icons/locked.svg";
+import mailTeal from "../../public/images/icons/mail-teal.svg";
 import notification from "../../public/images/icons/notification.svg";
 import percent from "../../public/images/icons/percent.svg";
 import play from "../../public/images/icons/play.svg";
@@ -67,6 +68,7 @@ export const images = {
   caretDown,
   signout,
   profile,
+  mailTeal,
   locked,
   unlocked,
   locationBlocked,

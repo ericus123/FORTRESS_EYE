@@ -17,5 +17,7 @@ export const colors = {
   dark: "#191716",
   active: "#00CC99",
   gray: "#8A8D91",
-  light_on: "rgba(255, 215, 0, 1)"
+  light_on: "rgba(255, 215, 0, 1)",
+  teal: "#008080",
+  graphite: "#2C2C2C"
 };

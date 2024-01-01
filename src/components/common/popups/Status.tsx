@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, SxProps, Typography } from "@mui/material";
 import Image from "next/image";
 import { colors } from "../../../constants/colors";
 import { images } from "../../../constants/images";
@@ -8,11 +8,13 @@ import CenteredPopup from "./Centered";
 const StatusPopup = ({
   status,
   handleStatus,
-  isClosable = true
+  isClosable = true,
+  sx
 }: {
   status: StatusPopup;
   handleStatus?: () => void;
   isClosable?: boolean;
+  sx?: SxProps;
 }) => {
   return status?.show ? (
     <CenteredPopup
@@ -43,7 +45,8 @@ const StatusPopup = ({
           display: "flex",
           padding: "1rem",
           alignItems: "center",
-          gap: "1rem"
+          gap: "1rem",
+          ...sx
         }}>
         <Image
           src={status?.isSuccess ? images.check : images.fail}
