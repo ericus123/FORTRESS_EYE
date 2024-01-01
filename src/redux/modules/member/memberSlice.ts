@@ -3,10 +3,12 @@ import { Member } from "../../../hooks/useMembers";
 
 export interface MemberSliceState {
   members: Member[];
+  isInviteOpen: boolean;
 }
 
 const initialState: MemberSliceState = {
-  members: []
+  members: [],
+  isInviteOpen: false
 };
 
 const memberSlice = createSlice({
@@ -15,10 +17,13 @@ const memberSlice = createSlice({
   reducers: {
     saveMembers(state, { payload }: { payload: Member[] }) {
       state.members = payload;
+    },
+    handleInviteShow(state) {
+      state.isInviteOpen = !state.isInviteOpen;
     }
   }
 });
 
-export const { saveMembers } = memberSlice.actions;
+export const { saveMembers, handleInviteShow } = memberSlice.actions;
 
 export default memberSlice.reducer;

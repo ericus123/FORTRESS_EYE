@@ -1,7 +1,15 @@
 import { Box, Typography } from "@mui/material";
+import { useDispatch } from "react-redux";
 import { colors } from "../../../constants/colors";
+import { handleInviteShow } from "../../../redux/modules/member/memberSlice";
 
 const MembersHeader = () => {
+  const dispatch = useDispatch();
+
+  const handleShow = () => {
+    dispatch(handleInviteShow());
+  };
+
   return (
     <Box
       sx={{
@@ -37,7 +45,9 @@ const MembersHeader = () => {
           paddingRight: "10px",
           borderRadius: "15px",
           cursor: "pointer"
-        }}>
+        }}
+        component={"div"}
+        onClick={handleShow}>
         <Typography
           sx={{
             color: colors.light,

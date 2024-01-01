@@ -4,6 +4,10 @@ import { MenuItemName } from "../../../components/dashboard/sidebar/items";
 export type StatusPopup = {
   isSuccess: boolean;
   show: boolean;
+  message?: {
+    success?: string;
+    fail?: string;
+  };
 };
 
 export interface NavigationSliceState {
@@ -39,7 +43,10 @@ const navigationSlice = createSlice({
       state.status = payload;
     },
     hideStatus(state) {
-      state.status.show = false;
+      state.status = {
+        isSuccess: false,
+        show: false
+      };
     }
   }
 });

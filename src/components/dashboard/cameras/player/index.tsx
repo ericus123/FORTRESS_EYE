@@ -46,7 +46,12 @@ const CameraPlayer = () => {
             bottom: 0,
             background: colors.black_5,
             borderRadius: "1rem",
-            overflow: "scroll"
+            overflow: "scroll",
+            msOverflowStyle: "none",
+            scrollbarWidth: "none",
+            "&::-webkit-scrollbar": {
+              display: "none"
+            }
           }}>
           <PlayerWithWorker
             style={{
