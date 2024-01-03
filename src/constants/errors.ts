@@ -4,12 +4,14 @@ export type UserFriendlyErrorMessages = {
 
 export const userFriendlyErrorMessages: UserFriendlyErrorMessages = {
   INVALID_TOKEN: "Oops! Something went wrong. Please try logging in again.",
+  SAME_PASSWORD: "Old password and new password can't be the same",
   INVALID_HEADERS: "Oops! Something went wrong. Please try again later.",
   INVALID_INPUT: "Invalid credentials",
   UNVERIFIED_ACCOUNT:
     "Your account is not verified. Please verify your email to continue.",
   UNKNOWN_USER:
     "Invalid login credentials. Please check your email and password.",
+  UNKNOWN_MEMBER: "Can't find that member in our system",
   ALREADY_REGISTERED:
     "Account already exists. Please use a different email to register.",
   PASS_DOESNT_MATCH:

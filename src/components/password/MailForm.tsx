@@ -3,13 +3,13 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Box, TextField, Typography } from "@mui/material";
 import Link from "next/link";
-import { useEffect } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { FC, useEffect } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import * as Yup from "yup";
+import { PassReset } from ".";
 import { colors } from "../../constants/colors";
-import { useInviteMember } from "../../hooks/useMembers";
-import { handleInviteShow } from "../../redux/modules/member/memberSlice";
 import { handleStatus } from "../../redux/modules/navigation/navigationSlice";
 import AppButton from "../common/AppButton";
 import InputError from "../common/inputs/InputError";
@@ -17,7 +17,18 @@ import InputError from "../common/inputs/InputError";
 type FormData = {
   email: string;
 };
-const PasswordMailForm = () => {
+
+export type HandleResetEmail = {
+  handleEmail: (email: string) => void;
+};
+
+type Props = HandleResetEmail & PassReset;
+const PasswordMailForm: FC<Props> = ({
+  handleEmail,
+  handleRequest,
+  isLoading,
+  error
+}) => {
   const validationSchema = Yup.object({
     email: Yup.string().email("Invalid email").required("Email is required")
   });
@@ -26,22 +37,15 @@ const PasswordMailForm = () => {
     resolver: yupResolver(validationSchema)
   });
 
-  const { inviteMember, data, fetching, error } = useInviteMember();
+  const pathname = usePathname();
+  const router = useRouter();
 
   const dispatch = useDispatch();
   const onSubmit: SubmitHandler<FormData> = async (data) => {
-    inviteMember(data?.email, () => {
+    handleRequest(data?.email, () => {
       methods.reset();
-      dispatch(handleInviteShow());
-      dispatch(
-        handleStatus({
-          isSuccess: true,
-          show: true,
-          message: {
-            success: "Invitation sent! ✨"
-          }
-        })
-      );
+      handleEmail(data?.email);
+      router.push(pathname + `?reset=check`);
     });
   };
 
@@ -134,6 +138,8 @@ const PasswordMailForm = () => {
                   background: colors.teal
                 }
               }}
+              isLoading={isLoading}
+              disabled={isLoading}
             />
             <Link
               href={"/login"}
