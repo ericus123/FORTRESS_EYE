@@ -9,6 +9,7 @@ import { useState } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { CombinedError } from "urql";
 import * as Yup from "yup";
+import { PASSWORD_REGEX } from "../../../../constants";
 import { colors } from "../../../../constants/colors";
 import { getGraphQLErrorMessage } from "../../../../helpers";
 import { SigninInput } from "../../../../hooks/useAuth";
@@ -22,8 +23,8 @@ const validationSchema = Yup.object({
   password: Yup.string()
     .required("Password is required")
     .matches(
-      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-      "Password must contain at least 8 characters, one letter, one number, and one special character"
+      PASSWORD_REGEX,
+      "Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character"
     )
 });
 

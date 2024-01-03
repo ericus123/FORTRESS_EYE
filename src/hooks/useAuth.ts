@@ -1,7 +1,9 @@
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { CombinedError, useMutation } from "urql";
 import {
+  REQUEST_PASSWORD_RESET,
+  RESET_PASSWORD_MUTATION,
   SEND_VERIFICATION_MUTATION,
   SIGNIN_MUTATION,
   SIGNOUT_MUTATION,
@@ -39,6 +41,19 @@ type VerificationReponse = {
   fetching: boolean;
   error?: CombinedError;
   data: any;
+};
+
+type PasswordResetReponse = {
+  handlePasswordReset: (
+    data: { password: string; token: string },
+    callback: () => void
+  ) => void;
+  handleRequest: (email: string, callback: () => void) => void;
+  requestFetching: boolean;
+  fetching: boolean;
+  requestError?: CombinedError;
+  error?: CombinedError;
+  requestData: any;
 };
 
 export type SigninResponse = {
@@ -129,5 +144,54 @@ export const useVerification = (): VerificationReponse => {
     fetching,
     error,
     data
+  };
+};
+
+export const usePasswordReset = (): PasswordResetReponse => {
+  const dispatch = useDispatch();
+
+  const searchParams = useSearchParams();
+
+  const [
+    { fetching: requestFetching, error: requestError, data: requestData },
+    request
+  ] = useMutation(REQUEST_PASSWORD_RESET);
+
+  const [{ fetching, error }, reset] = useMutation(RESET_PASSWORD_MUTATION);
+
+  const handleRequest = async (email: string, callback: () => void) => {
+    await request({
+      email
+    }).then((res: any) => {
+      if (res?.data?.RequestPasswordReset) {
+        callback();
+      }
+    });
+  };
+
+  const handlePasswordReset = async (
+    data: {
+      password: string;
+      token: string;
+    },
+    callback: () => void
+  ) => {
+    await reset({
+      ...data
+    }).then((res: any) => {
+      if (res?.data?.ResetPassword) {
+        callback();
+      }
+    });
+  };
+
+  return {
+    handleRequest,
+    handlePasswordReset,
+    requestFetching: requestFetching,
+    requestError: requestError,
+    requestData: requestData,
+    fetching,
+    error
   };
 };

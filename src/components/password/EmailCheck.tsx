@@ -1,17 +1,33 @@
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { FC, useEffect } from "react";
+import { PassReset } from ".";
 import { colors } from "../../constants/colors";
 import { images } from "../../constants/images";
+import { getGraphQLErrorMessage } from "../../helpers";
 import AppButton from "../common/AppButton";
+import InputError from "../common/inputs/InputError";
 import CenteredPopup from "../common/popups/Centered";
 
-const ResetEmailCheck = () => {
+type Props = PassReset & { email: string | null };
+const ResetEmailCheck: FC<Props> = ({
+  email,
+  error,
+  isLoading,
+  handleRequest
+}) => {
   const router = useRouter();
 
   const handleBack = () => {
     router.back();
   };
+  useEffect(() => {
+    if (!email) {
+      router.back();
+    }
+  }, []);
+
   return (
     <CenteredPopup
       sx={{
@@ -82,10 +98,20 @@ const ResetEmailCheck = () => {
                 fontWeight: "600",
                 color: colors.light_9
               }}>
-              amaniericus@gmail.com
+              {email}
             </Typography>
           </Typography>
+          {error != undefined ? (
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center"
+              }}>
+              <InputError error={getGraphQLErrorMessage(error)} />
+            </Box>
+          ) : null}
         </Box>
+
         <Box
           sx={{
             display: "flex",
@@ -114,6 +140,9 @@ const ResetEmailCheck = () => {
                 background: colors.teal
               }
             }}
+            isLoading={isLoading}
+            disabled={isLoading}
+            onClick={() => handleRequest(`${email}`, () => null)}
           />
 
           <Typography

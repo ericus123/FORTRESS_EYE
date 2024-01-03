@@ -39,6 +39,7 @@ export const createUrqlClient = () => {
       const { tokens } = auth;
       return {
         headers: {
+          "Content-Type": "application/json",
           Authorization: `Bearer ${tokens?.accessToken}`,
           "x-refresh-token": tokens?.refreshToken
         },

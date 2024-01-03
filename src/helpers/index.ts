@@ -46,7 +46,7 @@ export const isValidWsUrl = (url: string): boolean => {
 
 export const getGraphQLErrorMessage = (
   error: CombinedError | undefined
-): string | null => {
+): string | undefined => {
   if (error && error.graphQLErrors && error.graphQLErrors.length > 0) {
     const errorCode: string =
       error.graphQLErrors[0]?.message?.split(":")?.length > 1
@@ -59,7 +59,7 @@ export const getGraphQLErrorMessage = (
 
     return "Something went wrong";
   }
-  return null;
+  return undefined;
 };
 
 export const extractInitials = (fullName: string) => {
@@ -80,10 +80,12 @@ export const extractInitials = (fullName: string) => {
 };
 
 export const verifyToken = (token?: string) => {
-  if (token != undefined) {
-    const isValid: any = jwtDecode(token);
-    return isValid?.data;
+  try {
+    if (token != undefined) {
+      const isValid: any = jwtDecode(token);
+      return isValid?.data;
+    }
+  } catch (error) {
+    return null;
   }
-
-  return false;
 };

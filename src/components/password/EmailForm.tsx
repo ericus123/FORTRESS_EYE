@@ -1,9 +1,20 @@
 import { Box, Typography } from "@mui/material";
+import { FC } from "react";
+import { PassReset } from ".";
 import { colors } from "../../constants/colors";
+import { getGraphQLErrorMessage } from "../../helpers";
+import InputError from "../common/inputs/InputError";
 import CenteredPopup from "../common/popups/Centered";
-import PasswordMailForm from "./MailForm";
+import PasswordMailForm, { HandleResetEmail } from "./MailForm";
 
-const ResetEmailForm = () => {
+type Props = HandleResetEmail & PassReset;
+
+const ResetEmailForm: FC<Props> = ({
+  handleEmail,
+  handleRequest,
+  isLoading,
+  error
+}) => {
   return (
     <CenteredPopup
       sx={{
@@ -55,9 +66,26 @@ const ResetEmailForm = () => {
             }}>
             Your password will be reset by email
           </Typography>
+          {error != undefined ? (
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center"
+              }}>
+              <InputError error={getGraphQLErrorMessage(error)} />
+            </Box>
+          ) : null}
         </Box>
+
         <Box>
-          <PasswordMailForm />
+          <PasswordMailForm
+            {...{
+              handleEmail,
+              handleRequest,
+              isLoading,
+              error
+            }}
+          />
         </Box>
       </Box>
     </CenteredPopup>

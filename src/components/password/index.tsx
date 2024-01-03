@@ -2,38 +2,71 @@
 
 import { Box } from "@mui/material";
 import { useSearchParams } from "next/navigation";
+import { useState } from "react";
+import { CombinedError } from "urql";
+import { usePasswordReset } from "../../hooks/useAuth";
 import ResetEmailCheck from "./EmailCheck";
 import ResetEmailForm from "./EmailForm";
 import ResetForm from "./ResetForm";
+
+export type PassReset = {
+  handleRequest: (email: string, callback: () => void) => void;
+  isLoading: boolean;
+  error?: CombinedError;
+};
 
 const ForgotPassword = () => {
   const searchParam = useSearchParams();
 
   const reset = searchParam.get("reset");
 
-  return (
-    // <StatusPopup
-    //   status={{
-    //     show: true,
-    //     isSuccess: true,
-    //     message: {
-    //       success: "Voila! Password reset is a success. 🎉"
-    //     }
-    //   }}
-    //   isClosable={false}
-    //   sx={{
-    //     width: "400px"
-    //   }}
-    // />
+  const [email, setEmail] = useState<string | null>(null);
 
+  const {
+    handleRequest,
+    requestFetching,
+    requestError,
+    handlePasswordReset,
+    fetching,
+    error
+  } = usePasswordReset();
+
+  return (
     <Box>
-      {!reset || reset == "email" ? (
-        <ResetEmailForm />
-      ) : reset === "check" ? (
-        <ResetEmailCheck />
-      ) : (
-        <ResetForm />
-      )}
+      <Box>
+        {!reset || reset == "email" ? (
+          <ResetEmailForm
+            {...{
+              handleEmail: (email) => {
+                setEmail(email);
+              },
+              error: requestError,
+              isLoading: requestFetching,
+              handleRequest
+            }}
+          />
+        ) : reset === "check" ? (
+          <ResetEmailCheck
+            {...{
+              error: requestError,
+              isLoading: requestFetching,
+              handleRequest,
+              email
+            }}
+          />
+        ) : (
+          <ResetForm
+            {...{
+              handleRequest,
+              email,
+              error: error,
+              isLoading: fetching,
+              handlePasswordReset,
+              token: reset
+            }}
+          />
+        )}
+      </Box>
     </Box>
   );
 };
