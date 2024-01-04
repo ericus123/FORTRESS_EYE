@@ -3,7 +3,7 @@ import Image from "next/image";
 import { colors } from "../../../constants/colors";
 import { images } from "../../../constants/images";
 
-const LightsControlsHeading = () => {
+const LightsControlsHeading = ({ title }: { title: string }) => {
   return (
     <Box
       sx={{
@@ -20,7 +20,7 @@ const LightsControlsHeading = () => {
           opacity: 0.9,
           lineHeight: "normal"
         }}>
-        Living Room Light
+        {title}
       </Typography>
       <Image
         src={images.add}

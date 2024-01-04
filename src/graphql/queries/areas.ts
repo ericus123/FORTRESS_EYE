@@ -8,6 +8,11 @@ export const GET_AREAS_QUERY = gql`
       id
       name
       updatedAt
+      light {
+        id
+        isOn
+        createdAt
+      }
     }
   }
 `;

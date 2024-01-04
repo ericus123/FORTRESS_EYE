@@ -1,8 +1,12 @@
 import { Box } from "@mui/material";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../redux/modules/rootReducer";
 import LightsControlContent from "./Content";
 import LightsControlsHeading from "./Heading";
 
 const LightsControl = () => {
+  const { area } = useSelector(({ area }: RootState) => area);
+
   return (
     <Box
       sx={{
@@ -17,8 +21,13 @@ const LightsControl = () => {
           display: "none"
         }
       }}>
-      <LightsControlsHeading />
+      <LightsControlsHeading title={`${area?.name} Light`} />
       <LightsControlContent />
+      {/* <NoData
+        sx={{
+          marginTop: "5rem"
+        }}
+      /> */}
     </Box>
   );
 };
