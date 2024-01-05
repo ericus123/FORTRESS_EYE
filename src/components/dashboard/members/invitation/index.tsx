@@ -153,7 +153,7 @@ const InviteMember = ({
                   color: colors.light,
                   fontWeight: 600,
                   "&:hover": {
-                    background: colors.teal
+                    background: colors.black_5
                   }
                 }}
               />
