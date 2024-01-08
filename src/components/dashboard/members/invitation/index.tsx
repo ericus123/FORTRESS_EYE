@@ -71,7 +71,7 @@ const InviteMember = ({
         width: "400px",
         height: "250px",
         zIndex: 1,
-        background: colors.dark_blue,
+        background: colors.graphite,
         borderRadius: "10px",
         padding: "2rem"
       }}>
@@ -116,9 +116,9 @@ const InviteMember = ({
                 autoFocus={false}
                 placeholder="john@email.com"
                 sx={{
-                  borderBottom: `2px solid ${colors.light_5}`,
+                  borderBottom: `2px solid ${colors.teal}`,
                   height: "45px",
-                  color: colors.light,
+                  color: colors.teal,
                   marginBottom: 0,
                   paddingLeft: "10px",
                   fill: "none"
@@ -128,7 +128,7 @@ const InviteMember = ({
                   style: {
                     padding: 0,
                     height: "45px",
-                    color: colors.light,
+                    color: colors.teal,
                     fill: "none"
                   }
                 }}
@@ -143,33 +143,17 @@ const InviteMember = ({
                 bottom: 0
               }}>
               <AppButton
-                title="Cancel"
-                type="button"
-                sx={{
-                  background: "transparent",
-                  width: "150px",
-                  height: "40px",
-                  border: `1px solid ${colors.light_6}`,
-                  color: colors.light,
-                  opacity: 8,
-                  "&:hover": {
-                    background: "transparent"
-                  }
-                }}
-                onClick={handleShow}
-              />
-              <AppButton
                 title="Add"
                 isLoading={fetching}
                 disabled={fetching}
                 sx={{
-                  background: colors.black_5,
-                  width: "150px",
+                  background: colors.teal,
+                  width: "calc(400px - 4rem)",
                   height: "40px",
                   color: colors.light,
-                  opacity: 8,
+                  fontWeight: 600,
                   "&:hover": {
-                    background: colors.black_5
+                    background: colors.teal
                   }
                 }}
               />

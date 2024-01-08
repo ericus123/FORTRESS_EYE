@@ -5,7 +5,13 @@ import { images } from "../../../../constants/images";
 import { Member } from "../../../../hooks/useMembers";
 import MemberInitial from "../Initial";
 
-const MemberCard = ({ member }: { member: Member }) => {
+const MemberCard = ({
+  member,
+  isCurrent
+}: {
+  member: Member;
+  isCurrent: boolean;
+}) => {
   return (
     <Box
       sx={{
@@ -67,7 +73,7 @@ const MemberCard = ({ member }: { member: Member }) => {
             opacity: 0.9,
             lineHeight: "normal"
           }}>
-          {`${member?.firstName} ${member?.lastName}`}
+          {isCurrent ? "You" : `${member?.firstName} ${member?.lastName}`}
 
           {member?.role?.roleName === "SUPER_ADMIN" ? (
             <Image
