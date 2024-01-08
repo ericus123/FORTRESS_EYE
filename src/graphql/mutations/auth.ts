@@ -9,6 +9,29 @@ export const SIGNIN_MUTATION = gql`
   }
 `;
 
+export const SIGNUP_MUTATION = gql`
+  mutation SignupUser(
+    $email: String!
+    $password: String!
+    $firstName: String!
+    $lastName: String!
+    $token: String!
+  ) {
+    SignupUser(
+      input: {
+        email: $email
+        password: $password
+        firstName: $firstName
+        lastName: $lastName
+      }
+      token: $token
+    ) {
+      accessToken
+      refreshToken
+    }
+  }
+`;
+
 export const SIGNOUT_MUTATION = gql`
   mutation SignoutUser() {
     SignoutUser
