@@ -7,6 +7,7 @@ import {
   SEND_VERIFICATION_MUTATION,
   SIGNIN_MUTATION,
   SIGNOUT_MUTATION,
+  SIGNUP_MUTATION,
   VERIFICATION_MUTATION
 } from "../graphql/mutations/auth";
 
@@ -22,8 +23,30 @@ export type SigninInput = {
   password: string;
 };
 
+export type SignupInput = SigninInput & {
+  firstName: string;
+  lastName: string;
+};
+
 type SigninReponse = {
   handleSignin: (input: SigninInput) => void;
+  error?: CombinedError;
+  fetching: boolean;
+  isSignedIn: boolean;
+  tokens: AuthTokens;
+};
+
+type SignupReponse = {
+  handleSignup: (
+    {
+      input,
+      token
+    }: {
+      input: SignupInput;
+      token: string;
+    },
+    callback: () => void
+  ) => void;
   error?: CombinedError;
   fetching: boolean;
   isSignedIn: boolean;
@@ -84,6 +107,50 @@ export const useSignin = (): SigninReponse => {
 
   return {
     handleSignin,
+    error,
+    fetching,
+    isSignedIn,
+    tokens
+  };
+};
+
+export const useSignup = (): SignupReponse => {
+  const [{ data, fetching, error }, signup] = useMutation(SIGNUP_MUTATION);
+
+  const { tokens } = useSelector(({ auth }: RootState) => auth);
+
+  const isSignedIn =
+    tokens?.accessToken != undefined && tokens?.refreshToken != undefined;
+
+  const dispatch = useDispatch();
+
+  const router = useRouter();
+
+  const handleSignup = async (
+    {
+      input,
+      token
+    }: {
+      input: SignupInput;
+      token: string;
+    },
+    callback: () => void
+  ) => {
+    await signup({
+      ...input,
+      token
+    }).then(({ data: _result }) => {
+      if (_result?.SignupUser != undefined) {
+        dispatch(handleAuthTokens(_result?.SignupUser));
+        setTimeout(() => {
+          callback();
+        }, 3000);
+      }
+    });
+  };
+
+  return {
+    handleSignup,
     error,
     fetching,
     isSignedIn,

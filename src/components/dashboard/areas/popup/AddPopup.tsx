@@ -40,7 +40,7 @@ const AddArea = ({
         width: "400px",
         height: "250px",
         zIndex: 1,
-        background: colors.dark_blue,
+        background: colors.graphite,
         borderRadius: "10px",
         padding: "2rem"
       }}>
@@ -86,9 +86,9 @@ const AddArea = ({
                 autoFocus={false}
                 placeholder="Area name"
                 sx={{
-                  borderBottom: `2px solid ${colors.light_5}`,
+                  borderBottom: `2px solid ${colors.teal}`,
                   height: "45px",
-                  color: colors.light,
+                  color: colors.teal,
                   marginBottom: 0,
                   paddingLeft: "10px",
                   fill: "none"
@@ -98,7 +98,7 @@ const AddArea = ({
                   style: {
                     padding: 0,
                     height: "45px",
-                    color: colors.light,
+                    color: colors.teal,
                     fill: "none"
                   }
                 }}
@@ -113,31 +113,15 @@ const AddArea = ({
                 bottom: 0
               }}>
               <AppButton
-                title="Cancel"
-                type="button"
-                sx={{
-                  background: "transparent",
-                  width: "150px",
-                  height: "40px",
-                  border: `1px solid ${colors.light_6}`,
-                  color: colors.light,
-                  opacity: 8,
-                  "&:hover": {
-                    background: "transparent"
-                  }
-                }}
-                onClick={handleShow}
-              />
-              <AppButton
                 title="Add"
                 isLoading={isAdding}
                 disabled={isAdding}
                 sx={{
-                  background: colors.black_5,
-                  width: "150px",
+                  background: colors.teal,
+                  width: "calc(400px - 4rem)",
                   height: "40px",
                   color: colors.light,
-                  opacity: 8,
+                  fontWeight: 600,
                   "&:hover": {
                     background: colors.black_5
                   }

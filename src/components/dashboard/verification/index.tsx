@@ -27,7 +27,7 @@ const Verification = ({ email }: { email: string }) => {
         alignItems: "center",
         height: "150px",
         width: "400px",
-        background: colors.charcoal,
+        background: colors.graphite,
         borderRadius: "10px",
         padding: "2rem"
       }}>
@@ -54,12 +54,11 @@ const Verification = ({ email }: { email: string }) => {
           <Typography
             component={"h1"}
             sx={{
-              color: colors.orange,
-              fontWeight: 600,
+              color: colors.teal,
+              fontWeight: 900,
               fontFamily: "Poppins",
               fontSize: "clamp(12px, 1.5vw, 14px)",
               fontStyle: "normal",
-              opacity: 0.9,
               lineHeight: "normal",
               textAlign: "center"
             }}>
@@ -70,12 +69,11 @@ const Verification = ({ email }: { email: string }) => {
         <AppButton
           sx={{
             cursor: "pointer",
-            background: colors.orange,
+            background: colors.teal,
             color: colors.light,
             fontSize: "clamp(12px, 1.5vw, 14px)",
             fontStyle: "normal",
-            fontWeight: "600",
-            opacity: 0.9,
+            fontWeight: 600,
             lineHeight: "normal",
             textAlign: "center",
             boxShadow: "none",
