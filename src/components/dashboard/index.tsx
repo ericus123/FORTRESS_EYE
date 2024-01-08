@@ -24,7 +24,7 @@ import Verification, { TokenData } from "./verification";
 import Verified from "./verification/Verified";
 import Weather from "./weather";
 
-const Dashboard = ({ isVerified, email }: TokenData) => {
+const Dashboard = ({ isVerified, email, role }: TokenData) => {
   const dispatch = useAppDispatch();
   const handleShow = () => {
     dispatch(handleAreaAddShow());
@@ -86,7 +86,7 @@ const Dashboard = ({ isVerified, email }: TokenData) => {
               position: "relative"
             }}>
             <PowerMetricsCard />
-            <MembersView />
+            <MembersView {...{ role, email }} />
           </Box>
           <Box
             sx={{

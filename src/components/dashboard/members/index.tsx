@@ -1,10 +1,11 @@
 import { Box } from "@mui/material";
 import { useMembers } from "../../../hooks/useMembers";
+import { RoleName } from "../verification";
 import MembersHeader from "./Header";
 import MemberCard from "./card";
 import MemberSkeleton from "./skeleton";
 
-const MembersView = () => {
+const MembersView = ({ role, email }: { role?: RoleName; email: string }) => {
   const { data, fetching } = useMembers();
 
   return (
@@ -26,7 +27,12 @@ const MembersView = () => {
           display: "none"
         }
       }}>
-      <MembersHeader />
+      <MembersHeader
+        isAuthorized={
+          role != undefined &&
+          (role === RoleName.SUPER_ADMIN || role === RoleName.ADMIN)
+        }
+      />
       <Box
         sx={{
           display: "flex",
@@ -42,7 +48,13 @@ const MembersView = () => {
           }
         }}>
         {data != undefined &&
-          data?.map((member, i) => <MemberCard member={member} key={i} />)}
+          data?.map((member, i) => (
+            <MemberCard
+              member={member}
+              key={i}
+              isCurrent={email === member?.email}
+            />
+          ))}
         {fetching
           ? [...new Array(3)]?.map((i) => <MemberSkeleton key={i} />)
           : null}
