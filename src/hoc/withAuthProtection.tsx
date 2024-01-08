@@ -9,7 +9,7 @@ import { verifyToken } from "../helpers";
 // eslint-disable-next-line react/display-name
 const withAuthProtection = (Component: FC<TokenData>) => (props: any) => {
   const { isSignedIn, tokens } = useSignin();
-  const unAuthRoutes = ["/login", "/", "/forgot-password"];
+  const unAuthRoutes = ["/login", "/", "/forgot-password", "/invitation"];
 
   const router = useRouter();
 
