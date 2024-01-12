@@ -31,6 +31,16 @@ export type Area = {
   name: string;
   createdAt: Date;
   deletedAt: Date;
+  light: Light;
+};
+
+export type Light = {
+  id: string;
+  cameraID: string;
+  isOn: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+  deletedAt: Date;
 };
 
 export type Areas = Area[];
@@ -47,6 +57,10 @@ export const useAreas = () => {
   useEffect(() => {
     if (data?.GetAreas != undefined) {
       dispatch(saveAreas(data?.GetAreas));
+    }
+
+    if (data?.GetAreas?.length > 0) {
+      handleActiveArea(data?.GetAreas[0]);
     }
   }, [data]);
 

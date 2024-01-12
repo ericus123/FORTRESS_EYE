@@ -3,6 +3,7 @@ import Image from "next/image";
 import { colors } from "../../../constants/colors";
 import { images } from "../../../constants/images";
 import { useAreas } from "../../../hooks/useAreas";
+import NoData from "../../common/NoData";
 import AreaCard from "./card/AreaCard";
 
 const Areas = () => {
@@ -109,29 +110,7 @@ const Areas = () => {
             ))
           : null}
       </Box>
-      {!fetching && !data?.length ? (
-        <Box
-          sx={{
-            position: "relative",
-            display: "flex",
-            justifyContent: "center",
-            width: "100%",
-            height: "100%"
-          }}>
-          <Typography
-            component={"p"}
-            sx={{
-              color: colors.light,
-              fontSize: "clamp(12px, 1.5vw, 14px)",
-              fontStyle: "normal",
-              fontWeight: "400",
-              opacity: 0.5,
-              lineHeight: "normal"
-            }}>
-            No data
-          </Typography>
-        </Box>
-      ) : null}
+      {!fetching && !data?.length ? <NoData /> : null}
     </Box>
   );
 };
