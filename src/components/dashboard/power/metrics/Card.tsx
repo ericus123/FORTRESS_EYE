@@ -14,9 +14,7 @@ const PowerMetricsCard = () => {
         alignItems: "center",
         padding: "1rem",
         justifyContent: "space-between",
-        position: "absolute",
-        bottom: "calc(400px)",
-        width: "calc(100% - 4rem)",
+        width: "calc(100%)",
         left: "2rem",
         right: "2rem"
       }}>

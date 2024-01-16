@@ -1,6 +1,9 @@
 import avatar from "../../public/images/avatar.svg";
 import add from "../../public/images/icons/add.svg";
+import air from "../../public/images/icons/air.svg";
 import area from "../../public/images/icons/area.svg";
+import arrowDecrease from "../../public/images/icons/arrow-decrease.svg";
+import arrowIncrease from "../../public/images/icons/arrow-increase.svg";
 import arrowNext from "../../public/images/icons/arrow-next.svg";
 import bulb_yellow from "../../public/images/icons/bulb-yellow.svg";
 import camera from "../../public/images/icons/camera.svg";
@@ -13,6 +16,7 @@ import electricity from "../../public/images/icons/electricity.svg";
 import event from "../../public/images/icons/event.svg";
 import eye from "../../public/images/icons/eye.svg";
 import fail from "../../public/images/icons/fail.svg";
+import fan from "../../public/images/icons/fan.svg";
 import home from "../../public/images/icons/home.svg";
 import humidity from "../../public/images/icons/humidity.svg";
 import king from "../../public/images/icons/king.svg";
@@ -24,6 +28,7 @@ import mailTeal from "../../public/images/icons/mail-teal.svg";
 import notification from "../../public/images/icons/notification.svg";
 import percent from "../../public/images/icons/percent.svg";
 import play from "../../public/images/icons/play.svg";
+import pressure from "../../public/images/icons/pressure.svg";
 import reload from "../../public/images/icons/reload.svg";
 import settings from "../../public/images/icons/settings.svg";
 import signout from "../../public/images/icons/signout.svg";
@@ -47,6 +52,7 @@ export const images = {
   logoLight,
   arrowNext,
   settings,
+  fan,
   home,
   area,
   add,
@@ -66,6 +72,10 @@ export const images = {
   check,
   king,
   caretDown,
+  arrowDecrease,
+  arrowIncrease,
+  air,
+  pressure,
   signout,
   profile,
   mailTeal,

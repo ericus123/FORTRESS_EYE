@@ -44,7 +44,6 @@ const CameraPlayerHeader = ({ camera }: { camera: string }) => {
           sx={{
             color: colors.light,
             fontSize: "clamp(10px, 1.5vw, 12px)",
-            fontFamily: "Poppins",
             fontStyle: "normal",
             fontWeight: "500",
             opacity: 0.8,
