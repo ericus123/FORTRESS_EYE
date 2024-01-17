@@ -6,6 +6,8 @@ import { useRef, useState } from "react";
 import { colors } from "../../../../constants/colors";
 import { images } from "../../../../constants/images";
 import MotionStats from "../../detections/motion/stats";
+import CameraControls from "../controls";
+import PtzControl from "../controls/PtzControl";
 import CameraPlayerHeader from "./Header";
 import LiveIndicator from "./LiveIndicator";
 import PlayerWithWorker from "./sockets";
@@ -36,6 +38,7 @@ const CameraPlayer = () => {
           height: "94%",
           position: "relative"
         }}>
+        <PtzControl />
         <MotionStats />
         <CameraPlayerHeader camera="Kitchen" />
         <Box
@@ -105,6 +108,7 @@ const CameraPlayer = () => {
             <LiveIndicator />
           </Box>
         </Box>
+        <CameraControls />
       </Box>
     </Box>
   );

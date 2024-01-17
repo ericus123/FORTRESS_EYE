@@ -1,5 +1,10 @@
 export const colors = {
-  charcoal: "#373F51",
+  charcoal: "rgba(55, 63, 81, 1)",
+  charcoal_5: "rgba(55, 63, 81, .5)",
+  charcoal_6: "rgba(55, 63, 81, .6)",
+  charcoal_7: "rgba(55, 63, 81, .7)",
+  charcoal_8: "rgba(55, 63, 81, .8)",
+  charcoal_9: "rgba(55, 63, 81, .9)",
   light: "#FCFCFC",
   rose_pompadour: "#DD7596",
   rose_red: "#CF1259",
@@ -19,5 +24,10 @@ export const colors = {
   gray: "#8A8D91",
   light_on: "rgba(255, 215, 0, 1)",
   teal: "#008080",
-  graphite: "#2C2C2C"
+  graphite: "rgba(44, 44, 44, 1)",
+  graphite_5: "rgba(44, 44, 44, .5)",
+  graphite_6: "rgba(44, 44, 44, .6)",
+  graphite_7: "rgba(44, 44, 44, .7)",
+  graphite_8: "rgba(44, 44, 44, .8)",
+  graphite_9: "rgba(44, 44, 44, .9)"
 };
