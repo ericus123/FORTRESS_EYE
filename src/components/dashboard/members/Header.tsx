@@ -2,6 +2,7 @@ import { Box, Typography } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { colors } from "../../../constants/colors";
 import { handleInviteShow } from "../../../redux/modules/member/memberSlice";
+import HomeSubTitle from "../../common/Headers";
 
 const MembersHeader = ({ isAuthorized }: { isAuthorized: boolean }) => {
   const dispatch = useDispatch();
@@ -20,19 +21,7 @@ const MembersHeader = ({ isAuthorized }: { isAuthorized: boolean }) => {
         sx={{
           marginRight: "auto"
         }}>
-        <Typography
-          component={"h1"}
-          sx={{
-            color: colors.light,
-            fontSize: "clamp(14px, 1.5vw, 16px)",
-            fontFamily: "Poppins",
-            fontStyle: "normal",
-            fontWeight: "600",
-            opacity: 0.9,
-            lineHeight: "normal"
-          }}>
-          All Members
-        </Typography>
+        <HomeSubTitle text="All Members"></HomeSubTitle>
       </Box>
       {isAuthorized ? (
         <Box

@@ -8,6 +8,7 @@ import { handleInviteShow } from "../../redux/modules/member/memberSlice";
 import { hideStatus } from "../../redux/modules/navigation/navigationSlice";
 import { RootState } from "../../redux/modules/rootReducer";
 import StatusPopup from "../common/popups/Status";
+import LeftBarPanel from "../panels/LeftBar";
 import SignoutPopup from "../signout";
 import Areas from "./areas";
 import AddArea from "./areas/popup/AddPopup";
@@ -16,15 +17,13 @@ import Detections, { detections } from "./detections";
 import DoorsControl from "./doors";
 import Greetings from "./greetings";
 import LightsControl from "./lights";
-import MembersView from "./members";
 import InviteMember from "./members/invitation";
-import PowerMetricsCard from "./power/metrics/Card";
 import DashboardSidebar from "./sidebar";
 import Verification, { TokenData } from "./verification";
 import Verified from "./verification/Verified";
 import Weather from "./weather";
 
-const Dashboard = ({ isVerified, email, role }: TokenData) => {
+const Dashboard = ({ isVerified, email, role, sub }: TokenData) => {
   const dispatch = useAppDispatch();
   const handleShow = () => {
     dispatch(handleAreaAddShow());
@@ -76,18 +75,14 @@ const Dashboard = ({ isVerified, email, role }: TokenData) => {
               display: "none"
             }
           }}>
-          <Box
-            sx={{
-              width: "350px",
-              background: colors.black_5,
-              padding: "2rem",
-              minWidth: "350px",
-              height: "100vvh",
-              position: "relative"
-            }}>
-            <PowerMetricsCard />
-            <MembersView {...{ role, email }} />
-          </Box>
+          <LeftBarPanel
+            {...{
+              isVerified,
+              email,
+              role,
+              sub
+            }}
+          />
           <Box
             sx={{
               minWidth: "1000px",

@@ -14,11 +14,13 @@ export interface NavigationSliceState {
   isDrawerOpen: boolean;
   activeLink: MenuItemName;
   status: StatusPopup;
+  isLeftBarExpanded?: boolean;
 }
 
 const initialState: NavigationSliceState = {
   isDrawerOpen: false,
   activeLink: "Home",
+  isLeftBarExpanded: true,
   status: {
     isSuccess: false,
     show: false
@@ -47,11 +49,14 @@ const navigationSlice = createSlice({
         isSuccess: false,
         show: false
       };
+    },
+    handleLeftBar(state) {
+      state.isLeftBarExpanded = !state.isLeftBarExpanded;
     }
   }
 });
 
-export const { handleActiveLink, handleStatus, hideStatus } =
+export const { handleActiveLink, handleStatus, hideStatus, handleLeftBar } =
   navigationSlice.actions;
 
 export default navigationSlice.reducer;
