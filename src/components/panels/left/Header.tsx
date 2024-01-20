@@ -6,7 +6,8 @@ const LeftSideBarHeader = () => {
   return (
     <Box
       sx={{
-        display: "flex"
+        display: "flex",
+        height: "100px"
       }}>
       <Box
         sx={{
@@ -22,7 +23,6 @@ const LeftSideBarHeader = () => {
             width: "50px",
             height: "50px",
             background: colors.teal,
-            opacity: 0.6,
             borderRadius: "50%",
             cursor: "pointer",
             transition: ".2s ease-in-out",
