@@ -20,12 +20,6 @@ const LeftBarPanel = ({ role, email }: TokenData) => {
         padding: "2rem",
         minWidth: "350px",
         height: "100vh",
-        overflow: "scroll",
-        msOverflowStyle: "none",
-        scrollbarWidth: "none",
-        "&::-webkit-scrollbar": {
-          display: "none"
-        },
         position: "relative",
         display: "flex",
         flexDirection: "column",
@@ -33,8 +27,20 @@ const LeftBarPanel = ({ role, email }: TokenData) => {
         transition: ".3s ease-out"
       }}>
       <LeftSideBarHeader />
-      <Actuators />
-      <MembersView {...{ role, email }} />
+      <Box
+        sx={{
+          overflow: "scroll",
+          msOverflowStyle: "none",
+          scrollbarWidth: "none",
+          "&::-webkit-scrollbar": {
+            display: "none"
+          },
+          height: "calc(100vh - 100px)",
+          marginTop: "100px"
+        }}>
+        <Actuators />
+        <MembersView {...{ role, email }} />
+      </Box>
     </Box>
   ) : (
     <Box
