@@ -47,7 +47,7 @@ const MotionStatsCard = ({ amount, percentage, type }: MotionStats) => {
             fontWeight: "600",
             lineHeight: "normal"
           }}>
-          {type === "camera" ? "Camera" : "Sensor"} Detections
+          {type === "camera" ? "Camera" : "PIR"} Detections
         </Typography>
         <Typography
           component={"p"}

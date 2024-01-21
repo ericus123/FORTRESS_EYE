@@ -16,15 +16,15 @@ const MembersView = ({ role, email }: { role?: RoleName; email: string }) => {
         gap: "2rem",
         position: "relative",
         width: "calc(350px - 4rem)",
-        borderRadius: "15px",
+        borderRadius: "15px"
         // height: "350px",
         // minHeight: "350px",
-        overflow: "scroll",
-        msOverflowStyle: "none",
-        scrollbarWidth: "none",
-        "&::-webkit-scrollbar": {
-          display: "none"
-        }
+        // overflow: "scroll",
+        // msOverflowStyle: "none",
+        // scrollbarWidth: "none",
+        // "&::-webkit-scrollbar": {
+        //   display: "none"
+        // }
       }}>
       <MembersHeader
         isAuthorized={

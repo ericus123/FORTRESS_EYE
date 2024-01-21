@@ -11,7 +11,13 @@ const SettingsLayout = ({ children }: { children: ReactNode }) => {
         height: "calc(100vh - 2rem)",
         margin: "1rem 1rem 1rem 0",
         padding: "2rem",
-        borderRadius: "15px"
+        borderRadius: "15px",
+        overflow: "scroll",
+        msOverflowStyle: "none",
+        scrollbarWidth: "none",
+        "&::-webkit-scrollbar": {
+          display: "none"
+        }
       }}>
       {children}
     </Box>

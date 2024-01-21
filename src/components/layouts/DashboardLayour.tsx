@@ -10,6 +10,7 @@ import { RootState } from "../../redux/modules/rootReducer";
 import StatusPopup from "../common/popups/Status";
 import AddArea from "../dashboard/areas/popup/AddPopup";
 import InviteMember from "../dashboard/members/invitation";
+import Notifications from "../dashboard/notifications";
 import DashboardSidebar from "../dashboard/sidebar";
 import Verification, { TokenData } from "../dashboard/verification";
 import Verified from "../dashboard/verification/Verified";
@@ -32,7 +33,9 @@ const DashboardLayout = ({ isVerified, email, role, sub, children }: Props) => {
 
   const { isAddOpen } = useSelector(({ area }: RootState) => area);
   const { isInviteOpen } = useSelector(({ member }: RootState) => member);
-  const { status } = useSelector(({ navigation }: RootState) => navigation);
+  const { status, activeLink } = useSelector(
+    ({ navigation }: RootState) => navigation
+  );
 
   const handleStatusShow = () => {
     dispatch(hideStatus());
@@ -50,6 +53,7 @@ const DashboardLayout = ({ isVerified, email, role, sub, children }: Props) => {
         display: "flex",
         gap: "2rem"
       }}>
+      <Notifications isOpen={activeLink === "Notifications"} />
       <AddArea show={isAddOpen} handleShow={handleShow} />
       <SignoutPopup />
       <InviteMember show={isInviteOpen} handleShow={handleInvite} />

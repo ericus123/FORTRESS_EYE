@@ -17,7 +17,7 @@ const SettingTab = ({
         cursor: "pointer",
         width: "200px",
         height: isActive ? "45px" : "40px",
-        background: isActive ? colors.cambridge_blue_6 : colors.dark,
+        background: isActive ? colors.cambridge_blue : colors.dark,
         borderRadius: "10px",
         display: "flex",
         justifyContent: "center",
@@ -26,7 +26,7 @@ const SettingTab = ({
         transition: ".2s ease-in-out",
         "&:hover": {
           transition: ".2s ease-in-out",
-          background: colors.cambridge_blue_6
+          background: colors.cambridge_blue
         }
       }}
       component={"div"}
