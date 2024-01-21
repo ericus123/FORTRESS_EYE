@@ -11,7 +11,8 @@ const Actuators = () => {
         position: "relative",
         display: "flex",
         flexDirection: "column",
-        gap: "1rem"
+        gap: "1rem",
+        paddingBottom: "2rem"
       }}>
       <Sensors />
       <Alarms />

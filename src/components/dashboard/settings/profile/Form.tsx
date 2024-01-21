@@ -71,7 +71,7 @@ const ProfileForm = ({
           // onSubmit={methods.handleSubmit(onSubmit)}
           style={{
             display: "flex",
-            gap: "1rem",
+            gap: "2rem",
             width: "800px",
             flexWrap: "wrap"
           }}>
@@ -107,10 +107,10 @@ const ProfileForm = ({
                 error={Boolean(methods.formState.errors.firstName)}
                 autoFocus={false}
                 type="text"
-                placeholder="First Name"
+                placeholder="JOHN"
                 sx={{
-                  border: `2px solid ${colors.light_8}`,
-                  borderRadius: "10px",
+                  borderBottom: `2px solid ${colors.light_8}`,
+                  borderRadius: "0px",
                   height: "45px",
                   color: colors.light_8,
                   marginBottom: 0,
@@ -159,10 +159,10 @@ const ProfileForm = ({
                 error={Boolean(methods.formState.errors.lastName)}
                 autoFocus={false}
                 type="text"
-                placeholder="Last Name"
+                placeholder="Doe"
                 sx={{
-                  border: `2px solid ${colors.light_8}`,
-                  borderRadius: "10px",
+                  borderBottom: `2px solid ${colors.light_8}`,
+                  borderRadius: "0px",
                   height: "45px",
                   color: colors.light_8,
                   marginBottom: 0,
@@ -210,10 +210,10 @@ const ProfileForm = ({
                 autoFocus={false}
                 type="email"
                 disabled
-                placeholder="Email"
+                placeholder="example@email.com"
                 sx={{
-                  border: `2px solid ${colors.light_8}`,
-                  borderRadius: "10px",
+                  borderBottom: `2px solid ${colors.light_8}`,
+                  borderRadius: "0px",
                   height: "45px",
                   color: colors.light_8,
                   marginBottom: 0,
@@ -260,10 +260,10 @@ const ProfileForm = ({
                 error={Boolean(methods.formState.errors.phone)}
                 autoFocus={false}
                 type="tel"
-                placeholder="Phone"
+                placeholder="+25078"
                 sx={{
-                  border: `2px solid ${colors.light_8}`,
-                  borderRadius: "10px",
+                  borderBottom: `2px solid ${colors.light_8}`,
+                  borderRadius: "0px",
                   height: "45px",
                   color: colors.light_8,
                   marginBottom: 0,
@@ -317,10 +317,10 @@ const ProfileForm = ({
                 error={Boolean(methods.formState.errors.username)}
                 autoFocus={false}
                 type="text"
-                placeholder="Username"
+                placeholder="you username here"
                 sx={{
-                  border: `2px solid ${colors.light_8}`,
-                  borderRadius: "10px",
+                  borderBottom: `2px solid ${colors.light_8}`,
+                  borderRadius: "0px",
                   height: "45px",
                   color: colors.light_8,
                   marginBottom: 0,
@@ -367,10 +367,10 @@ const ProfileForm = ({
                 error={Boolean(methods.formState.errors.bio)}
                 autoFocus={false}
                 type="text"
-                placeholder="Bio"
+                placeholder="About you"
                 sx={{
-                  border: `2px solid ${colors.light_8}`,
-                  borderRadius: "10px",
+                  borderBottom: `2px solid ${colors.light_8}`,
+                  borderRadius: "0px",
                   height: "165px",
                   color: colors.light_8,
                   marginBottom: 0,
@@ -405,7 +405,7 @@ const ProfileForm = ({
                 background: colors.teal,
                 color: colors.light_6,
                 width: "175px",
-                height: "40px",
+                height: "45px",
                 fontSize: "clamp(14px, 1.5vw, 16px)",
                 fontFamily: "Poppins",
                 fontStyle: "normal",

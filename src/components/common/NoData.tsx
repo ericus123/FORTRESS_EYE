@@ -1,7 +1,7 @@
 import { Box, SxProps, Typography } from "@mui/material";
 import { colors } from "../../constants/colors";
 
-const NoData = ({ sx }: { sx?: SxProps }) => {
+const NoData = ({ sx, text }: { sx?: SxProps; text?: string }) => {
   return (
     <Box
       sx={{
@@ -22,7 +22,7 @@ const NoData = ({ sx }: { sx?: SxProps }) => {
           opacity: 0.5,
           lineHeight: "normal"
         }}>
-        No data
+        {text || "No data"}
       </Typography>
     </Box>
   );
