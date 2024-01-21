@@ -1,6 +1,6 @@
 "use client";
 
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { colors } from "../../../constants/colors";
@@ -24,9 +24,39 @@ const MenuItem = ({ icon, name }: MenuItemType) => {
         display: "flex",
         gap: "20px",
         cursor: "pointer",
-        transition: ".2s ease-in-out"
+        transition: ".2s ease-in-out",
+        position: "relative"
       }}
       onClick={handleMenu}>
+      {name === "Notifications" && activeLink != "Notifications" ? (
+        <Box
+          sx={{
+            width: "20px",
+            height: "20px",
+            background: colors.rose_red,
+            borderRadius: "50%",
+            position: "absolute",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            top: "-7.5px",
+            right: "15px",
+            zIndex: 1
+          }}>
+          <Typography
+            component={"p"}
+            sx={{
+              color: colors.light,
+              fontFamily: "Poppins",
+              fontSize: "clamp(12px, 1.5vw, 12px)",
+              fontStyle: "normal",
+              fontWeight: "600",
+              lineHeight: "normal"
+            }}>
+            13
+          </Typography>
+        </Box>
+      ) : null}
       {isActive ? (
         <Box
           sx={{
