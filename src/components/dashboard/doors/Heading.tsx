@@ -3,7 +3,7 @@ import Image from "next/image";
 import { colors } from "../../../constants/colors";
 import { images } from "../../../constants/images";
 
-const DoorControlsHeading = () => {
+const DoorControlsHeading = ({ canAdd }: { canAdd: boolean }) => {
   return (
     <Box
       sx={{
@@ -20,18 +20,20 @@ const DoorControlsHeading = () => {
           opacity: 0.9,
           lineHeight: "normal"
         }}>
-        Doors
+        Door
       </Typography>
-      <Image
-        src={images.add}
-        alt=""
-        width={20}
-        height={20}
-        style={{
-          marginLeft: "auto",
-          cursor: "pointer"
-        }}
-      />
+      {canAdd ? (
+        <Image
+          src={images.add}
+          alt=""
+          width={20}
+          height={20}
+          style={{
+            marginLeft: "auto",
+            cursor: "pointer"
+          }}
+        />
+      ) : null}
     </Box>
   );
 };

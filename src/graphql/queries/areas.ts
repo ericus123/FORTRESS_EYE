@@ -17,6 +17,14 @@ export const GET_AREAS_QUERY = gql`
           name
         }
       }
+      door{
+        cameraID
+        createdAt
+        deletedAt
+        id
+        isLocked
+        updatedAt
+      }
           fans{
             id
             areaID

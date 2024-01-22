@@ -41,12 +41,22 @@ export type Area = {
   alarms: Alarm[];
   fans: Fan[];
   sensors: Sensor[];
+  door: Door;
 };
 
 export type Light = {
   id: string;
   cameraID: string;
   isOn: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+  deletedAt: Date;
+};
+
+export type Door = {
+  id: string;
+  cameraID: string;
+  isLocked: boolean;
   createdAt: Date;
   updatedAt: Date;
   deletedAt: Date;

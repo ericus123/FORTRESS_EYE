@@ -1,5 +1,6 @@
 import { Box } from "@mui/material";
 import { useSelector } from "react-redux";
+import { colors } from "../../../constants/colors";
 import { RootState } from "../../../redux/modules/rootReducer";
 import NoData from "../../common/NoData";
 import LightsControlContent from "./Content";
@@ -11,7 +12,7 @@ const LightsControl = () => {
   return (
     <Box
       sx={{
-        width: "calc(100% - 300px - 2rem)",
+        width: "calc(100% - 200px - 2rem)",
         display: "flex",
         flexDirection: "column",
         gap: ".8rem",
@@ -30,8 +31,24 @@ const LightsControl = () => {
         />
       ) : (
         <>
-          <LightsControlsHeading title={`${area?.name} Light`} />
-          <LightsControlContent />
+          <LightsControlsHeading title={"Light"} canAdd={!area?.light} />
+          {area?.light != undefined ? (
+            <LightsControlContent {...{ light: area?.light }} />
+          ) : (
+            <Box
+              sx={{
+                border: `.5px dashed ${colors.graphite}`,
+                borderRadius: "10px",
+                height: "300px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center"
+              }}>
+              <Box>
+                <NoData text="Nothing to show here" />
+              </Box>
+            </Box>
+          )}
         </>
       )}
     </Box>
