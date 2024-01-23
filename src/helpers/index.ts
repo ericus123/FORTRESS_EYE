@@ -1,6 +1,7 @@
 import { jwtDecode } from "jwt-decode";
 import { CombinedError } from "urql";
 import { userFriendlyErrorMessages } from "../constants/errors";
+import { Area } from "../hooks/useAreas";
 
 type GraphQLError = {
   extensions?: {
@@ -88,4 +89,18 @@ export const verifyToken = (token?: string) => {
   } catch (error) {
     return null;
   }
+};
+
+export const areaDevices = (area: Area): number => {
+  const alarms = area?.alarms.length;
+  const sensors = area?.sensors.length;
+  const fans = area?.fans.length;
+
+  return (
+    alarms +
+    sensors +
+    fans +
+    (area?.light != undefined ? 1 : 0) +
+    (area?.door != undefined ? 1 : 0)
+  );
 };

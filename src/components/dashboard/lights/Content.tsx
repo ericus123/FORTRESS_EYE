@@ -1,16 +1,14 @@
 "use client";
 
 import { Box } from "@mui/material";
-import { useState } from "react";
+import { Light as Type } from "../../../hooks/useAreas";
+import { useLights } from "../../../hooks/useLights";
 import Light from "./Light";
 import LightSchedule from "./schedules";
 
-const LightsControlContent = () => {
-  const [isLightOn, setIsLightOn] = useState(false);
+const LightsControlContent = ({ light }: { light: Type }) => {
+  const { data, error, isLoading, handleUpdate } = useLights();
 
-  const handleLight = () => {
-    setIsLightOn(!isLightOn);
-  };
   return (
     <Box
       sx={{
@@ -21,9 +19,16 @@ const LightsControlContent = () => {
       }}>
       <Light
         {...{
-          isLightOn
+          isLightOn: light?.isOn,
+          handleLight: () =>
+            handleUpdate({
+              id: light?.id,
+              input: {
+                isOn: !light?.isOn
+              },
+              callback: () => null
+            })
         }}
-        handleLight={handleLight}
       />
 
       <LightSchedule />

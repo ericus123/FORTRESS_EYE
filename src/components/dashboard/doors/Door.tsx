@@ -1,20 +1,17 @@
 import { Box, Typography } from "@mui/material";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import { colors } from "../../../constants/colors";
 import { images } from "../../../constants/images";
+import { Area } from "../../../hooks/useAreas";
+import { useDoors } from "../../../hooks/useDoors";
 
-export type DoorType = {
-  area: string;
-  status: "locked" | "unlocked";
-  cover: string | StaticImageData;
-};
-const Door = ({ area, status, cover }: DoorType) => {
-  const isUnlocked = status === "unlocked";
+const Door = ({ area }: { area: Area }) => {
+  const { data, isLoading, error, handleUpdate } = useDoors();
   return (
     <Box
       sx={{
         height: "200px",
-        width: "140px",
+        width: "200px",
         display: "flex",
         flexDirection: "column",
         gap: "10px"
@@ -25,14 +22,27 @@ const Door = ({ area, status, cover }: DoorType) => {
           width: "100%",
           height: "150px",
           borderRadius: ".5rem",
-          overflow: "hidden"
+          overflow: "hidden",
+          background: colors.dark,
+          border: `.5px solid ${colors.graphite}`
         }}>
-        <Image src={cover} alt="" fill />
+        <Image
+          src={images.door}
+          alt=""
+          style={{
+            position: "absolute",
+            top: "20%",
+            left: "50%",
+            transform: "translate(-50%, 50%)",
+            width: "40px",
+            height: "40px",
+            opacity: 0.8
+          }}
+        />
         <Box
           sx={{
             position: "absolute",
             height: "30px",
-            background: colors.black_5,
             width: "90%",
             left: "5%",
             right: "5%",
@@ -52,17 +62,17 @@ const Door = ({ area, status, cover }: DoorType) => {
               fontSize: "clamp(12px, 1.5vw, 14px)",
               fontStyle: "normal",
               fontWeight: "400",
-              opacity: 0.8,
+              opacity: 0.6,
               lineHeight: "normal"
             }}>
-            {area}
+            {area?.name}
           </Typography>
         </Box>
       </Box>
       <Box
         component={"div"}
         sx={{
-          background: isUnlocked ? colors.active : colors.rose_red,
+          background: !area?.door?.isLocked ? colors.active : colors.rose_red,
           width: "100%",
           display: "flex",
           borderRadius: "5px",
@@ -71,9 +81,18 @@ const Door = ({ area, status, cover }: DoorType) => {
           alignItems: "center",
           gap: "10px",
           cursor: "pointer"
-        }}>
+        }}
+        onClick={() =>
+          handleUpdate({
+            id: area?.door?.id,
+            input: {
+              isLocked: !area?.door?.isLocked
+            },
+            callback: () => null
+          })
+        }>
         <Image
-          src={isUnlocked ? images.unlocked : images.locked}
+          src={!area?.door?.isLocked ? images.unlocked : images.locked}
           alt=""
           width={20}
           height={20}
@@ -88,20 +107,8 @@ const Door = ({ area, status, cover }: DoorType) => {
             fontWeight: "400",
             lineHeight: "normal"
           }}>
-          {isUnlocked ? "Unlocked" : "Locked"}
+          {!area?.door?.isLocked ? "Unlocked" : "Locked"}
         </Typography>
-        {/* <AppButton
-          text={isUnlocked ? "Unlocked" : "Locked"}
-          sx={{
-            background: isUnlocked ? colors.active : colors.rose_red,
-            color: colors.light,
-            opacity: 0.8,
-            width: "100%",
-            "&:hover": {
-              background: isUnlocked ? colors.active : colors.rose_red
-            }
-          }}
-        /> */}
       </Box>
     </Box>
   );

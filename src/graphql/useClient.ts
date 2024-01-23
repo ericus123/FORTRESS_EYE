@@ -48,6 +48,7 @@ export const createUrqlClient = () => {
     }
   };
 
+  //@ts-ignore
   const client = createClient(clientOptions);
   return client;
 };

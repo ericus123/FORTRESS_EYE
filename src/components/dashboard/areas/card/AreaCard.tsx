@@ -2,6 +2,7 @@ import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import { colors } from "../../../../constants/colors";
 import { images } from "../../../../constants/images";
+import { areaDevices } from "../../../../helpers";
 import { Area } from "../../../../hooks/useAreas";
 
 const AreaCard = ({
@@ -13,10 +14,11 @@ const AreaCard = ({
   handleActive: () => void;
   isActive: boolean;
 }) => {
+  const devices = areaDevices(area);
+
   return (
     <Box
       sx={{
-        border: `.5px dashed ${colors.gray}`,
         width: "120px",
         height: "120px",
         borderRadius: "15px",
@@ -52,15 +54,13 @@ const AreaCard = ({
       <Typography
         component={"p"}
         sx={{
-          color: colors.light,
+          color: colors.gray,
           fontSize: "clamp(10px, 1.5vw, 12px)",
           fontStyle: "normal",
           fontWeight: "600",
-          opacity: 0.9,
           lineHeight: "normal"
         }}>
-        1{/* {devices > 0 ? devices : null}&nbsp; */}
-        {/* {devices < 1 ? "no device" : devices > 1 ? "devices" : "device"} */}
+        {devices > 1 ? `${devices} devices` : "No device"}
       </Typography>
     </Box>
   );

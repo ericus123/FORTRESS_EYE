@@ -26,18 +26,71 @@ export type AreasResponse = {
   isAdding: boolean;
 };
 
+export enum SensorType {
+  TEMPERATURE = "TEMPERATURE",
+  HUMIDITY = "HUMIDITY",
+  MOTION = "MOTION"
+}
+
 export type Area = {
   id: string;
   name: string;
   createdAt: Date;
   deletedAt: Date;
   light: Light;
+  alarms: Alarm[];
+  fans: Fan[];
+  sensors: Sensor[];
+  door: Door;
 };
 
 export type Light = {
   id: string;
   cameraID: string;
   isOn: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+  deletedAt: Date;
+};
+
+export type Door = {
+  id: string;
+  cameraID: string;
+  isLocked: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+  deletedAt: Date;
+};
+
+export type Alarm = {
+  areaId: string;
+  name: string;
+  area: Area;
+  id: string;
+  isOn: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+  deletedAt: Date;
+};
+
+export type Fan = {
+  areaId: string;
+  name: string;
+  area: Area;
+  id: string;
+  isOn: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+  deletedAt: Date;
+};
+
+export type Sensor = {
+  areaId: string;
+  name: string;
+  area: Area;
+  id: string;
+  type: SensorType;
+  value: number;
   createdAt: Date;
   updatedAt: Date;
   deletedAt: Date;

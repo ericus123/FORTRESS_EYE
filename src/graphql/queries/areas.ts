@@ -8,11 +8,51 @@ export const GET_AREAS_QUERY = gql`
       id
       name
       updatedAt
-      light {
-        id
+      alarms{
         isOn
-        createdAt
+        areaID
+        name
+        id
+        area{
+          name
+        }
       }
+      door{
+        cameraID
+        createdAt
+        deletedAt
+        id
+        isLocked
+        updatedAt
+      }
+          fans{
+            id
+            areaID
+            name
+            isOn
+            area{
+              name
+            }
+          }
+          light{
+            area{
+              name
+            }
+            id
+            areaID
+            isOn
+          }
+          sensors{
+            name
+            areaID
+            id
+            type
+            value
+            area{
+              name
+            }
+          }
+        }
     }
   }
 `;
