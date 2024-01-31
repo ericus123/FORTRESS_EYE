@@ -3,6 +3,7 @@ import Image from "next/image";
 import { colors } from "../../../../constants/colors";
 import { images } from "../../../../constants/images";
 import { Member } from "../../../../hooks/useMembers";
+import CustomImage from "../../../common/CustomImage";
 import MemberInitial from "../Initial";
 
 const MemberCard = ({
@@ -46,7 +47,7 @@ const MemberCard = ({
             overflow: "hidden"
           }}>
           {member?.avatar != undefined ? (
-            <Image src={member?.avatar || ""} alt="" fill />
+            <CustomImage src={member?.avatar} alt="" fill />
           ) : (
             <>
               <MemberInitial

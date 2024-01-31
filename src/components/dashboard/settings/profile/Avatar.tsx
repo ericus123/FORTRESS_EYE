@@ -1,9 +1,17 @@
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
+import { useSelector } from "react-redux";
 import { colors } from "../../../../constants/colors";
 import { images } from "../../../../constants/images";
+import { useProfile } from "../../../../hooks/useProfile";
+import { useUpload } from "../../../../hooks/useUploader";
+import { RootState } from "../../../../redux/modules/rootReducer";
+import CustomImage from "../../../common/CustomImage";
 
 const ProfileAvatar = () => {
+  const { uploadFile, isLoading } = useUpload();
+  const { handleUpdate } = useProfile();
+  const { profile } = useSelector(({ auth }: RootState) => auth);
   return (
     <Box
       sx={{
@@ -26,24 +34,50 @@ const ProfileAvatar = () => {
             overflow: "hidden",
             border: `2px solid ${colors.cambridge_blue_5}`
           }}>
-          <Image src={images.profile} alt="" fill />
+          <CustomImage src={profile?.avatar} alt="" fill isCommon={true} />
         </Box>
-        <Box
-          sx={{
-            position: "absolute",
-            bottom: "0px",
-            right: 0,
-            background: colors.cambridge_blue,
-            width: "35px",
-            height: "35px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            borderRadius: "50%",
-            cursor: "pointer"
-          }}>
-          <Image src={images.edit} alt="" width={15} height={15} />
-        </Box>
+        <input
+          type="file"
+          id="select-image"
+          multiple={false}
+          accept="image/png, image/gif, image/jpeg image/webp"
+          style={{
+            display: "none"
+          }}
+          onChange={async (event) => {
+            if (event?.target?.files) {
+              console.log(event?.target?.files);
+              const data = await uploadFile(event?.target?.files[0], "user");
+              console.log(data);
+              handleUpdate({
+                email: "amaniericus@gmail.com",
+                input: {
+                  avatar: data.filename
+                },
+                callback: () => null
+              });
+              // handleSave([...event?.target?.files]);
+            }
+          }}
+        />
+        <label htmlFor="select-image">
+          <Box
+            sx={{
+              position: "absolute",
+              bottom: "0px",
+              right: 0,
+              background: colors.cambridge_blue,
+              width: "35px",
+              height: "35px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              borderRadius: "50%",
+              cursor: "pointer"
+            }}>
+            <Image src={images.edit} alt="" width={15} height={15} />
+          </Box>
+        </label>
       </Box>
 
       <Box
@@ -62,7 +96,7 @@ const ProfileAvatar = () => {
             fontWeight: "600",
             lineHeight: "normal"
           }}>
-          AMANI Eric
+          {`${profile?.firstName} ${profile?.lastName}`}
         </Typography>
 
         <Box
@@ -80,9 +114,14 @@ const ProfileAvatar = () => {
               fontWeight: "300",
               lineHeight: "normal"
             }}>
-            Verfified
+            {profile?.isVerified ? "Verfified" : "Unverified"}
           </Typography>
-          <Image src={images.check} alt="" width={20} height={20} />
+          <Image
+            src={profile?.isVerified ? images.check : images.fail}
+            alt=""
+            width={20}
+            height={20}
+          />
         </Box>
       </Box>
     </Box>
