@@ -6,6 +6,8 @@ import { useUpload } from "../../../../hooks/useUploader";
 import { RootState } from "../../../../redux/modules/rootReducer";
 import ProfileAvatar from "./Avatar";
 import ProfileForm from "./Form";
+import AvatarSkeleton from "./skeletons/AvatarSkeleton";
+import FormSkeleton from "./skeletons/FormSkeleton";
 
 const Profile = () => {
   const { uploadFile, isLoading: isUploading } = useUpload();
@@ -37,11 +39,20 @@ const Profile = () => {
             fontWeight: "400",
             lineHeight: "normal"
           }}>
-          Update your details here
+          Your profile
         </Typography>
       </Box>
-      <ProfileAvatar {...{ profile, uploadFile, handleUpdate }} />
-      <ProfileForm {...{ handleUpdate, isLoading, error, profile }} />
+      {isUploading || isLoading ? (
+        <AvatarSkeleton />
+      ) : (
+        <ProfileAvatar {...{ profile, uploadFile, handleUpdate }} />
+      )}
+
+      {isLoading ? (
+        <FormSkeleton />
+      ) : (
+        <ProfileForm {...{ handleUpdate, isLoading, error, profile }} />
+      )}
     </Box>
   );
 };
