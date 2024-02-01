@@ -1,16 +1,27 @@
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
-import { useSelector } from "react-redux";
 import { colors } from "../../../../constants/colors";
 import { images } from "../../../../constants/images";
-import { useProfile } from "../../../../hooks/useProfile";
-import { useUpload } from "../../../../hooks/useUploader";
-import { RootState } from "../../../../redux/modules/rootReducer";
+import { ProfileInput } from "../../../../graphql/types";
+import { UploadFile } from "../../../../hooks/useUploader";
+import { ProfileType } from "../../../../redux/modules/auth/authSlice";
 
-const ProfileAvatar = () => {
-  const { uploadFile, isLoading } = useUpload();
-  const { handleUpdate } = useProfile();
-  const { profile } = useSelector(({ auth }: RootState) => auth);
+const ProfileAvatar = ({
+  profile,
+  uploadFile,
+  handleUpdate
+}: {
+  uploadFile: (file: File, type?: string) => Promise<UploadFile>;
+  handleUpdate: ({
+    input,
+    callback
+  }: {
+    email: string;
+    input: Partial<ProfileInput>;
+    callback: () => void;
+  }) => void;
+  profile?: ProfileType;
+}) => {
   return (
     <Box
       sx={{
@@ -50,7 +61,6 @@ const ProfileAvatar = () => {
           onChange={async (event) => {
             if (event?.target?.files) {
               const data = await uploadFile(event?.target?.files[0], "avatars");
-              console.log(data);
               handleUpdate({
                 email: `${profile?.email}`,
                 input: {

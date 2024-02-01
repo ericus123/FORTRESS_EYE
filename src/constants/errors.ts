@@ -3,6 +3,7 @@ export type UserFriendlyErrorMessages = {
 };
 
 export const userFriendlyErrorMessages: UserFriendlyErrorMessages = {
+  USERNAME_TAKEN: "Username is taken, use a different one",
   INVALID_TOKEN: "Oops! Something went wrong. Please try logging in again.",
   SAME_PASSWORD: "Old password and new password can't be the same",
   INVALID_HEADERS: "Oops! Something went wrong. Please try again later.",

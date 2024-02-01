@@ -32,7 +32,6 @@ export const useDoors = (): DoorProps => {
       id,
       input
     }).then((res) => {
-      console.log(res);
       callback();
     });
   };
