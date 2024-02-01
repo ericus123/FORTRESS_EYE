@@ -1,10 +1,12 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Box, TextField, Typography } from "@mui/material";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
 import { CombinedError } from "urql";
 import * as Yup from "yup";
 import { colors } from "../../../../constants/colors";
 import { getGraphQLErrorMessage } from "../../../../helpers";
+import { RootState } from "../../../../redux/modules/rootReducer";
 import AppButton from "../../../common/AppButton";
 import InputError from "../../../common/inputs/InputError";
 
@@ -26,6 +28,8 @@ const ProfileForm = ({
   error?: CombinedError;
   isLoading?: boolean;
 }) => {
+  const { profile } = useSelector(({ auth }: RootState) => auth);
+
   const validationSchema = Yup.object({
     firstName: Yup.string()
       .trim()
@@ -107,6 +111,7 @@ const ProfileForm = ({
                 error={Boolean(methods.formState.errors.firstName)}
                 autoFocus={false}
                 type="text"
+                defaultValue={profile?.firstName}
                 placeholder="JOHN"
                 sx={{
                   borderBottom: `2px solid ${colors.light_8}`,
@@ -154,6 +159,7 @@ const ProfileForm = ({
               <TextField
                 variant="standard"
                 id="lastName"
+                defaultValue={profile?.lastName}
                 autoComplete="off"
                 {...methods.register("lastName")}
                 error={Boolean(methods.formState.errors.lastName)}
@@ -204,6 +210,7 @@ const ProfileForm = ({
               <TextField
                 variant="standard"
                 id="email"
+                defaultValue={profile?.email}
                 autoComplete="off"
                 {...methods.register("email")}
                 error={Boolean(methods.formState.errors.email)}
@@ -212,7 +219,7 @@ const ProfileForm = ({
                 disabled
                 placeholder="example@email.com"
                 sx={{
-                  borderBottom: `2px solid ${colors.light_8}`,
+                  border: "none",
                   borderRadius: "0px",
                   height: "45px",
                   color: colors.light_8,
@@ -255,6 +262,7 @@ const ProfileForm = ({
               <TextField
                 variant="standard"
                 id="phone"
+                defaultValue={profile?.phoneNumber}
                 autoComplete="off"
                 {...methods.register("phone")}
                 error={Boolean(methods.formState.errors.phone)}
@@ -312,6 +320,7 @@ const ProfileForm = ({
               <TextField
                 variant="standard"
                 id="username"
+                defaultValue={profile?.username}
                 autoComplete="off"
                 {...methods.register("username")}
                 error={Boolean(methods.formState.errors.username)}
@@ -362,10 +371,12 @@ const ProfileForm = ({
               <TextField
                 variant="standard"
                 id="bio"
+                defaultValue={profile?.bio}
                 autoComplete="off"
                 {...methods.register("bio")}
                 error={Boolean(methods.formState.errors.bio)}
                 autoFocus={false}
+                multiline
                 type="text"
                 placeholder="About you"
                 sx={{
@@ -375,6 +386,7 @@ const ProfileForm = ({
                   color: colors.light_8,
                   marginBottom: 0,
                   paddingLeft: "10px",
+                  overflow: "hidden",
                   fill: "none",
                   width: "250px"
                 }}

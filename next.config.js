@@ -6,6 +6,10 @@ const nextConfig = {
             {
                 protocol: "https",
                 hostname: "openweathermap.org"
+            },
+            {
+                protocol: "https",
+                hostname: "fortresseye.media.amanieric.com"
             }
         ]
     }

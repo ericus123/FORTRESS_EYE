@@ -46,7 +46,11 @@ const MemberCard = ({
             overflow: "hidden"
           }}>
           {member?.avatar != undefined ? (
-            <Image src={member?.avatar || ""} alt="" fill />
+            <Image
+              src={`${process.env.NEXT_PUBLIC_IMAGES_URL}/avatars/${member?.avatar}`}
+              alt=""
+              fill
+            />
           ) : (
             <>
               <MemberInitial
