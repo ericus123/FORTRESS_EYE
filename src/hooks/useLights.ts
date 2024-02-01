@@ -32,7 +32,6 @@ export const useLights = (): LightProps => {
     callback: () => void;
   }) => {
     await update({ id, input }).then((res) => {
-      console.log(res);
       callback();
     });
   };

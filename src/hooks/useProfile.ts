@@ -16,7 +16,6 @@ export type ProfileProps = {
     input,
     callback
   }: {
-    email: string;
     input: Partial<ProfileInput>;
     callback: () => void;
   }) => void;
@@ -43,19 +42,15 @@ export const useProfile = (): ProfileProps => {
   }, [data]);
 
   const handleUpdate = async ({
-    email,
     input,
     callback
   }: {
-    email: string;
     input: Partial<ProfileInput>;
     callback: () => void;
   }) => {
     await update({
-      email,
       input
     }).then((res) => {
-      console.log(res);
       callback();
     });
   };

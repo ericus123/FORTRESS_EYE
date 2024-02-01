@@ -1,35 +1,38 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Box, TextField, Typography } from "@mui/material";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
 import { CombinedError } from "urql";
 import * as Yup from "yup";
 import { colors } from "../../../../constants/colors";
 import { getGraphQLErrorMessage } from "../../../../helpers";
-import { RootState } from "../../../../redux/modules/rootReducer";
+import { ProfileType } from "../../../../redux/modules/auth/authSlice";
 import AppButton from "../../../common/AppButton";
 import InputError from "../../../common/inputs/InputError";
 
 type FormData = {
   firstName: string;
   lastName: string;
-  email: string;
-  phone: string;
+  phoneNumber: string;
   bio?: string;
-  username?: string;
 };
 
 const ProfileForm = ({
-  onSubmit,
   error,
-  isLoading
+  isLoading,
+  profile,
+  handleUpdate
 }: {
-  onSubmit?: SubmitHandler<FormData>;
   error?: CombinedError;
   isLoading?: boolean;
+  profile?: ProfileType;
+  handleUpdate: ({
+    input,
+    callback
+  }: {
+    input: Partial<FormData>;
+    callback: () => void;
+  }) => void;
 }) => {
-  const { profile } = useSelector(({ auth }: RootState) => auth);
-
   const validationSchema = Yup.object({
     firstName: Yup.string()
       .trim()
@@ -43,27 +46,37 @@ const ProfileForm = ({
       .min(1, "Last name must be at least 1 character")
       .max(30, "Last name must be at most 30 characters"),
 
-    email: Yup.string()
-      .email("Invalid email address")
-      .required("Email is required"),
-
-    phone: Yup.string()
+    phoneNumber: Yup.string()
       .matches(/^\+?[1-9]\d{1,14}$/, "Invalid phone number")
       .required("Phone is required"),
 
     bio: Yup.string()
-      .min(30)
-      .max(255, "Bio must be at most 255 and min 30 characters"),
-
-    username: Yup.string()
-      .min(3)
-      .max(20, "Username must be at most 20 and min 3 characters")
+      .min(10)
+      .max(255, "Bio must be at most 255 and min 30 characters")
   });
 
   const methods = useForm<FormData>({
     resolver: yupResolver(validationSchema)
   });
 
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
+    handleUpdate({
+      input: {
+        firstName: data?.firstName,
+        lastName: data?.lastName,
+        bio: data.bio,
+        phoneNumber: data.phoneNumber
+      },
+      callback: () => {
+        // setIsSuccessShow(true);
+        // setTimeout(() => {
+        //   router.replace("/login");
+        // }, 3000);
+      }
+    });
+  };
+
+  const isDirty = methods.formState.isDirty;
   return (
     <Box>
       <FormProvider {...methods}>
@@ -72,7 +85,8 @@ const ProfileForm = ({
           autoSave="false"
           autoComplete="off"
           autoFocus={false}
-          // onSubmit={methods.handleSubmit(onSubmit)}
+          method="POST"
+          onSubmit={methods.handleSubmit(onSubmit)}
           style={{
             display: "flex",
             gap: "2rem",
@@ -114,10 +128,10 @@ const ProfileForm = ({
                 defaultValue={profile?.firstName}
                 placeholder="JOHN"
                 sx={{
-                  borderBottom: `2px solid ${colors.light_8}`,
+                  borderBottom: `2px solid ${colors.light_5}`,
                   borderRadius: "0px",
                   height: "45px",
-                  color: colors.light_8,
+                  color: colors.light_9,
                   marginBottom: 0,
                   paddingLeft: "10px",
                   fill: "none",
@@ -128,7 +142,7 @@ const ProfileForm = ({
                   style: {
                     padding: 0,
                     height: "45px",
-                    color: colors.light_8,
+                    color: colors.light_9,
                     fill: "none"
                   }
                 }}
@@ -167,10 +181,10 @@ const ProfileForm = ({
                 type="text"
                 placeholder="Doe"
                 sx={{
-                  borderBottom: `2px solid ${colors.light_8}`,
+                  borderBottom: `2px solid ${colors.light_5}`,
                   borderRadius: "0px",
                   height: "45px",
-                  color: colors.light_8,
+                  color: colors.light_9,
                   marginBottom: 0,
                   paddingLeft: "10px",
                   fill: "none",
@@ -181,7 +195,7 @@ const ProfileForm = ({
                   style: {
                     padding: 0,
                     height: "45px",
-                    color: colors.light_8,
+                    color: colors.light_9,
                     fill: "none"
                   }
                 }}
@@ -212,8 +226,6 @@ const ProfileForm = ({
                 id="email"
                 defaultValue={profile?.email}
                 autoComplete="off"
-                {...methods.register("email")}
-                error={Boolean(methods.formState.errors.email)}
                 autoFocus={false}
                 type="email"
                 disabled
@@ -222,7 +234,7 @@ const ProfileForm = ({
                   border: "none",
                   borderRadius: "0px",
                   height: "45px",
-                  color: colors.light_8,
+                  color: colors.light_9,
                   marginBottom: 0,
                   paddingLeft: "10px",
                   fill: "none",
@@ -233,12 +245,11 @@ const ProfileForm = ({
                   style: {
                     padding: 0,
                     height: "45px",
-                    color: colors.light_8,
+                    color: colors.light_9,
                     fill: "none"
                   }
                 }}
               />
-              <InputError error={methods.formState.errors.email?.message} />
             </Box>
 
             <Box
@@ -261,19 +272,19 @@ const ProfileForm = ({
               </Typography>
               <TextField
                 variant="standard"
-                id="phone"
+                id="phoneNumber"
                 defaultValue={profile?.phoneNumber}
                 autoComplete="off"
-                {...methods.register("phone")}
-                error={Boolean(methods.formState.errors.phone)}
+                {...methods.register("phoneNumber")}
+                error={Boolean(methods.formState.errors.phoneNumber)}
                 autoFocus={false}
                 type="tel"
                 placeholder="+25078"
                 sx={{
-                  borderBottom: `2px solid ${colors.light_8}`,
+                  borderBottom: `2px solid ${colors.light_5}`,
                   borderRadius: "0px",
                   height: "45px",
-                  color: colors.light_8,
+                  color: colors.light_9,
                   marginBottom: 0,
                   paddingLeft: "10px",
                   fill: "none",
@@ -284,12 +295,14 @@ const ProfileForm = ({
                   style: {
                     padding: 0,
                     height: "45px",
-                    color: colors.light_8,
+                    color: colors.light_9,
                     fill: "none"
                   }
                 }}
               />
-              <InputError error={methods.formState.errors.phone?.message} />
+              <InputError
+                error={methods.formState.errors.phoneNumber?.message}
+              />
             </Box>
           </Box>
 
@@ -322,16 +335,14 @@ const ProfileForm = ({
                 id="username"
                 defaultValue={profile?.username}
                 autoComplete="off"
-                {...methods.register("username")}
-                error={Boolean(methods.formState.errors.username)}
                 autoFocus={false}
                 type="text"
                 placeholder="you username here"
+                disabled
                 sx={{
-                  borderBottom: `2px solid ${colors.light_8}`,
                   borderRadius: "0px",
                   height: "45px",
-                  color: colors.light_8,
+                  color: colors.light_9,
                   marginBottom: 0,
                   paddingLeft: "10px",
                   fill: "none",
@@ -342,12 +353,11 @@ const ProfileForm = ({
                   style: {
                     padding: 0,
                     height: "45px",
-                    color: colors.light_8,
+                    color: colors.light_9,
                     fill: "none"
                   }
                 }}
               />
-              <InputError error={methods.formState.errors.username?.message} />
             </Box>
 
             <Box
@@ -378,12 +388,12 @@ const ProfileForm = ({
                 autoFocus={false}
                 multiline
                 type="text"
-                placeholder="About you"
+                placeholder="Add your bio"
                 sx={{
-                  borderBottom: `2px solid ${colors.light_8}`,
+                  borderBottom: `2px solid ${colors.light_5}`,
                   borderRadius: "0px",
-                  height: "165px",
-                  color: colors.light_8,
+                  height: "100px",
+                  color: colors.light_9,
                   marginBottom: 0,
                   paddingLeft: "10px",
                   overflow: "hidden",
@@ -394,8 +404,8 @@ const ProfileForm = ({
                   disableUnderline: true,
                   style: {
                     padding: 0,
-                    height: "45px",
-                    color: colors.light_8,
+                    height: "100px",
+                    color: colors.light_9,
                     fill: "none"
                   }
                 }}
@@ -412,12 +422,12 @@ const ProfileForm = ({
               gap: "1rem"
             }}>
             <AppButton
-              title="Save Changes"
+              title="Update"
               sx={{
                 background: colors.teal,
-                color: colors.light_6,
+                color: isDirty ? colors.light_8 : colors.light_6,
                 width: "175px",
-                height: "45px",
+                height: "40px",
                 fontSize: "clamp(14px, 1.5vw, 16px)",
                 fontFamily: "Poppins",
                 fontStyle: "normal",
@@ -429,7 +439,7 @@ const ProfileForm = ({
                   background: colors.teal
                 }
               }}
-              disabled={isLoading}
+              disabled={isLoading || !isDirty}
               isLoading={isLoading}
             />
           </Box>

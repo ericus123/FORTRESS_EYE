@@ -1,9 +1,17 @@
 import { Box, Typography } from "@mui/material";
+import { useSelector } from "react-redux";
 import { colors } from "../../../../constants/colors";
+import { useProfile } from "../../../../hooks/useProfile";
+import { useUpload } from "../../../../hooks/useUploader";
+import { RootState } from "../../../../redux/modules/rootReducer";
 import ProfileAvatar from "./Avatar";
 import ProfileForm from "./Form";
 
 const Profile = () => {
+  const { uploadFile, isLoading: isUploading } = useUpload();
+  const { handleUpdate, isLoading, error } = useProfile();
+  const { profile } = useSelector(({ auth }: RootState) => auth);
+
   return (
     <Box
       sx={{
@@ -32,8 +40,8 @@ const Profile = () => {
           Update your details here
         </Typography>
       </Box>
-      <ProfileAvatar />
-      <ProfileForm />
+      <ProfileAvatar {...{ profile, uploadFile, handleUpdate }} />
+      <ProfileForm {...{ handleUpdate, isLoading, error, profile }} />
     </Box>
   );
 };

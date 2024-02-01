@@ -23,6 +23,7 @@ type FormData = {
   lastName: string;
   password: string;
   confirmPassword: string;
+  username: string;
 };
 
 const RegistrationForm: FC<{
@@ -59,6 +60,12 @@ const RegistrationForm: FC<{
       .min(1, "Last name must be at least 1 character")
       .max(30, "Last name must be at most 30 characters"),
 
+    username: Yup.string()
+      .trim()
+      .required("Username is required")
+      .min(3, "Username must be at least 3 character")
+      .max(10, "Username must be at most 10 characters"),
+
     password: Yup.string()
       .required("New password is required")
       .matches(
@@ -83,7 +90,8 @@ const RegistrationForm: FC<{
           password: data?.password,
           firstName: data?.firstName,
           lastName: data?.lastName,
-          email: _data?.email
+          email: _data?.email,
+          username: data?.username
         },
         token: `${register}`
       },
@@ -200,7 +208,7 @@ const RegistrationForm: FC<{
                 style={{
                   display: "flex",
                   flexDirection: "column",
-                  gap: "1rem"
+                  gap: ".5rem"
                 }}>
                 <Box
                   sx={{
@@ -274,6 +282,44 @@ const RegistrationForm: FC<{
 
                   <InputError
                     error={methods.formState.errors.lastName?.message}
+                  />
+                </Box>
+
+                <Box
+                  sx={{
+                    position: "relative"
+                  }}>
+                  <TextField
+                    variant="standard"
+                    id="username"
+                    autoComplete="off"
+                    {...methods.register("username")}
+                    error={Boolean(methods.formState.errors.username)}
+                    fullWidth
+                    autoFocus={false}
+                    type="text"
+                    placeholder="your username"
+                    sx={{
+                      borderBottom: `2px solid ${colors.teal}`,
+                      height: "45px",
+                      color: colors.teal,
+                      marginBottom: 0,
+                      paddingLeft: "10px",
+                      fill: "none"
+                    }}
+                    InputProps={{
+                      disableUnderline: true,
+                      style: {
+                        padding: 0,
+                        height: "45px",
+                        color: colors.teal,
+                        fill: "none"
+                      }
+                    }}
+                  />
+
+                  <InputError
+                    error={methods.formState.errors.username?.message}
                   />
                 </Box>
                 <Box
@@ -394,7 +440,8 @@ const RegistrationForm: FC<{
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "center",
-                    gap: "1rem"
+                    gap: "1rem",
+                    marginTop: "1rem"
                   }}>
                   <AppButton
                     title="Register"

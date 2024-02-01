@@ -26,6 +26,7 @@ export type SigninInput = {
 export type SignupInput = SigninInput & {
   firstName: string;
   lastName: string;
+  username: string;
 };
 
 type SigninReponse = {

@@ -42,7 +42,8 @@ const MemberCard = ({
             position: "relative",
             width: "50px",
             height: "50px",
-            borderRadius: "10px",
+            // borderRadius: "10px",
+            borderRadius: "50%",
             overflow: "hidden"
           }}>
           {member?.avatar != undefined ? (
