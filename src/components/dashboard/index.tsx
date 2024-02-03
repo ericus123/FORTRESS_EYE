@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/modules/rootReducer";
 import DashboardLayout from "../layouts/DashboardLayour";
-import AreasPanel from "./panels/AreasPanel";
-import DevicesPanel from "./panels/DevicesPanel";
 import EventsPanel from "./panels/EventsPanel";
 import HomePanel from "./panels/HomePanel";
+import ManagementPanel from "./panels/ManagementPanel";
+import MonitoringPanel from "./panels/MonitoringPanel";
 import SettingsPagePanel from "./panels/SettingsPanel";
 import { TokenData } from "./verification";
 
@@ -16,10 +16,10 @@ const Dashboard = ({ isVerified, email, role, sub }: TokenData) => {
         <HomePanel />
       ) : activeLink === "Settings" ? (
         <SettingsPagePanel />
-      ) : activeLink === "Areas" ? (
-        <AreasPanel />
-      ) : activeLink === "CCTV" ? (
-        <DevicesPanel />
+      ) : activeLink === "Management" ? (
+        <ManagementPanel />
+      ) : activeLink === "Monitoring" ? (
+        <MonitoringPanel />
       ) : activeLink === "Events" ? (
         <EventsPanel />
       ) : (

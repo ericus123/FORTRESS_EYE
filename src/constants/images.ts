@@ -28,6 +28,7 @@ import lightOn from "../../public/images/icons/light-on.svg";
 import locationBlocked from "../../public/images/icons/location-blocked.svg";
 import locked from "../../public/images/icons/locked.svg";
 import mailTeal from "../../public/images/icons/mail-teal.svg";
+import management from "../../public/images/icons/management.svg";
 import micOff from "../../public/images/icons/mic-off.svg";
 import micOn from "../../public/images/icons/mic-on.svg";
 import minimize from "../../public/images/icons/minimize.svg";
@@ -99,6 +100,7 @@ export const images = {
   screenshot,
   locked,
   unlocked,
+  management,
   locationBlocked,
   lightOn,
   lightOff

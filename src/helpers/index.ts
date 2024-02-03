@@ -104,3 +104,10 @@ export const areaDevices = (area: Area): number => {
     (area?.door != undefined ? 1 : 0)
   );
 };
+
+export const capitaliseFirstChar = (str: string) => {
+  return str
+    .split("")[0]
+    .toUpperCase()
+    .concat(str.split("").slice(1, str.length).join(""));
+};

@@ -3,8 +3,8 @@ import { images } from "../../../constants/images";
 
 export type MenuItemName =
   | "Home"
-  | "Areas"
-  | "CCTV"
+  | "Management"
+  | "Monitoring"
   | "Events"
   | "Notifications"
   | "Settings"
@@ -21,12 +21,12 @@ export const MenuItems: MenuItemType[] = [
     name: "Home"
   },
   {
-    icon: images.area,
-    name: "Areas"
+    icon: images.management,
+    name: "Management"
   },
   {
     icon: images.cctv,
-    name: "CCTV"
+    name: "Monitoring"
   },
   {
     icon: images.event,

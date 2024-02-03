@@ -1,49 +1,25 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { colors } from "../../../constants/colors";
 import { RootState } from "../../../redux/modules/rootReducer";
 import {
   SettingsTab,
   handleActiveTab
 } from "../../../redux/modules/settings/settingsSlice";
-import SettingTab from "./Tab";
+import { TabType } from "../../common/panels/Tab";
+import TopPanel from "../../common/panels/TopPanels";
+import PanelHeaderLayout from "../panels/HeaderLayout";
 
 export const tabs: SettingsTab[] = ["profile", "subscriptions", "system"];
 const SettingsTopPanel = () => {
   const dispatch = useDispatch();
 
-  const handleActive = (tab: SettingsTab) => {
+  const handleActive = (tab: TabType) => {
     dispatch(handleActiveTab(tab));
   };
 
   const { active } = useSelector(({ settings }: RootState) => settings);
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "2rem"
-      }}>
-      <Box
-        sx={{
-          display: "flex"
-        }}>
-        <Typography
-          component={"h1"}
-          sx={{
-            color: colors.cambridge_blue,
-            fontSize: "clamp(32px, 1.5vw, 32px)",
-            fontFamily: "Poppins",
-            fontStyle: "normal",
-            fontWeight: 600,
-            lineHeight: "normal",
-            textAlign: "center",
-            height: "30px"
-          }}>
-          Settings
-        </Typography>
-      </Box>
-
+    <PanelHeaderLayout title="Settings">
       <Box
         sx={{
           width: "800px",
@@ -51,18 +27,13 @@ const SettingsTopPanel = () => {
           gap: "1rem",
           alignItems: "center"
         }}>
-        {tabs?.map((tab, i) => (
-          <SettingTab
-            key={i}
-            {...{
-              name: tab,
-              handleActive,
-              isActive: active === tab
-            }}
-          />
-        ))}
+        <TopPanel
+          tabs={tabs}
+          active={active}
+          handleActive={(tab: TabType) => handleActive(tab)}
+        />
       </Box>
-    </Box>
+    </PanelHeaderLayout>
   );
 };
 

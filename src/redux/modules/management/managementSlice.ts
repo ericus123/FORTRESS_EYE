@@ -1,17 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { TabType } from "../../../components/common/panels/Tab";
 
-export type SettingsTab = "profile" | "system" | "subscriptions";
+export type ManagementTab = "areas" | "members" | "logs";
+
+export const managementTabs: ManagementTab[] = ["areas", "logs", "members"];
 export interface SettingsSliceState {
   active: TabType;
 }
 
 const initialState: SettingsSliceState = {
-  active: "profile"
+  active: "areas"
 };
 
-const settingsSlice = createSlice({
-  name: "navigation",
+const managementSlice = createSlice({
+  name: "management",
   initialState,
   reducers: {
     handleActiveTab: (state, { payload }: { payload: TabType }) => {
@@ -20,6 +22,6 @@ const settingsSlice = createSlice({
   }
 });
 
-export const { handleActiveTab } = settingsSlice.actions;
+export const { handleActiveTab } = managementSlice.actions;
 
-export default settingsSlice.reducer;
+export default managementSlice.reducer;
