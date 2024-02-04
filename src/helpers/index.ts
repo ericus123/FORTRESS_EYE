@@ -80,6 +80,11 @@ export const extractInitials = (fullName: string) => {
   return initials;
 };
 
+export const getAlarmAreaName = (area?: Area) => {
+  if (area == undefined || area.name == undefined) return "unknown area";
+  return area.name;
+};
+
 export const verifyToken = (token?: string) => {
   try {
     if (token != undefined) {

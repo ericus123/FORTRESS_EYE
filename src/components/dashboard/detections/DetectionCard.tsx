@@ -14,10 +14,27 @@ const DetectionCard = ({ title, timeStamp, image, area }: DetectionProp) => {
   return (
     <Box
       sx={{
-        minWidth: "100%",
-        cursor: "pointer"
+        minWidth: "200px",
+        minHeight: "100px",
+        cursor: "pointer",
+        padding: "1rem",
+
+        "&:hover": {
+          background: colors.black_5
+        }
       }}>
-      <Grid container justifyContent={"space-between"} alignItems={"center"}>
+      <Grid
+        container
+        justifyContent={"space-between"}
+        alignItems={"center"}
+        sx={{
+          overflowX: "scroll",
+          msOverflowStyle: "none",
+          scrollbarWidth: "none",
+          "&::-webkit-scrollbar": {
+            display: "none"
+          }
+        }}>
         <Grid item xs={2.5}>
           <Box
             sx={{

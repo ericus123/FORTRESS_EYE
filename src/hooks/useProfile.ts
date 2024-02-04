@@ -5,13 +5,13 @@ import { UPDATE_PROFILE_MUTATION } from "../graphql/mutations/profile";
 import { GET_PROFILE } from "../graphql/queries/profile";
 import { ProfileInput } from "../graphql/types";
 import { useAppDispatch } from "../redux/hooks";
-import { saveProfile } from "../redux/modules/auth/authSlice";
+import { ProfileType, saveProfile } from "../redux/modules/auth/authSlice";
 import { RootState } from "../redux/modules/rootReducer";
 
 export type ProfileProps = {
   isLoading: boolean;
   error?: CombinedError;
-  data: ProfileInput;
+  data?: ProfileType;
   handleUpdate: ({
     input,
     callback
@@ -55,7 +55,7 @@ export const useProfile = (): ProfileProps => {
     });
   };
   return {
-    data,
+    data: profile,
     isLoading: fetching || updateIsLoading,
     error: error || updateError,
     handleUpdate

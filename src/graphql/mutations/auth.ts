@@ -35,7 +35,7 @@ export const SIGNUP_MUTATION = gql`
 `;
 
 export const SIGNOUT_MUTATION = gql`
-  mutation SignoutUser() {
+  mutation SignoutUser {
     SignoutUser
   }
 `;

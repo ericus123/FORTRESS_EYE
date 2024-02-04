@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { TabType } from "../../../components/common/panels/Tab";
 
-export type ManagementTab = "areas" | "members" | "logs";
+export type ManagementTab = "members" | "logs" | "devices";
 
-export const managementTabs: ManagementTab[] = ["logs", "members"];
+export const managementTabs: ManagementTab[] = ["logs", "members", "devices"];
 export interface SettingsSliceState {
   active: TabType;
 }

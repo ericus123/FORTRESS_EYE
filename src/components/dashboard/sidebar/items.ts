@@ -8,7 +8,8 @@ export type MenuItemName =
   | "Events"
   | "Notifications"
   | "Settings"
-  | "Signout";
+  | "Signout"
+  | "Stats";
 
 export type MenuItemType = {
   icon: string | StaticImageData;

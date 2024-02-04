@@ -3,10 +3,12 @@ import { useSearchParams } from "next/navigation";
 import { ReactNode } from "react";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "../../redux/hooks";
+import { handleAlarmAddShow } from "../../redux/modules/alarm/alarmSlice";
 import { handleAreaAddShow } from "../../redux/modules/area/areaSlice";
 import { handleInviteShow } from "../../redux/modules/member/memberSlice";
 import { hideStatus } from "../../redux/modules/navigation/navigationSlice";
 import { RootState } from "../../redux/modules/rootReducer";
+import AlarmForm from "../actuators/alarms/form";
 import StatusPopup from "../common/popups/Status";
 import AddArea from "../dashboard/areas/popup/AddPopup";
 import InviteMember from "../dashboard/members/invitation";
@@ -33,12 +35,19 @@ const DashboardLayout = ({ isVerified, email, role, sub, children }: Props) => {
 
   const { isAddOpen } = useSelector(({ area }: RootState) => area);
   const { isInviteOpen } = useSelector(({ member }: RootState) => member);
+  const { isAddOpen: isAlarmAddOpen } = useSelector(
+    ({ alarms }: RootState) => alarms
+  );
   const { status, activeLink } = useSelector(
     ({ navigation }: RootState) => navigation
   );
 
   const handleStatusShow = () => {
     dispatch(hideStatus());
+  };
+
+  const handleAlarmShow = () => {
+    dispatch(handleAlarmAddShow());
   };
 
   const searchParams = useSearchParams();
@@ -55,6 +64,7 @@ const DashboardLayout = ({ isVerified, email, role, sub, children }: Props) => {
       }}>
       <Notifications isOpen={activeLink === "Notifications"} />
       <AddArea show={isAddOpen} handleShow={handleShow} />
+      <AlarmForm show={isAlarmAddOpen} handleShow={handleAlarmShow} />
       <SignoutPopup />
       <InviteMember show={isInviteOpen} handleShow={handleInvite} />
       <StatusPopup status={status} handleStatus={handleStatusShow} />
