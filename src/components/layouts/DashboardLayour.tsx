@@ -7,6 +7,7 @@ import { handleAreaAddShow } from "../../redux/modules/area/areaSlice";
 import { handleInviteShow } from "../../redux/modules/member/memberSlice";
 import { hideStatus } from "../../redux/modules/navigation/navigationSlice";
 import { RootState } from "../../redux/modules/rootReducer";
+import AlarmForm from "../actuators/alarms/form";
 import StatusPopup from "../common/popups/Status";
 import AddArea from "../dashboard/areas/popup/AddPopup";
 import InviteMember from "../dashboard/members/invitation";
@@ -55,6 +56,7 @@ const DashboardLayout = ({ isVerified, email, role, sub, children }: Props) => {
       }}>
       <Notifications isOpen={activeLink === "Notifications"} />
       <AddArea show={isAddOpen} handleShow={handleShow} />
+      <AlarmForm show={isAddOpen} handleShow={handleShow} />
       <SignoutPopup />
       <InviteMember show={isInviteOpen} handleShow={handleInvite} />
       <StatusPopup status={status} handleStatus={handleStatusShow} />

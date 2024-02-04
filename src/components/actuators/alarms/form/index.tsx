@@ -1,0 +1,140 @@
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Box, TextField } from "@mui/material";
+import Image from "next/image";
+import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
+import * as Yup from "yup";
+import { colors } from "../../../../constants/colors";
+import { images } from "../../../../constants/images";
+import { useAlarms } from "../../../../hooks/useAlarms";
+import AppButton from "../../../common/AppButton";
+import InputError from "../../../common/inputs/InputError";
+import CenteredPopup from "../../../common/popups/Centered";
+
+type FormData = {
+  name: string;
+};
+const AlarmForm = ({
+  show,
+  handleShow,
+  type = "add"
+}: {
+  show: boolean;
+  handleShow: () => void;
+  type?: "add" | "edit";
+}) => {
+  const validationSchema = Yup.object({
+    name: Yup.string().required("Name is required")
+  });
+
+  const methods = useForm<FormData>({
+    resolver: yupResolver(validationSchema)
+  });
+
+  const { handleAddAlarm, isAdding } = useAlarms();
+
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
+    handleAddAlarm(data?.name, () => methods.reset());
+  };
+
+  return show ? (
+    <CenteredPopup
+      sx={{
+        width: "400px",
+        height: "250px",
+        zIndex: 1,
+        background: colors.graphite,
+        borderRadius: "10px",
+        padding: "2rem"
+      }}>
+      <Box
+        sx={{
+          position: "relative",
+          height: "100%"
+        }}>
+        <Box
+          sx={{
+            position: "absolute",
+            top: 0,
+            right: 0,
+            cursor: "pointer"
+          }}>
+          <Image src={images.close} alt="" onClick={handleShow} />
+        </Box>
+
+        <FormProvider {...methods}>
+          <form
+            autoCorrect="false"
+            autoSave="false"
+            autoComplete="off"
+            autoFocus={false}
+            onSubmit={methods.handleSubmit(onSubmit)}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "1rem"
+            }}>
+            <Box
+              sx={{
+                paddingTop: "3.5rem"
+              }}>
+              <TextField
+                variant="standard"
+                id="name"
+                type="text"
+                autoComplete="off"
+                {...methods.register("name")}
+                error={Boolean(methods.formState.errors.name)}
+                fullWidth
+                autoFocus={false}
+                placeholder="Area name"
+                sx={{
+                  borderBottom: `2px solid ${colors.teal}`,
+                  height: "45px",
+                  color: colors.teal,
+                  marginBottom: 0,
+                  paddingLeft: "10px",
+                  fill: "none"
+                }}
+                InputProps={{
+                  disableUnderline: true,
+                  style: {
+                    padding: 0,
+                    height: "45px",
+                    color: colors.teal,
+                    fill: "none"
+                  }
+                }}
+              />
+              <InputError error={methods.formState.errors.name?.message} />
+            </Box>
+            <Box
+              sx={{
+                position: "absolute",
+                display: "flex",
+                gap: "calc(400px - 300px - 4rem)",
+                bottom: 0
+              }}>
+              <AppButton
+                title="Add"
+                isLoading={isAdding}
+                disabled={isAdding}
+                sx={{
+                  background: colors.teal,
+                  width: "calc(400px - 4rem)",
+                  height: "40px",
+                  color: colors.light,
+                  fontWeight: 600,
+                  "&:hover": {
+                    background: colors.black_5
+                  }
+                }}
+              />
+            </Box>
+          </form>
+        </FormProvider>
+      </Box>
+    </CenteredPopup>
+  ) : null;
+};
+
+export default AlarmForm;
