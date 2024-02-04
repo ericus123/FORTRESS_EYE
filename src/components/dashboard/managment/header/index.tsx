@@ -18,7 +18,7 @@ const ManagementHeader = () => {
   const { active } = useSelector(({ management }: RootState) => management);
 
   return (
-    <PanelHeaderLayout title="Data Management">
+    <PanelHeaderLayout title="Control">
       <TopPanel
         tabs={managementTabs}
         active={active}

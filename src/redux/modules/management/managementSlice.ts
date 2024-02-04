@@ -3,13 +3,13 @@ import { TabType } from "../../../components/common/panels/Tab";
 
 export type ManagementTab = "areas" | "members" | "logs";
 
-export const managementTabs: ManagementTab[] = ["areas", "logs", "members"];
+export const managementTabs: ManagementTab[] = ["logs", "members"];
 export interface SettingsSliceState {
   active: TabType;
 }
 
 const initialState: SettingsSliceState = {
-  active: "areas"
+  active: "logs"
 };
 
 const managementSlice = createSlice({
