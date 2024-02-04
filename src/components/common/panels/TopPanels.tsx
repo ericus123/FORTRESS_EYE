@@ -1,4 +1,5 @@
 import { Box } from "@mui/material";
+import { EventTab } from "../../../redux/modules/events/eventsSlice";
 import { ManagementTab } from "../../../redux/modules/management/managementSlice";
 import { MonitoringTab } from "../../../redux/modules/monitoring/monitoringSlice";
 import { SettingsTab } from "../../../redux/modules/settings/settingsSlice";
@@ -11,7 +12,7 @@ const TopPanel = ({
 }: {
   active: TabType;
   handleActive: (tab: TabType) => void;
-  tabs: SettingsTab[] | ManagementTab[] | MonitoringTab[];
+  tabs: SettingsTab[] | ManagementTab[] | MonitoringTab[] | EventTab[];
 }) => {
   return (
     <Box

@@ -1,11 +1,12 @@
 import { Box, Typography } from "@mui/material";
 import { colors } from "../../../constants/colors";
 import { capitaliseFirstChar } from "../../../helpers";
+import { EventTab } from "../../../redux/modules/events/eventsSlice";
 import { ManagementTab } from "../../../redux/modules/management/managementSlice";
 import { MonitoringTab } from "../../../redux/modules/monitoring/monitoringSlice";
 import { SettingsTab } from "../../../redux/modules/settings/settingsSlice";
 
-export type TabType = SettingsTab | ManagementTab | MonitoringTab;
+export type TabType = SettingsTab | ManagementTab | MonitoringTab | EventTab;
 const Tab = ({
   name,
   isActive,
