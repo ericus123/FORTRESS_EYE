@@ -1,6 +1,7 @@
 import { combineReducers } from "@reduxjs/toolkit";
 import areaSlice from "./area/areaSlice";
 import authSlice from "./auth/authSlice";
+import eventsSlice from "./events/eventsSlice";
 import managementSlice from "./management/managementSlice";
 import memberSlice from "./member/memberSlice";
 import monitoringSlice from "./monitoring/monitoringSlice";
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
   member: memberSlice,
   settings: settingsSlice,
   management: managementSlice,
-  monitoring: monitoringSlice
+  monitoring: monitoringSlice,
+  events: eventsSlice
 });
 export type RootState = ReturnType<typeof rootReducer>;
 

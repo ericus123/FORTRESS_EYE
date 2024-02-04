@@ -1,7 +1,12 @@
 import SettingsLayout from "../../layouts/SettingsLayout";
+import EventsHeader from "../events";
 
 const EventsPanel = () => {
-  return <SettingsLayout>events panel</SettingsLayout>;
+  return (
+    <SettingsLayout>
+      <EventsHeader />
+    </SettingsLayout>
+  );
 };
 
 export default EventsPanel;
