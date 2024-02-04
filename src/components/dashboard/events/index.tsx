@@ -13,7 +13,7 @@ const EventsHeader = () => {
     dispatch(handleActiveTab(tab));
   };
 
-  const { active } = useSelector(({ events }: RootState) => events);
+  const { active } = useSelector(({ monitoring }: RootState) => monitoring);
 
   return (
     <PanelHeaderLayout title="Events">

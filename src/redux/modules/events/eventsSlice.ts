@@ -9,7 +9,7 @@ export interface EventsSliceState {
 }
 
 const initialState: EventsSliceState = {
-  active: "schedules"
+  active: "cameras"
 };
 
 const eventsSlice = createSlice({
