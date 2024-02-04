@@ -1,16 +1,16 @@
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
-import { useSelector } from "react-redux";
 import { colors } from "../../../constants/colors";
 import { images } from "../../../constants/images";
-import { RootState } from "../../../redux/modules/rootReducer";
-const Alarm = ({ isOn }: { isOn?: boolean }) => {
-  const { area } = useSelector(({ area }: RootState) => area);
+import { getAlarmAreaName } from "../../../helpers";
+import { Alarm as AlarmType, Area } from "../../../hooks/useAreas";
+
+const Alarm = ({ alarm, areas }: { alarm: AlarmType; areas: Area[] }) => {
   return (
     <Box
       sx={{
         position: "relative",
-        width: "80px",
+        width: "100px",
         minWidth: "80px",
         height: "80px",
         maxHeight: "80px",
@@ -20,19 +20,20 @@ const Alarm = ({ isOn }: { isOn?: boolean }) => {
         justifyContent: "center",
         flexDirection: "column",
         gap: "5px",
-        background: colors.graphite,
+        background: alarm.isOn ? colors.rose_red : colors.graphite,
         borderRadius: "10px"
-
-        // border: !isOn
+        // border: !alarm.isOn
         //   ? `.5px dashed ${colors.active}`
         //   : `.5px dashed ${colors.rose_red}`
       }}>
-      <Box
+      {/* <Box
         sx={{
           position: "absolute",
           right: "5px",
           top: "5px"
-        }}></Box>
+        }}>
+        <Image src={images.dots} alt="" style={{ height: "12.5px" }} />
+      </Box> */}
       <Box
         sx={{
           display: "flex",
@@ -58,12 +59,12 @@ const Alarm = ({ isOn }: { isOn?: boolean }) => {
               lineHeight: "normal",
               textAlign: "center"
             }}>
-            in {area?.name || "unknown"}
+            in {getAlarmAreaName(alarm.area)}
           </Typography>
           <Typography
             component={"h3"}
             sx={{
-              color: isOn ? colors.rose_red : colors.gray,
+              color: alarm.isOn ? colors.rose_red : colors.gray,
               fontSize: "10px",
               fontStyle: "normal",
               fontWeight: "500",
@@ -71,7 +72,7 @@ const Alarm = ({ isOn }: { isOn?: boolean }) => {
               lineHeight: "normal",
               textAlign: "center"
             }}>
-            {isOn ? "is ON" : "is OFF"}
+            {alarm?.isOn ? "is ON" : "is OFF"}
           </Typography>
         </Box>
       </Box>

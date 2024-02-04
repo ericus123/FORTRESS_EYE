@@ -1,16 +1,24 @@
 import { Box } from "@mui/material";
 import Image from "next/image";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { colors } from "../../../constants/colors";
 import { images } from "../../../constants/images";
+import { useAlarms } from "../../../hooks/useAlarms";
+import { handleAlarmAddShow } from "../../../redux/modules/alarm/alarmSlice";
 import { RootState } from "../../../redux/modules/rootReducer";
 import HomeSubTitle from "../../common/Headers";
 import NoData from "../../common/NoData";
 import Alarm from "./Alarm";
 
 const Alarms = () => {
-  const { area } = useSelector(({ area }: RootState) => area);
+  const { alarms } = useAlarms();
+  const { areas } = useSelector(({ area }: RootState) => area);
 
+  const dispatch = useDispatch();
+
+  const handleShow = () => {
+    dispatch(handleAlarmAddShow());
+  };
   return (
     <Box
       sx={{
@@ -23,21 +31,20 @@ const Alarms = () => {
           display: "flex"
         }}>
         <HomeSubTitle text="Alarms" />
-        {!area?.alarms?.length ? (
-          <Image
-            src={images.add}
-            alt=""
-            width={20}
-            height={20}
-            style={{
-              marginLeft: "auto",
-              cursor: "pointer"
-            }}
-          />
-        ) : null}
+        <Image
+          src={images.add}
+          alt=""
+          width={20}
+          height={20}
+          style={{
+            marginLeft: "auto",
+            cursor: "pointer"
+          }}
+          onClick={handleShow}
+        />
       </Box>
 
-      {area?.alarms != undefined && area.alarms.length > 0 ? (
+      {alarms != undefined && alarms.length > 0 ? (
         <Box
           sx={{
             display: "flex",
@@ -49,8 +56,8 @@ const Alarms = () => {
               display: "none"
             }
           }}>
-          {area?.alarms?.map((alarm) => (
-            <Alarm {...{ alarm }} key={Math.random()} />
+          {alarms?.map((alarm) => (
+            <Alarm {...{ alarm, areas }} key={Math.random()} />
           ))}
         </Box>
       ) : (

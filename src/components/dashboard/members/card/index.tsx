@@ -51,6 +51,9 @@ const MemberCard = ({
               src={`${process.env.NEXT_PUBLIC_IMAGES_URL}/avatars/${member?.avatar}`}
               alt=""
               fill
+              style={{
+                objectFit: "cover"
+              }}
             />
           ) : (
             <>

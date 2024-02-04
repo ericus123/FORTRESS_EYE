@@ -37,7 +37,7 @@ const HomePagePanel = () => {
           height: "calc(100vh - 300px - 5rem)",
           display: "flex",
           gap: "2.5rem",
-          minHeight: "400px",
+          minHeight: "500px",
           overflow: "scroll",
           msOverflowStyle: "none",
           scrollbarWidth: "none",

@@ -48,6 +48,9 @@ const ProfileAvatar = ({
             src={`${process.env.NEXT_PUBLIC_IMAGES_URL}/avatars/${profile?.avatar}`}
             alt=""
             fill
+            style={{
+              objectFit: "cover"
+            }}
           />
         </Box>
         <input

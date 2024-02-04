@@ -13,6 +13,7 @@ import celcius from "../../public/images/icons/celcius.svg";
 import check from "../../public/images/icons/check.svg";
 import close from "../../public/images/icons/close.svg";
 import door from "../../public/images/icons/door.svg";
+import dots from "../../public/images/icons/dots.svg";
 import edit from "../../public/images/icons/edit.svg";
 import electricity from "../../public/images/icons/electricity.svg";
 import event from "../../public/images/icons/event.svg";
@@ -93,6 +94,7 @@ export const images = {
   arrowIncrease,
   air,
   pressure,
+  dots,
   signout,
   speakerOn,
   speakerOff,
