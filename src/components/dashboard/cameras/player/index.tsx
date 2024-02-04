@@ -1,8 +1,8 @@
 "use client";
 
-import { Box, Typography } from "@mui/material";
+import { Box, SxProps, Typography } from "@mui/material";
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { CSSProperties, useRef, useState } from "react";
 import { colors } from "../../../../constants/colors";
 import { images } from "../../../../constants/images";
 import MotionStats from "../../detections/motion/stats";
@@ -12,7 +12,15 @@ import CameraPlayerHeader from "./Header";
 import LiveIndicator from "./LiveIndicator";
 import PlayerWithWorker from "./sockets";
 
-const CameraPlayer = () => {
+const CameraPlayer = ({
+  sx,
+  isStandalone,
+  containerSx
+}: {
+  sx?: CSSProperties;
+  isStandalone?: boolean;
+  containerSx?: SxProps;
+}) => {
   const playerRef = useRef(null);
 
   const [key, setKey] = useState(0);
@@ -30,7 +38,8 @@ const CameraPlayer = () => {
         height: "100%",
         display: "flex",
         flexDirection: "column",
-        bottom: 0
+        bottom: 0,
+        ...containerSx
       }}>
       <Box
         sx={{
@@ -39,8 +48,8 @@ const CameraPlayer = () => {
           position: "relative"
         }}>
         <PtzControl />
-        <MotionStats />
-        <CameraPlayerHeader camera="Kitchen" />
+        {!isStandalone ? <MotionStats /> : null}
+        {!isStandalone ? <CameraPlayerHeader camera="Kitchen" /> : null}
         <Box
           sx={{
             width: "100%",
@@ -60,7 +69,8 @@ const CameraPlayer = () => {
             style={{
               width: "100%",
               height: "100%",
-              overflow: "hidden"
+              overflow: "hidden",
+              ...sx
             }}
             {...{
               wsUrl: "wss://ws.amanieric.com",

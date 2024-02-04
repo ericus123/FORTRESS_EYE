@@ -1,22 +1,35 @@
 import { Box } from "@mui/material";
 import Image, { StaticImageData } from "next/image";
 import { colors } from "../../../constants/colors";
+import { useProfile } from "../../../hooks/useProfile";
 
 const Avatar = ({ image }: { image: string | StaticImageData }) => {
+  const { data } = useProfile();
   return (
     <Box
       sx={{
+        position: "relative",
         display: "flex",
-        justifyContent: "center"
+        justifyContent: "center",
+        borderRadius: "50%",
+        border: `2px solid ${colors.teal}`,
+        width: "50px",
+        height: "50px",
+        overflow: "hidden",
+        padding: "2px",
+        marginLeft: "auto",
+        marginRight: "auto"
       }}>
       <Image
-        src={image}
+        src={
+          data?.avatar
+            ? `${process.env.NEXT_PUBLIC_IMAGES_URL}/avatars/${data?.avatar}`
+            : image
+        }
         alt=""
-        width={50}
-        height={50}
+        fill
         style={{
-          borderRadius: "50%",
-          border: `1px solid ${colors.dark_blue}`
+          objectFit: "cover"
         }}
       />
     </Box>

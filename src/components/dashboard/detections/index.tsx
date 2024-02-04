@@ -109,14 +109,14 @@ const Detections = ({ detections }: { detections: DetectionProp[] }) => {
           width: "100%",
           background: colors.dark,
           borderRadius: "1rem",
-          padding: "1rem",
           display: "flex",
           flexDirection: "column",
           gap: "1rem"
         }}>
         <Box
           sx={{
-            display: "flex"
+            display: "flex",
+            padding: "1rem"
           }}>
           <Box>
             <Typography
@@ -163,7 +163,7 @@ const Detections = ({ detections }: { detections: DetectionProp[] }) => {
           sx={{
             display: "flex",
             flexDirection: "column",
-            gap: "2rem",
+            gap: "1rem",
             padding: "1rem 0 1rem 0",
             maxHeight: "94%",
             overflow: "scroll",
