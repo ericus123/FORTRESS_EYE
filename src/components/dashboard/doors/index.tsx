@@ -1,4 +1,5 @@
 import { Box } from "@mui/material";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { colors } from "../../../constants/colors";
 import { RootState } from "../../../redux/modules/rootReducer";
@@ -8,6 +9,7 @@ import DoorControlsHeading from "./Heading";
 
 const DoorsControl = () => {
   const { area } = useSelector(({ area }: RootState) => area);
+  useEffect(() => {}, [area]);
   return (
     <Box
       sx={{

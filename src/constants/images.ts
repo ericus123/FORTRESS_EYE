@@ -19,6 +19,7 @@ import event from "../../public/images/icons/event.svg";
 import expand from "../../public/images/icons/expand.svg";
 import eye from "../../public/images/icons/eye.svg";
 import fail from "../../public/images/icons/fail.svg";
+import fanActive from "../../public/images/icons/fan-active.svg";
 import fan from "../../public/images/icons/fan.svg";
 import home from "../../public/images/icons/home.svg";
 import humidity from "../../public/images/icons/humidity.svg";
@@ -63,6 +64,7 @@ export const images = {
   arrowNext,
   settings,
   fan,
+  fanActive,
   home,
   area,
   add,

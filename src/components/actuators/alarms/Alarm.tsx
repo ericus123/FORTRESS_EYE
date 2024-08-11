@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import { colors } from "../../../constants/colors";
 import { images } from "../../../constants/images";
 import { RootState } from "../../../redux/modules/rootReducer";
-
 const Alarm = ({ isOn }: { isOn?: boolean }) => {
   const { area } = useSelector(({ area }: RootState) => area);
   return (

@@ -10,7 +10,15 @@ import Image from "next/image";
 import { colors } from "../../../constants/colors";
 import { images } from "../../../constants/images";
 
-const FanCard = ({ area, isOn }: { area: string; isOn?: boolean }) => {
+const FanCard = ({
+  area,
+  isOn,
+  handleFan
+}: {
+  area: string;
+  isOn?: boolean;
+  handleFan: () => void;
+}) => {
   const IOSSwitch = styled((props: SwitchProps) => (
     <Switch
       focusVisibleClassName=".Mui-focusVisible"
@@ -93,10 +101,13 @@ const FanCard = ({ area, isOn }: { area: string; isOn?: boolean }) => {
           {area}
         </Typography>
         <FormControlLabel
-          control={<IOSSwitch sx={{ m: 1 }} defaultChecked />}
+          control={
+            <IOSSwitch sx={{ m: 1 }} onChange={handleFan} checked={isOn} />
+          }
           label=""
           sx={{
-            marginRight: 0
+            marginRight: 0,
+            cursor: "pointer"
           }}
         />
       </Box>
@@ -106,15 +117,26 @@ const FanCard = ({ area, isOn }: { area: string; isOn?: boolean }) => {
           justifyContent: "center"
         }}>
         <Image
-          src={images.fan}
+          src={isOn ? images.fanActive : images.fan}
           alt=""
           width={50}
           height={50}
           style={{
-            opacity: 0.5
+            animation: isOn ? "spin 2s linear infinite" : "none",
+            opacity: isOn ? 1 : 0.5
           }}
         />
       </Box>
+      <style jsx>{`
+        @keyframes spin {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+      `}</style>
       <Typography
         component={"h3"}
         sx={{

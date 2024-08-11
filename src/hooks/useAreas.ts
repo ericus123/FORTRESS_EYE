@@ -113,6 +113,14 @@ export const useAreas = () => {
     }
 
     if (data?.GetAreas?.length > 0) {
+      data.GetAreas.map((a: Area) => {
+        if (a.id == area?.id) {
+          handleActiveArea(a);
+        }
+      });
+    }
+
+    if (data?.GetAreas != undefined && area == undefined) {
       handleActiveArea(data?.GetAreas[0]);
     }
   }, [data]);

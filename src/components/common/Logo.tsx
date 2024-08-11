@@ -1,25 +1,52 @@
-import { Box } from "@mui/material";
-import Image from "next/image";
+import { Box, Typography } from "@mui/material";
 import Link from "next/link";
-import { images } from "../../constants/images";
+import { colors } from "../../constants/colors";
 
 const Logo = () => {
   return (
-    <Box
-      sx={{
-        position: "relative",
-        cursor: "pointer",
-        width: "150px",
-        height: "50px",
-        "@media(max-width: 980px)": {
-          width: "125px",
-          height: "30px"
-        }
+    <Link
+      href={"/"}
+      style={{
+        textDecoration: "none"
       }}>
-      <Link href={"/"} shallow>
-        <Image src={images.logoLight} alt="" fill />
-      </Link>
-    </Box>
+      <Box
+        sx={{
+          display: "flex",
+          position: "relative",
+          cursor: "pointer",
+          width: "150px",
+          height: "50px",
+          "@media(max-width: 980px)": {
+            width: "125px",
+            height: "30px"
+          }
+        }}>
+        <Typography
+          sx={{
+            color: "#E9EAE9",
+            fontFamily: "Poppins",
+            fontSize: "36px",
+            fontStyle: "normal",
+            fontWeight: 900,
+            lineHeight: "normal",
+            textAlign: "center"
+          }}>
+          Fortress
+        </Typography>
+        <Typography
+          sx={{
+            color: colors.teal,
+            fontFamily: "Poppins",
+            fontSize: "36px",
+            fontStyle: "normal",
+            fontWeight: 900,
+            lineHeight: "normal",
+            textAlign: "center"
+          }}>
+          Eye.
+        </Typography>
+      </Box>
+    </Link>
   );
 };
 

@@ -1,9 +1,21 @@
 import { Box } from "@mui/material";
+import { useState } from "react";
 import { colors } from "../../../constants/colors";
 import HomeSubTitle from "../../common/Headers";
 import FanCard from "./FanCard";
 
 const Fan = () => {
+  const [isFanOn1, setIsFan1On] = useState<boolean>(false);
+  const [isFanOn2, setIsFan2On] = useState<boolean>(false);
+
+  const handleFan1 = () => {
+    setIsFan1On(!isFanOn1);
+  };
+
+  const handleFan2 = () => {
+    setIsFan2On(!isFanOn2);
+  };
+
   return (
     <Box
       sx={{
@@ -33,8 +45,9 @@ const Fan = () => {
         }}>
         <FanCard
           {...{
-            isOn: true,
-            area: "Living Room"
+            isOn: isFanOn1,
+            area: "Living Room",
+            handleFan: handleFan1
           }}
         />
 
@@ -47,8 +60,9 @@ const Fan = () => {
 
         <FanCard
           {...{
-            isOn: true,
-            area: "Kitchen"
+            isOn: isFanOn2,
+            area: "Kitchen",
+            handleFan: handleFan2
           }}
         />
       </Box>
