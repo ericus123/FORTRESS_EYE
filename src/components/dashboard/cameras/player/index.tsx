@@ -39,26 +39,29 @@ const CameraPlayer = ({
         display: "flex",
         flexDirection: "column",
         bottom: 0,
+        overflow: "scroll",
+        paddingBottom: "2rem",
+        paddingRight: "1rem",
         ...containerSx
       }}>
       <Box
         sx={{
           width: "100%",
-          height: "94%",
+          height: "100%",
           position: "relative"
         }}>
-        <PtzControl />
+        {!isStandalone ? <PtzControl /> : null}
         {!isStandalone ? <MotionStats /> : null}
         {!isStandalone ? <CameraPlayerHeader camera="Kitchen" /> : null}
         <Box
           sx={{
             width: "100%",
-            height: "66.6%",
+            height: !isStandalone ? "66.6%" : "100%",
             position: "absolute",
             bottom: 0,
             background: colors.black_5,
             borderRadius: "1rem",
-            overflow: "scroll",
+            overflow: "hidden",
             msOverflowStyle: "none",
             scrollbarWidth: "none",
             "&::-webkit-scrollbar": {
@@ -68,10 +71,10 @@ const CameraPlayer = ({
           <PlayerWithWorker
             style={{
               width: "100%",
-              height: "100%",
-              overflow: "hidden",
+              overflow: "scroll",
               ...sx
             }}
+            debug
             {...{
               wsUrl: "wss://ws.amanieric.com",
               loaderProps: {

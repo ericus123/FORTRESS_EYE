@@ -39,7 +39,7 @@ const AddArea = ({
       sx={{
         width: "400px",
         height: "250px",
-        zIndex: 1,
+        zIndex: 999,
         background: colors.graphite,
         borderRadius: "10px",
         padding: "2rem"

@@ -8,9 +8,9 @@ const MotionStats = () => {
         width: "100%",
         paddingTop: "2rem",
         display: "grid",
-        gridTemplateColumns: "calc(50% - 1rem)  calc(50% - 1rem)",
-        gap: "1rem",
-        position: "relative"
+        gridTemplateColumns: "calc(50% - .5rem)  calc(50% - .5rem)",
+        position: "relative",
+        justifyContent: "space-between"
       }}>
       <MotionStatsCard {...{ amount: 31, percentage: 45, type: "camera" }} />
       <MotionStatsCard

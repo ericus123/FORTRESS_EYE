@@ -26,10 +26,10 @@ const AlarmForm = ({
       sx={{
         width: "400px",
         height: "250px",
-        zIndex: 1,
         background: colors.graphite,
         borderRadius: "10px",
-        padding: "2rem"
+        padding: "2rem",
+        zIndex: 999
       }}>
       <Box
         sx={{
