@@ -1,7 +1,6 @@
 import { Box, Typography } from "@mui/material";
-import Image from "next/image";
 import { colors } from "../../../../constants/colors";
-import { images } from "../../../../constants/images";
+import SensorsAreaSelect from "../../../actuators/sensors/AreaSelect";
 
 const CameraPlayerHeader = ({ camera }: { camera: string }) => {
   return (
@@ -29,6 +28,12 @@ const CameraPlayerHeader = ({ camera }: { camera: string }) => {
         </Typography>
       </Box>
       <Box
+        sx={{
+          marginLeft: "auto"
+        }}>
+        <SensorsAreaSelect />
+      </Box>
+      {/* <Box
         sx={{
           marginLeft: "auto",
           cursor: "pointer",
@@ -62,7 +67,7 @@ const CameraPlayerHeader = ({ camera }: { camera: string }) => {
             opacity: 0.6
           }}
         />
-      </Box>
+      </Box> */}
     </Box>
   );
 };

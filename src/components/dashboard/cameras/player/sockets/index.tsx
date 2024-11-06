@@ -126,7 +126,7 @@ const PlayerWithWorker: FC<WsPlayerProps> = ({
     <React.Fragment>
       <canvas
         ref={canvasRef}
-        style={style}
+        style={{ ...style, position: "absolute" }}
         width={width || "100%"}
         height={height || "100%"}
       />

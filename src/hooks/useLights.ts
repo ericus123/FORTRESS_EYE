@@ -1,5 +1,13 @@
-import { CombinedError, useMutation } from "urql";
-import { UPDATE_LIGHT_MUTATION } from "../graphql/mutations/light";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { CombinedError, useMutation, useQuery } from "urql";
+import {
+  ADD_LIGHT_MUTATION,
+  UPDATE_LIGHT_MUTATION
+} from "../graphql/mutations/light";
+import { GET_LIGHTS_QUERY } from "../graphql/queries/lights";
+import { saveLights } from "../redux/modules/light/lightSlice";
+import { RootState } from "../redux/modules/rootReducer";
 import { Light } from "./useAreas";
 
 export type LightProps = {
@@ -40,5 +48,47 @@ export const useLights = (): LightProps => {
     isLoading: fetching,
     error,
     handleUpdate
+  };
+};
+type LightInput = {
+  areaID: string;
+  name: string;
+};
+
+export const useAddLight = () => {
+  const dispatch = useDispatch();
+  const [{ data, fetching, error }, fetchData] = useQuery({
+    variables: {},
+    query: GET_LIGHTS_QUERY
+  });
+
+  const { lights } = useSelector(({ lights }: RootState) => lights);
+
+  useEffect(() => {
+    if (data?.GetLights != undefined) {
+      dispatch(saveLights(data?.GetLights));
+    }
+  }, [data]);
+
+  const [{ fetching: isAdding, error: addError, data: addData }, addLight] =
+    useMutation(ADD_LIGHT_MUTATION);
+
+  const handleAddLight = async (input: LightInput, callback: () => void) => {
+    await addLight({
+      input
+    }).then((res) => {
+      if (res.data.addLight != undefined) {
+        callback();
+        fetchData();
+      }
+    });
+  };
+
+  return {
+    handleAddLight,
+    data: lights,
+    error,
+    fetching,
+    isAdding
   };
 };

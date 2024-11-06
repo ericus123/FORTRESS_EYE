@@ -11,9 +11,8 @@ import PtzControl from "../controls/PtzControl";
 import CameraPlayerHeader from "./Header";
 import LiveIndicator from "./LiveIndicator";
 import PlayerWithWorker from "./sockets";
-import SensorsAreaSelect from "../../../actuators/sensors/AreaSelect";
 
-const CameraPlayer = ({
+const CameraFullScreenPlayer = ({
   sx,
   isStandalone,
   containerSx
@@ -128,4 +127,4 @@ const CameraPlayer = ({
   );
 };
 
-export default CameraPlayer;
+export default CameraFullScreenPlayer;

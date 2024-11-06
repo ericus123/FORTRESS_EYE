@@ -2,7 +2,7 @@ import { Box, SxProps, Typography } from "@mui/material";
 import Image from "next/image";
 import { colors } from "../../../constants/colors";
 import { images } from "../../../constants/images";
-import { StatusPopup } from "../../../redux/modules/navigation/navigationSlice";
+import { StatusPopup as StatusPopupType } from "../../../redux/modules/navigation/navigationSlice";
 import CenteredPopup from "./Centered";
 
 const StatusPopup = ({
@@ -11,7 +11,7 @@ const StatusPopup = ({
   isClosable = true,
   sx
 }: {
-  status: StatusPopup;
+  status: StatusPopupType;
   handleStatus?: () => void;
   isClosable?: boolean;
   sx?: SxProps;

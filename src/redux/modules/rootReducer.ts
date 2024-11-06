@@ -3,6 +3,7 @@ import alarmSlice from "./alarm/alarmSlice";
 import areaSlice from "./area/areaSlice";
 import authSlice from "./auth/authSlice";
 import eventsSlice from "./events/eventsSlice";
+import lightSlice from "./light/lightSlice";
 import managementSlice from "./management/managementSlice";
 import memberSlice from "./member/memberSlice";
 import monitoringSlice from "./monitoring/monitoringSlice";
@@ -19,7 +20,8 @@ const rootReducer = combineReducers({
   management: managementSlice,
   monitoring: monitoringSlice,
   events: eventsSlice,
-  alarms: alarmSlice
+  alarms: alarmSlice,
+  lights: lightSlice
 });
 export type RootState = ReturnType<typeof rootReducer>;
 
