@@ -1,5 +1,6 @@
 import { Box } from "@mui/material";
 import Image, { StaticImageData } from "next/image";
+import Link from "next/link";
 import { colors } from "../../../constants/colors";
 import { useProfile } from "../../../hooks/useProfile";
 
@@ -20,18 +21,24 @@ const Avatar = ({ image }: { image: string | StaticImageData }) => {
         marginLeft: "auto",
         marginRight: "auto"
       }}>
-      <Image
-        src={
-          data?.avatar
-            ? `${process.env.NEXT_PUBLIC_IMAGES_URL}/avatars/${data?.avatar}`
-            : image
-        }
-        alt=""
-        fill
+      <Link
+        href={"/dashboard"}
         style={{
-          objectFit: "cover"
-        }}
-      />
+          textDecoration: "none"
+        }}>
+        <Image
+          src={
+            data?.avatar
+              ? `${process.env.NEXT_PUBLIC_IMAGES_URL}/avatars/${data?.avatar}`
+              : image
+          }
+          alt=""
+          fill
+          style={{
+            objectFit: "cover"
+          }}
+        />
+      </Link>
     </Box>
   );
 };
