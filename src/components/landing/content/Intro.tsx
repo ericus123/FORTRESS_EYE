@@ -49,7 +49,7 @@ const LandingIntro = () => {
               lineHeight: "1",
               fontFamily: "Poppins"
             }}>
-            Your Trusted
+            Your Trusted &nspp;&nspp;
             <Typography
               component={"span"}
               sx={{

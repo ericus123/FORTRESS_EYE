@@ -43,5 +43,6 @@ export const userFriendlyErrorMessages: UserFriendlyErrorMessages = {
   INVALID_ORIGIN: "Invalid request. Please try again.",
   LIMIT_EXCEEDED: "Too many requests. Please try again later.",
   SESSION_EXPIRED: "Your session has expired. Please log in again.",
-  UNAUTHORIZED_REQUEST: "Unauthorized request. Please log in to continue."
+  UNAUTHORIZED_REQUEST: "Unauthorized request. Please log in to continue.",
+  USER_ALREADY_A_MEMBER: "This user is already a member 😊"
 };

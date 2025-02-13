@@ -5,14 +5,28 @@ import { MouseEvent, useState } from "react";
 import { colors } from "../../../../constants/colors";
 import { images } from "../../../../constants/images";
 import { useAlarms } from "../../../../hooks/useAlarms";
-import { Area } from "../../../../hooks/useAreas";
+import { Area, useAreas } from "../../../../hooks/useAreas";
+import { useDoors } from "../../../../hooks/useDoors";
+import { useAddLight } from "../../../../hooks/useLights";
 import AppButton from "../../AppButton";
 import AppPopover from "../../Popover";
 import AreaItem from "./Item";
 
-const AreaSelect = ({ areas }: { areas: Area[] }) => {
+type AreaType = "Door" | "Alarm" | "Light";
+
+const AreaSelect = ({
+  areas,
+  control
+}: {
+  areas: Area[];
+  control: AreaType;
+}) => {
   const [anchorEl, setAnchorEl] = useState<HTMLAnchorElement | null>(null);
   const { handleAddAlarm, isAdding, alarms, fetchData } = useAlarms();
+  const { handleAdd: handleAddDoor } = useDoors();
+  const { handleAddLight } = useAddLight();
+
+  const { area: activeArea } = useAreas();
 
   const handleClick = (
     event: MouseEvent<
@@ -25,9 +39,10 @@ const AreaSelect = ({ areas }: { areas: Area[] }) => {
 
   const handleClose = () => {
     setAnchorEl(null);
+    refresh();
   };
 
-  const [area, setArea] = useState<Area>(areas[0]);
+  const [area, setArea] = useState<Area>(activeArea || areas[0]);
   const handleArea = (_area: Area) => {
     setArea(_area);
     handleClose();
@@ -36,9 +51,9 @@ const AreaSelect = ({ areas }: { areas: Area[] }) => {
   const [key, setKey] = useState<string>(nanoid(4));
 
   const refresh = () => {
-    fetchData();
     setKey(nanoid(4));
   };
+
   return (
     <Box
       sx={{
@@ -123,8 +138,18 @@ const AreaSelect = ({ areas }: { areas: Area[] }) => {
             flexDirection: "column",
             width: "300px"
           }}>
+          {activeArea && (
+            <AreaItem
+              {...{ area: activeArea }}
+              key={activeArea.id}
+              handleArea={() => handleArea(activeArea)}
+              sx={{
+                fontSize: "14px"
+              }}
+            />
+          )}
           {areas
-            .filter((a) => a.id != area.id)
+            .filter((a) => a.id !== activeArea?.id)
             ?.map((area, i) => (
               <AreaItem
                 {...{ area }}
@@ -139,13 +164,29 @@ const AreaSelect = ({ areas }: { areas: Area[] }) => {
         isLoading={isAdding}
         disabled={isAdding}
         onClick={() =>
-          handleAddAlarm(
-            {
-              name: nanoid(6),
-              areaID: area?.id
-            },
-            () => refresh()
-          )
+          control === "Alarm"
+            ? handleAddAlarm(
+                {
+                  name: nanoid(6),
+                  areaID: area?.id
+                },
+                refresh
+              )
+            : control === "Door"
+            ? handleAddDoor({
+                input: {
+                  areaID: area?.id
+                },
+                callback: refresh
+              })
+            : control === "Light"
+            ? handleAddLight(
+                {
+                  areaID: area?.id
+                },
+                refresh
+              )
+            : () => refresh()
         }
         sx={{
           background: colors.teal,

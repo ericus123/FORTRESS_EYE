@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { CombinedError, useMutation, useQuery } from "urql";
 import {
@@ -6,7 +7,10 @@ import {
   UPDATE_LIGHT_MUTATION
 } from "../graphql/mutations/light";
 import { GET_LIGHTS_QUERY } from "../graphql/queries/lights";
-import { saveLights } from "../redux/modules/light/lightSlice";
+import {
+  handleLightAddShow,
+  saveLights
+} from "../redux/modules/light/lightSlice";
 import { RootState } from "../redux/modules/rootReducer";
 import { Light } from "./useAreas";
 
@@ -52,7 +56,7 @@ export const useLights = (): LightProps => {
 };
 type LightInput = {
   areaID: string;
-  name: string;
+  // name: string; name was removed
 };
 
 export const useAddLight = () => {
@@ -78,8 +82,10 @@ export const useAddLight = () => {
       input
     }).then((res) => {
       if (res.data.addLight != undefined) {
+        dispatch(handleLightAddShow(false));
         callback();
         fetchData();
+        toast.success("Light added successfully");
       }
     });
   };

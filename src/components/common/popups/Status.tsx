@@ -21,7 +21,8 @@ const StatusPopup = ({
       sx={{
         zIndex: 1,
         background: colors.dark_blue,
-        borderRadius: "10px"
+        borderRadius: "10px",
+        display: "none" //hidden for now
       }}>
       {isClosable ? (
         <Box sx={{ position: "relative", zIndex: 1 }}>

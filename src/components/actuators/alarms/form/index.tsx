@@ -46,7 +46,7 @@ const AlarmForm = ({
           }}>
           <Image src={images.close} alt="" onClick={handleShow} />
         </Box>
-        <AreaSelect {...{ areas }} />
+        <AreaSelect {...{ areas, control: "Alarm" }} />
       </Box>
     </CenteredPopup>
   ) : null;

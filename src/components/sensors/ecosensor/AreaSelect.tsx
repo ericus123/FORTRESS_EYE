@@ -1,14 +1,17 @@
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import { MouseEvent, useState } from "react";
+import { useDispatch } from "react-redux";
 import { colors } from "../../../constants/colors";
 import { images } from "../../../constants/images";
 import { Area, useAreas } from "../../../hooks/useAreas";
+import { setEcosensorArea } from "../../../redux/modules/area/areaSlice";
 import AppPopover from "../../common/Popover";
 import AreaItem from "../../common/select/area/Item";
 
 const SensorsAreaSelect = () => {
   const [anchorEl, setAnchorEl] = useState<HTMLAnchorElement | null>(null);
+  const { ecoSensorArea } = useAreas();
 
   const handleClick = (
     event: MouseEvent<
@@ -22,12 +25,11 @@ const SensorsAreaSelect = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const dispatch = useDispatch();
 
   const { data: areas } = useAreas();
-  const [area, setArea] = useState<Area>();
   const handleArea = (_area: Area) => {
-    setArea(_area);
-    handleClose();
+    dispatch(setEcosensorArea(_area));
   };
 
   return (
@@ -113,7 +115,7 @@ const SensorsAreaSelect = () => {
                 paddingLeft: "15px",
                 paddingRight: "15px"
               }}>
-              {area?.name ? area.name : "Unknown Area"}
+              {ecoSensorArea?.name}
             </Typography>
             <Image
               src={images.caretDown}
@@ -135,7 +137,7 @@ const SensorsAreaSelect = () => {
             width: "150px"
           }}>
           {areas
-            .filter((a) => a.id != area?.id)
+            .filter((a) => a.id != ecoSensorArea?.id)
             ?.map((area, i) => (
               <AreaItem
                 {...{ area }}

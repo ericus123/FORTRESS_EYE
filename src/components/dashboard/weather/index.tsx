@@ -2,10 +2,12 @@
 
 import { Box } from "@mui/material";
 import { images } from "../../../constants/images";
+import useWeather from "../../../hooks/useWeather";
 import Temperature from "./Temperature";
 import WeatherCard from "./WeatherCard";
 
 const Weather = () => {
+  const { temperature, humidity } = useWeather();
   return (
     <Box
       sx={{
@@ -24,7 +26,7 @@ const Weather = () => {
         <Temperature
           {...{
             title: "Temperature",
-            value: 30,
+            value: temperature ? Math.round(temperature) : 0.0,
             unit: images.celcius,
             icon: images.temperature
           }}
@@ -32,7 +34,7 @@ const Weather = () => {
         <Temperature
           {...{
             title: "Humidity",
-            value: 17,
+            value: humidity ? Math.round(humidity) : 0.0,
             unit: images.percent,
             icon: images.humidity
           }}

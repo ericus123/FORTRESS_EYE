@@ -54,6 +54,7 @@ export const useProfile = (): ProfileProps => {
       callback();
     });
   };
+
   return {
     data: profile,
     isLoading: fetching || updateIsLoading,

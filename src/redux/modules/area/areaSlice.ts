@@ -5,6 +5,7 @@ export interface AreaSliceState {
   areas: Areas;
   area?: Area;
   isAddOpen: boolean;
+  ecoSensorArea?: Area;
 }
 
 const initialState: AreaSliceState = {
@@ -18,16 +19,30 @@ const areaSlice = createSlice({
   reducers: {
     saveAreas(state, { payload }: { payload: Areas }) {
       state.areas = payload;
+      if (!state.ecoSensorArea) {
+        state.ecoSensorArea = payload[0];
+      }
     },
     handleActive(state, { payload }: { payload: Area }) {
       state.area = payload;
     },
     handleAreaAddShow(state) {
       state.isAddOpen = !state.isAddOpen;
+    },
+    setEcosensorArea(
+      state,
+      {
+        payload
+      }: {
+        payload: Area;
+      }
+    ) {
+      state.ecoSensorArea = payload;
     }
   }
 });
 
-export const { saveAreas, handleActive, handleAreaAddShow } = areaSlice.actions;
+export const { saveAreas, handleActive, handleAreaAddShow, setEcosensorArea } =
+  areaSlice.actions;
 
 export default areaSlice.reducer;

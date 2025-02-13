@@ -1,11 +1,13 @@
 import { Box } from "@mui/material";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
-import { colors } from "../../../constants/colors";
+import { useNavigation } from "../../../hooks/useNavigation";
 import { useProfile } from "../../../hooks/useProfile";
 
 const Avatar = ({ image }: { image: string | StaticImageData }) => {
   const { data } = useProfile();
+
+  const { handleProfileView } = useNavigation();
   return (
     <Box
       sx={{
@@ -13,14 +15,16 @@ const Avatar = ({ image }: { image: string | StaticImageData }) => {
         display: "flex",
         justifyContent: "center",
         borderRadius: "50%",
-        border: `2px solid ${colors.teal}`,
+        // border: `2px solid ${colors.teal}`,
         width: "50px",
         height: "50px",
         overflow: "hidden",
         padding: "2px",
         marginLeft: "auto",
         marginRight: "auto"
-      }}>
+      }}
+      component={"div"}
+      onClick={handleProfileView}>
       <Link
         href={"/dashboard"}
         style={{

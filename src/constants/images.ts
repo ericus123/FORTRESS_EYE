@@ -12,6 +12,8 @@ import cctv from "../../public/images/icons/cctv.svg";
 import celcius from "../../public/images/icons/celcius.svg";
 import check from "../../public/images/icons/check.svg";
 import close from "../../public/images/icons/close.svg";
+import doorOff from "../../public/images/icons/door-off.svg";
+import doorOn from "../../public/images/icons/door-on.svg";
 import door from "../../public/images/icons/door.svg";
 import dots from "../../public/images/icons/dots.svg";
 import edit from "../../public/images/icons/edit.svg";
@@ -81,6 +83,8 @@ export const images = {
   temperature,
   dotsLoader,
   door,
+  doorOn,
+  doorOff,
   close,
   humidity,
   percent,

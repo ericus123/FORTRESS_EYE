@@ -22,8 +22,8 @@ const lightSlice = createSlice({
     handleActive(state, { payload }: { payload: Alarm }) {
       state.light = payload;
     },
-    handleLightAddShow(state) {
-      state.isAddOpen = !state.isAddOpen;
+    handleLightAddShow(state, { payload }: { payload: boolean }) {
+      state.isAddOpen = payload;
     }
   }
 });

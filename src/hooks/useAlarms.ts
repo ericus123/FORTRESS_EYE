@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { CombinedError, useMutation, useQuery } from "urql";
 import { ADD_ALARM_MUTATION } from "../graphql/mutations/alarm";
@@ -59,7 +60,7 @@ export const useAlarms = () => {
   };
 
   const handleShow = () => {
-    dispatch(handleAlarmAddShow());
+    dispatch(handleAlarmAddShow(false));
     dispatch(hideStatus());
   };
 
@@ -75,6 +76,7 @@ export const useAlarms = () => {
         if (res.data.addAlarm != undefined) {
           callback();
           fetchData();
+          toast.success("Alarm added successfuly");
         }
       });
   };

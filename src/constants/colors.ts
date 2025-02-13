@@ -42,5 +42,14 @@ export const colors = {
   graphite_6: "rgba(44, 44, 44, .6)",
   graphite_7: "rgba(44, 44, 44, .7)",
   graphite_8: "rgba(44, 44, 44, .8)",
-  graphite_9: "rgba(44, 44, 44, .9)"
+  graphite_9: "rgba(44, 44, 44, .9)",
+  active_1: "rgba(0, 204, 153, 0.1)",
+  active_2: "rgba(0, 204, 153, 0.2)",
+  active_3: "rgba(0, 204, 153, 0.3)",
+  active_4: "rgba(0, 204, 153, 0.4)",
+  active_5: "rgba(0, 204, 153, 0.5)",
+  active_6: "rgba(0, 204, 153, 0.6)",
+  active_7: "rgba(0, 204, 153, 0.7)",
+  active_8: "rgba(0, 204, 153, 0.8)",
+  active_9: "rgba(0, 204, 153, 0.9)"
 };

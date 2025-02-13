@@ -11,6 +11,7 @@ import {
   VERIFICATION_MUTATION
 } from "../graphql/mutations/auth";
 
+import toast from "react-hot-toast";
 import {
   AuthTokens,
   handleAuthTokens,
@@ -100,6 +101,9 @@ export const useSignin = (): SigninReponse => {
   const handleSignin = async (input: SigninInput) => {
     await signin(input).then(({ data: _result }) => {
       if (_result != undefined) {
+        toast.success("Wellcome back! 👋🏾 😊", {
+          removeDelay: 3000
+        });
         dispatch(handleAuthTokens(_result?.Signin));
         router.push("/dashboard");
       }

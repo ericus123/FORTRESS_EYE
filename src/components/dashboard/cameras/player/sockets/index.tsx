@@ -40,7 +40,10 @@ const PlayerWithWorker: FC<WsPlayerProps> = ({
     if (!workerRef.current) {
       // Create a web worker when the component mounts
       workerRef.current = new Worker(
-        new URL("/public/workers/player.worker.ts", import.meta.url)
+        new URL(
+          "../../../../../../public/workers/player.worker.ts",
+          import.meta.url
+        )
       );
 
       workerRef.current.onmessage = (e) => {

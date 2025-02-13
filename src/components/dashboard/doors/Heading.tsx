@@ -3,7 +3,13 @@ import Image from "next/image";
 import { colors } from "../../../constants/colors";
 import { images } from "../../../constants/images";
 
-const DoorControlsHeading = ({ canAdd }: { canAdd: boolean }) => {
+const DoorControlsHeading = ({
+  canAdd,
+  handleAddShow
+}: {
+  canAdd: boolean;
+  handleAddShow: () => void;
+}) => {
   return (
     <Box
       sx={{
@@ -32,6 +38,7 @@ const DoorControlsHeading = ({ canAdd }: { canAdd: boolean }) => {
             marginLeft: "auto",
             cursor: "pointer"
           }}
+          onClick={handleAddShow}
         />
       ) : null}
     </Box>

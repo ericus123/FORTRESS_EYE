@@ -1,7 +1,6 @@
 import { Box, Typography } from "@mui/material";
-import Image from "next/image";
+import { FaBell } from "react-icons/fa";
 import { colors } from "../../../constants/colors";
-import { images } from "../../../constants/images";
 import { getAlarmAreaName } from "../../../helpers";
 import { Alarm as AlarmType, Area } from "../../../hooks/useAreas";
 
@@ -10,8 +9,8 @@ const Alarm = ({ alarm, areas }: { alarm: AlarmType; areas: Area[] }) => {
     <Box
       sx={{
         position: "relative",
-        width: "100px",
-        minWidth: "80px",
+        width: "125px",
+        minWidth: "125px",
         height: "80px",
         maxHeight: "80px",
         minHeight: "80px",
@@ -20,32 +19,29 @@ const Alarm = ({ alarm, areas }: { alarm: AlarmType; areas: Area[] }) => {
         justifyContent: "center",
         flexDirection: "column",
         gap: "5px",
-        background: alarm.isOn ? colors.rose_red : colors.graphite,
+        background: alarm.isOn ? colors.rose_red : colors.graphite_5,
         borderRadius: "10px"
         // border: !alarm.isOn
         //   ? `.5px dashed ${colors.active}`
         //   : `.5px dashed ${colors.rose_red}`
       }}>
-      {/* <Box
-        sx={{
-          position: "absolute",
-          right: "5px",
-          top: "5px"
-        }}>
-        <Image src={images.dots} alt="" style={{ height: "12.5px" }} />
-      </Box> */}
       <Box
         sx={{
           display: "flex",
           flexDirection: "column",
-          gap: "5px"
+          gap: "5px",
+          cursor: "pointer"
         }}>
         <Box
           sx={{
             display: "flex",
             justifyContent: "center"
           }}>
-          <Image src={images.siren} alt="" width={15} height={15} />
+          {!alarm?.isOn ? (
+            <FaBell size={20} color={colors.rose_red} />
+          ) : (
+            <FaBell size={20} color={colors.light} />
+          )}
         </Box>
         <Box>
           <Typography

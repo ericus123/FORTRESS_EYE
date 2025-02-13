@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { colors } from "../../../constants/colors";
+import { handleLightAddShow } from "../../../redux/modules/light/lightSlice";
 import { RootState } from "../../../redux/modules/rootReducer";
 import NoData from "../../common/NoData";
 import LightsControlContent from "./Content";
@@ -8,6 +9,12 @@ import LightsControlsHeading from "./Heading";
 
 const LightsControl = () => {
   const { area } = useSelector(({ area }: RootState) => area);
+
+  const dispatch = useDispatch();
+
+  const handleShow = () => {
+    dispatch(handleLightAddShow(true));
+  };
 
   return (
     <Box
@@ -31,7 +38,11 @@ const LightsControl = () => {
         />
       ) : (
         <>
-          <LightsControlsHeading title={"Light"} canAdd={!area?.light} />
+          <LightsControlsHeading
+            title={"Light"}
+            canAdd={!area?.light}
+            handleAddShow={handleShow}
+          />
           {area?.light != undefined ? (
             <LightsControlContent {...{ light: area?.light }} />
           ) : (

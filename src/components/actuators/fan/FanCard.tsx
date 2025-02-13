@@ -79,8 +79,11 @@ const FanCard = ({
       sx={{
         display: "flex",
         flexDirection: "column",
-        gap: ".5rem"
-      }}>
+        gap: ".5rem",
+        cursor: "pointer"
+      }}
+      component={"div"}
+      onClick={handleFan}>
       <Box
         sx={{
           display: "flex",

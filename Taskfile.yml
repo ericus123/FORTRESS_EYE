@@ -1,0 +1,184 @@
+version: "3"
+
+tasks:
+  install:
+    desc: "Install dependencies"
+    cmds:
+      - "yarn install --frozen-lockfile"
+
+  install_production:
+    desc: "Install production dependencies"
+    cmds:
+      - "yarn install --frozen-lockfile --production"
+
+  server:
+    desc: "Start server"
+    cmds:
+      - "bunx tsx ./electron/src/server.ts"
+
+  next_dev:
+    desc: "Development server for Next.js"
+    cmds:
+      - "yarn next dev --turbo"
+
+  next_build:
+    desc: "Build Next.js project"
+    cmds:
+      - "NODE_ENV=production yarn next build"
+
+  next_start:
+    desc: "Start Next.js project"
+    cmds:
+      - "yarn next start"
+
+  next_lint:
+    desc: "Lint Next.js project"
+    cmds:
+      - "yarn next lint"
+
+  format:
+    desc: "Format code"
+    cmds:
+      - "yarn dprint fmt"
+
+  postinstall:
+    desc: "Install app dependencies for Electron"
+    cmds:
+      - "yarn electron-builder install-app-deps"
+
+  electron_dist:
+    desc: "Build Electron for distribution in directory mode"
+    cmds:
+      - "yarn electron-builder --dir"
+
+  electron_build:
+    desc: "Build Electron using tsup"
+    cmds:
+      - "yarn tsup"
+
+  build:
+    desc: "Build both Next.js and Electron projects"
+    deps:
+      - next_build
+      - electron_build
+
+  dist:
+    desc: "Distribute both Next.js and Electron projects"
+    cmds:
+      - "task next_build && task electron_dist"
+
+  dev:
+    desc: "Development mode for both Electron and Next.js"
+    deps:
+      - next_dev
+      - electron_dev
+      - electron_build_watch
+
+  watch:
+    desc: "Watch mode for both Electron and Next.js"
+    deps:
+      - server
+      - next_dev
+
+  electron_build_watch:
+    desc: "Watch mode for Electron with tsup"
+    cmds:
+      - "yarn tsup --watch"
+
+  electron_dev:
+    desc: "Development mode for Electron"
+    cmds:
+      - "yarn cross-env NODE_ENV='development' nodemon"
+
+  docker_build:
+    desc: "Build Docker image"
+    cmds:
+      - "docker build -t green-dome ."
+
+  docker_run:
+    desc: "Run Docker container"
+    cmds:
+      - "docker run -d -p 3000:3000 green-dome"
+
+  release:linux:
+    desc: "Build and release for Linux"
+    cmds:
+      - "yarn electron-builder --linux -p always -c.snap.publish=github"
+
+  release:mac:
+    desc: "Build and release for macOS"
+    cmds:
+      - "yarn electron-builder --mac -p always"
+
+  release:win:
+    desc: "Build and release for Windows"
+    cmds:
+      - "yarn electron-builder --win -p always"
+
+  release:all:
+    desc: "Build and release for all platforms"
+    cmds:
+      - task: release:linux
+      - task: release:mac
+      - task: release:win
+
+  dist:linux:
+    desc: "Build distribution for Linux"
+    cmds:
+      - "yarn electron-builder --linux -p always"
+
+  dist:linux:deb-arm64:
+    desc: "Build ARM64 DEB distribution for Linux"
+    cmds:
+      - "yarn electron-builder --linux deb:arm64 -p always"
+
+  dist:linux:rpm-arm64:
+    desc: "Build ARM64 RPM distribution for Linux"
+    cmds:
+      - "yarn electron-builder --linux rpm:arm64 -p always"
+
+  dist:mac:
+    desc: "Build distribution for macOS (x64)"
+    cmds:
+      - "yarn electron-builder --mac dmg:x64 -p always"
+
+  dist:mac:arm64:
+    desc: "Build distribution for macOS (ARM64)"
+    cmds:
+      - "yarn electron-builder --mac dmg:arm64 -p always"
+
+  dist:win:
+    desc: "Build distribution for Windows"
+    cmds:
+      - "yarn electron-builder --win -p always"
+
+  dist:win:x64:
+    desc: "Build x64 distribution for Windows"
+    cmds:
+      - "yarn electron-builder --win nsis-web:x64 -p always"
+
+  dist:all:
+    desc: "Build distributions for all platforms"
+    cmds:
+      - "yarn electron-builder --win --mac --linux -p always"
+
+  changelog:
+    desc: "Generate changelog"
+    cmds:
+      - "npx --yes auto-changelog"
+
+  clean:
+    desc: "Clean build and dist directories"
+    cmds:
+      - "rm -rf build dist"
+
+  generate_icons:
+    desc: "Generate icons"
+    cmds:
+      - "bunx electron-icon-builder --input=./public/icon.png --output=./public/icons;"
+
+  install_sqlite3:
+    desc: "Install sqlite3"
+    cmds:
+      - "yarn remove better-sqlite3"
+      - "yarn add better-sqlite3 --build-from-source --target_arch=arm64 --fallback-to-build"

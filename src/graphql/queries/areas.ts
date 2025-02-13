@@ -18,7 +18,6 @@ export const GET_AREAS_QUERY = gql`
         }
       }
       door{
-        cameraID
         createdAt
         deletedAt
         id

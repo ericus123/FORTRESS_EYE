@@ -5,10 +5,12 @@ import { images } from "../../../constants/images";
 
 const LightsControlsHeading = ({
   title,
-  canAdd
+  canAdd,
+  handleAddShow
 }: {
   title: string;
   canAdd: boolean;
+  handleAddShow: () => void;
 }) => {
   return (
     <Box
@@ -38,6 +40,7 @@ const LightsControlsHeading = ({
             marginLeft: "auto",
             cursor: "pointer"
           }}
+          onClick={handleAddShow}
         />
       ) : null}
     </Box>

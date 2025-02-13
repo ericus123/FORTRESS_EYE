@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { colors } from "../../../../constants/colors";
-import SensorsAreaSelect from "../../../actuators/sensors/AreaSelect";
+import SensorsAreaSelect from "../../../sensors/ecosensor/AreaSelect";
 
 const CameraPlayerHeader = ({ camera }: { camera: string }) => {
   return (

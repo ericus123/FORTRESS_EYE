@@ -11,7 +11,6 @@ import PtzControl from "../controls/PtzControl";
 import CameraPlayerHeader from "./Header";
 import LiveIndicator from "./LiveIndicator";
 import PlayerWithWorker from "./sockets";
-import SensorsAreaSelect from "../../../actuators/sensors/AreaSelect";
 
 const CameraPlayer = ({
   sx,
@@ -77,7 +76,7 @@ const CameraPlayer = ({
             }}
             debug
             {...{
-              wsUrl: "wss://ws.amanieric.com",
+              wsUrl: "ws://localhost:8000",
               loaderProps: {
                 show: true
               }

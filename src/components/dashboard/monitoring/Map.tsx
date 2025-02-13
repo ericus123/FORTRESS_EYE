@@ -1,7 +1,7 @@
-import House3DMap from "../../common/maps/3d";
+import House3DMap, { MapSize } from "../../common/maps/3d";
 
-const MapView = () => {
-  return <House3DMap />;
+const MapView = (size: MapSize) => {
+  return <House3DMap {...size} />;
 };
 
 export default MapView;

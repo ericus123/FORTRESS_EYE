@@ -4,9 +4,13 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import { useEffect, useRef } from "react";
 import Map, { Layer, NavigationControl, Source } from "react-map-gl/mapbox";
 
+export type MapSize = {
+  width: string;
+  height: string;
+};
 // Replace with your token
 
-const House3DMap = () => {
+const House3DMap = ({ width, height }: MapSize) => {
   const mapRef = useRef<any>(null);
 
   // Your house coordinates
@@ -37,7 +41,7 @@ const House3DMap = () => {
         ref={mapRef}
         mapboxAccessToken={MAPBOX_TOKEN}
         initialViewState={houseCoords}
-        style={{ width: "1000px", height: "1000px" }}
+        style={{ width, height }}
         mapStyle="mapbox://styles/mapbox/satellite-streets-v12">
         {/* Add Digital Elevation Model (DEM) Source */}
         <Source

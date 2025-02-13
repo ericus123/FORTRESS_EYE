@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { CombinedError, useMutation, useQuery } from "urql";
 import { ADD_AREA_MUTATION } from "../graphql/mutations/area";
@@ -54,8 +55,8 @@ export type Light = {
 };
 
 export type Door = {
+  areaID: string;
   id: string;
-  cameraID: string;
   isLocked: boolean;
   createdAt: Date;
   updatedAt: Date;
@@ -105,7 +106,9 @@ export const useAreas = () => {
     query: GET_AREAS_QUERY
   });
 
-  const { areas, area } = useSelector(({ area }: RootState) => area);
+  const { areas, area, ecoSensorArea } = useSelector(
+    ({ area }: RootState) => area
+  );
 
   useEffect(() => {
     if (data?.GetAreas != undefined) {
@@ -150,6 +153,7 @@ export const useAreas = () => {
         if (res != undefined) {
           callback();
           fetchData();
+          toast.success(`Area added successfully`);
         }
       });
   };
@@ -189,6 +193,7 @@ export const useAreas = () => {
     error,
     fetching,
     area,
-    isAdding
+    isAdding,
+    ecoSensorArea
   };
 };

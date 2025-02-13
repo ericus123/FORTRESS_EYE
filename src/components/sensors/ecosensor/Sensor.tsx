@@ -1,14 +1,10 @@
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
-import { useSelector } from "react-redux";
 import { colors } from "../../../constants/colors";
 import { images } from "../../../constants/images";
-import { RootState } from "../../../redux/modules/rootReducer";
 import { SensorData } from "./data";
 
 const Sensor = ({ data }: { data: SensorData }) => {
-  const { area } = useSelector(({ area }: RootState) => area);
-
   return (
     <Box
       sx={{

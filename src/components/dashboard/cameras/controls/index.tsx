@@ -2,8 +2,20 @@ import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import { colors } from "../../../../constants/colors";
 import { images } from "../../../../constants/images";
+import usePlayer from "../../../../hooks/usePlayer";
 
 const CameraControls = () => {
+  const {
+    isMicOpen,
+    isSpeakerOpen,
+    isInPictureMode,
+    isExpanded,
+    handleToggleExpanded,
+    handleToggleMic,
+    handleTogglePictureMode,
+    handleToggleSpeaker
+  } = usePlayer();
+
   return (
     <Box
       sx={{
@@ -33,7 +45,13 @@ const CameraControls = () => {
           }}
           component={"div"}
           title="screenshot">
-          <Image src={images.speakerOff} alt="" width={20} height={20} />
+          <Image
+            src={isSpeakerOpen ? images.speakerOn : images.speakerOff}
+            alt=""
+            width={25}
+            height={25}
+            onClick={handleToggleSpeaker}
+          />
         </Box>
         <Box
           sx={{
@@ -75,7 +93,13 @@ const CameraControls = () => {
           }}
           component={"div"}
           title="mute">
-          <Image src={images.micOn} alt="" width={20} height={20} />
+          <Image
+            src={isMicOpen ? images.micOn : images.micOff}
+            alt=""
+            width={20}
+            height={20}
+            onClick={handleToggleMic}
+          />
         </Box>
       </Box>
       <Box

@@ -76,7 +76,7 @@ const CameraFullScreenPlayer = ({
             }}
             debug
             {...{
-              wsUrl: "wss://ws.amanieric.com",
+              wsUrl: "ws://localhost:8000",
               loaderProps: {
                 show: true
               }

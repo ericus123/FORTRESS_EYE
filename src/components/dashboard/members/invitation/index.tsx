@@ -3,10 +3,12 @@ import { Box, TextField } from "@mui/material";
 import Image from "next/image";
 import { useEffect } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { colors } from "../../../../constants/colors";
 import { images } from "../../../../constants/images";
+import { getGraphQLErrorMessage } from "../../../../helpers";
 import { useInviteMember } from "../../../../hooks/useMembers";
 import { handleInviteShow } from "../../../../redux/modules/member/memberSlice";
 import { handleStatus } from "../../../../redux/modules/navigation/navigationSlice";
@@ -53,15 +55,17 @@ const InviteMember = ({
 
   useEffect(() => {
     if (error != undefined) {
-      dispatch(
-        handleStatus({
-          isSuccess: false,
-          show: true,
-          message: {
-            fail: "Oops! something went wrong 🙁"
-          }
-        })
-      );
+      toast.error(getGraphQLErrorMessage(error) || "Something went wrong!");
+      handleShow();
+      // dispatch(
+      //   handleStatus({
+      //     isSuccess: false,
+      //     show: true,
+      //     message: {
+      //       fail: getGraphQLErrorMessage(error)
+      //     }
+      //   })
+      // );
     }
   }, [error]);
 
@@ -70,7 +74,7 @@ const InviteMember = ({
       sx={{
         width: "400px",
         height: "250px",
-        zIndex: 1,
+        zIndex: 999,
         background: colors.graphite,
         borderRadius: "10px",
         padding: "2rem"

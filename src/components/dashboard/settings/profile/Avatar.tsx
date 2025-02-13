@@ -2,26 +2,19 @@ import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import { colors } from "../../../../constants/colors";
 import { images } from "../../../../constants/images";
-import { ProfileInput } from "../../../../graphql/types";
-import { UploadFile } from "../../../../hooks/useUploader";
 import { ProfileType } from "../../../../redux/modules/auth/authSlice";
 
 const ProfileAvatar = ({
   profile,
-  uploadFile,
-  handleUpdate
+  handleSelected
 }: {
-  uploadFile: (file: File, type?: string) => Promise<UploadFile>;
-  handleUpdate: ({
-    input,
-    callback
-  }: {
-    email: string;
-    input: Partial<ProfileInput>;
-    callback: () => void;
-  }) => void;
   profile?: ProfileType;
+  handleSelected: (file: string) => void;
 }) => {
+  const handleImage = async (file: string) => {
+    handleSelected(file);
+  };
+
   return (
     <Box
       sx={{
@@ -63,17 +56,12 @@ const ProfileAvatar = ({
           }}
           onChange={async (event) => {
             if (event?.target?.files) {
-              const data = await uploadFile(event?.target?.files[0], "avatars");
-              handleUpdate({
-                email: `${profile?.email}`,
-                input: {
-                  avatar: data.filename
-                },
-                callback: () => null
-              });
+              const imageFileUrl = URL.createObjectURL(event.target.files[0]);
+              handleImage(imageFileUrl);
             }
           }}
         />
+
         <label htmlFor="select-image">
           <Box
             sx={{

@@ -67,7 +67,7 @@ const SignoutPopup = () => {
         <AppButton
           title="Signout"
           sx={{
-            background: colors.rose_pompadour,
+            background: colors.rose_red,
             color: colors.light,
             opacity: 0.8,
             width: "100px",

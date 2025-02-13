@@ -1,8 +1,8 @@
 import { Box } from "@mui/material";
 import PowerMetricsCard from "../dashboard/power/metrics/Card";
+import Sensors from "../sensors/ecosensor";
 import Alarms from "./alarms";
 import Fan from "./fan";
-import Sensors from "./sensors";
 
 const Actuators = () => {
   return (

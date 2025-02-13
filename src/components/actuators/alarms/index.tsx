@@ -17,7 +17,7 @@ const Alarms = () => {
   const dispatch = useDispatch();
 
   const handleShow = () => {
-    dispatch(handleAlarmAddShow());
+    dispatch(handleAlarmAddShow(true));
   };
   return (
     <Box

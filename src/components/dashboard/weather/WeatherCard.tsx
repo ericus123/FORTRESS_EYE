@@ -7,7 +7,7 @@ import { colors } from "../../../constants/colors";
 import useWeather from "../../../hooks/useWeather";
 
 const WeatherCard = () => {
-  const { temperature, description, icon, city, fetchData } =
+  const { temperature, description, icon, city, humidity, fetchData } =
     useWeather("Kigali");
 
   useEffect(() => {

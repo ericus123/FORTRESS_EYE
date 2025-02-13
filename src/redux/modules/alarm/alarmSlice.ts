@@ -22,8 +22,15 @@ const alarmSlice = createSlice({
     handleActive(state, { payload }: { payload: Alarm }) {
       state.alarm = payload;
     },
-    handleAlarmAddShow(state) {
-      state.isAddOpen = !state.isAddOpen;
+    handleAlarmAddShow(
+      state,
+      {
+        payload
+      }: {
+        payload: boolean;
+      }
+    ) {
+      state.isAddOpen = payload;
     }
   }
 });
